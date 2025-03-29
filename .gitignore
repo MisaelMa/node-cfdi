@@ -34,6 +34,7 @@ build/Release
 node_modules/
 jspm_packages/
 packages/cfdi/schema/
+packages/cfdi/designs
 # Optional npm cache directory
 .npm
 

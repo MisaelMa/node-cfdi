@@ -100,5 +100,11 @@
     "definitionName": "lockStepVersion",
     "version": "4.0.13",
     "nextBump": "patch"
+  },
+  {
+    "policyName": "designs",
+    "definitionName": "lockStepVersion",
+    "version": "4.0.13",
+    "nextBump": "patch"
   }
 ]

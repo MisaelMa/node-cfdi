@@ -85,6 +85,7 @@
         "./node_modules/@saxon-he/cli/src"
       ],
       "@cfdi/utils/*": [
+        "./node_modules/@cfdi/utils/src",
         "./node_modules/@cfdi/utils/src/*"
       ],
       "@cfdi/utils": [

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante >
+    <cfdi:Conceptos>
+        <cfdi:Concepto ClaveProdServ="86121500" Cantidad="1" ClaveUnidad="E48" Unidad="Pieza" Descripcion="Mensualidad - diciembre" ValorUnitario="5000" Importe="5000" Descuento="0"/>
+        <cfdi:Concepto ClaveProdServ="86121500" Cantidad="1" ClaveUnidad="E48" Unidad="Pieza" Descripcion="Mensualidad - diciembre" ValorUnitario="5000" Importe="5000" Descuento="0"/>
+    </cfdi:Conceptos>
+</cfdi:Comprobante>

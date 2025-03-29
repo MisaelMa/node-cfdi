@@ -202,6 +202,20 @@
       "versionPolicyName": "elements",
       "reviewCategory": "libraries",
       "shouldPublish": true
+    },
+    {
+      "packageName": "@cfdi/designs",
+      "projectFolder": "packages/cfdi/designs",
+      "versionPolicyName": "designs",
+      "reviewCategory": "libraries",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "server",
+      "projectFolder": "packages/server",
+      "reviewCategory": "private",
+      "shouldPublish": false,
+      "skipRushCheck": true
     }
   ]
 }

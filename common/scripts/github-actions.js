@@ -92,13 +92,16 @@ function getDependences(scope) {
     },
     '2json': {
       '2json': true
+    },
+    designs: {
+      designs: true
     }
   };
   return dependencies[scope] || {};
 }
 
 function getScopes(commits = []) {
-  const list = ['catalogs','csd','csf','curp','pdf','rfc','utils','xml','complementos','openssl','saxon','xsd']
+  const list = ['catalogs','csd','csf','curp','pdf','rfc','utils','xml','complementos','openssl','saxon','xsd', '2json','designs']
   const onlys = {
     'only-complementos': 'complementos'
   }
