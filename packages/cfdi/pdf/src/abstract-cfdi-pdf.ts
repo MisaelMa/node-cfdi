@@ -6,13 +6,14 @@ import {
   XmlCdfi,
   XmlConcepto,
   XmlEmisor,
+  XmlEmisorAttribute,
   XmlImpuestos,
   XmlReceptor,
-} from '@cfdi/xml'
+} from '@cfdi/xml';
 import { TCreatedPdf, createPdf } from 'pdfmake/build/pdfmake';
 
 import { OptionsPdf } from './types';
-import { XmlTfd } from '@cfdi/complementos/types/complements/tfd/tfd.com'
+import { XmlTfd } from '@cfdi/complementos/types/complements/tfd/tfd.com';
 import { XmlToJson } from '@cfdi/2json';
 import path from 'path';
 // import PdfPrinter from 'pdfmake';
@@ -45,7 +46,7 @@ export abstract class RPDF {
   }
   protected abstract addLogo(): void;
   protected abstract addFolio(c: CFDIComprobante): void;
-  protected abstract addEmisorData(emisor: XmlEmisor, expedido: string): void;
+  protected abstract addEmisorData(emisor: XmlEmisorAttribute, expedido: string): void;
   protected abstract addDate(date: string): void;
   protected abstract addReceptor(receptor: XmlReceptor): void;
   protected abstract fechaTimbrado(tfd: XmlTfd): void;
@@ -70,17 +71,17 @@ export abstract class RPDF {
     total: string
   ): void;
   public async getDocument(): Promise<TCreatedPdf> {
-    if (this.xml['cfdi:Comprobante']['cfdi:Emisor']) {
+    /* if (this.xml.Comprobante.Emisor) {
       this.addEmisorData(
-        this.xml['cfdi:Comprobante']['cfdi:Emisor'],
-        this.xml['cfdi:Comprobante']._attributes.LugarExpedicion
+        this.xml.Comprobante.Emisor,
+        this.xml.Comprobante.LugarExpedicion
       );
     }
     await this.addLogo();
-    this.addFolio(this.xml['cfdi:Comprobante']._attributes);
-    this.addDate(this.xml['cfdi:Comprobante']._attributes.Fecha);
+    this.addFolio(this.xml.Comprobante);
+    this.addDate(this.xml.Comprobante.Fecha); */
     // @ts-ignore
-    this.addReceptor(this.xml['cfdi:Comprobante']['cfdi:Receptor']);
+    /*this.addReceptor(this.xml['cfdi:Comprobante']['cfdi:Receptor']);
     this.addDetalles(this.xml['cfdi:Comprobante']['cfdi:Conceptos']);
     this.addCatidad(this.xml['cfdi:Comprobante']._attributes);
     // @ts-ignore
@@ -116,7 +117,7 @@ export abstract class RPDF {
           this.xml['cfdi:Comprobante']._attributes.Total as string
         );
       }
-    }
+    } */
     const fo = { ...this.fonts, ...Pd.fonts, ...this.options.fonts };
     console.log(fo);
     return createPdf(this.docDefinition);
