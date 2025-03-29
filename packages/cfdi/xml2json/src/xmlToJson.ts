@@ -3,67 +3,125 @@ import { readFileSync } from 'fs';
 import { ElementCompact, Element, Options, xml2js } from 'xml-js';
 import { isPath } from '@cfdi/utils';
 
-function extractAttributes(element: Element | ElementCompact) {
-    const attributes: any = { ...element.attributes };
+export function XmlToJson(
+  xmlPath: string,
+  config?: { original?: boolean; compact?: boolean }
+): any {
+  const original = Boolean(config?.original);
+  const compact = Boolean(config?.compact);
+  const stringXml = isPath(xmlPath) ? readFileSync(xmlPath, 'utf8') : xmlPath;
+  const options: Options.XML2JS = {
+    ignoreComment: false,
+    compact: false,
+    ignoreDeclaration: false,
+    elementNameFn: (name: string) =>
+      original ? name : name.replace(/^.*:/, ''),
+  };
+  const json = xml2js(stringXml, options);
 
-    if (element.elements) {
-        element.elements.forEach((child: any) => {
-            const childData = child.elements ? extractAttributes(child) : { ...child.attributes };
+  const toCompacts = (elements: Element[], options: any) => {
+    const { parent = '', isPlural } = options || {};
+    let result: any;
+   /*   console.log('parent', parent);
+    console.log('isPlural', isPlural); */
 
-            // Verificar si el nombre del padre es el plural del hijo (ej. Conceptos -> Concepto)
-            const isPluralParent = element.name.toLowerCase().endsWith(child.name.toLowerCase() + 's'); // Verifica si el padre es plural
+    //console.log('------------------') 
+    elements.forEach((element, i) => {
+      const name = element.name as string;
+      const attributes = Boolean(element.attributes);
+      const res = parent.replace(name, '');
+      const isElementPlural = ['s', 'es'].includes(res);
 
-            // Si el nombre del padre es el plural del hijo, aseguramos que el hijo sea tratado como un array
-            if (isPluralParent) {
-                if (attributes[child.name]) {
-                    if (Array.isArray(attributes[child.name])) {
-                        attributes[child.name].push(childData);
-                    } else {
-                        attributes[child.name] = [attributes[child.name], childData];
-                    }
-                } else {
-                    attributes[child.name] = [childData];  // Forzar a que sea un array
-                }
-            } else {
-                // Si no es plural, manejar como objeto único
-                if (attributes[child.name]) {
-                    if (Array.isArray(attributes[child.name])) {
-                        attributes[child.name].push(childData);
-                    } else {
-                        attributes[child.name] = [attributes[child.name], childData];
-                    }
-                } else {
-                    attributes[child.name] = childData;
-                }
-            }
-        });
-    }
-
-    return attributes;
-}
-
-export function XmlToJson(xmlPath: string, config?: {original: boolean}): XmlCdfi {
-    const original = Boolean(config?.original);
-    const stringXml = isPath(xmlPath) ? readFileSync(xmlPath, 'utf8') : xmlPath;
-    const options: Options.XML2JS = {
-        ignoreComment: false,
-        alwaysChildren: false,
-        compact: original,
-        ignoreDeclaration: false,
-        elementNameFn: (name: string) => original ? name : name.replace(/^.*:/, '')
-    };
-    const json = xml2js(stringXml, options);
-    const onlyJson = () => {
-      const { declaration, elements } = json;
-      const comprobante_element = elements.find((el: any) => el.name ===  'Comprobante');
-      const comprobante = comprobante_element ? extractAttributes(comprobante_element) : {};
-      return {
-        declaration: {
-            ...declaration.attributes
-        },
-        'Comprobante': comprobante
+      if (attributes && !isPlural) {
+        if (isElementPlural) {
+          if (!result) {
+            result = [];
+          }
+          result[i] = element.attributes
+        } else {
+          if (!result) {
+            result = {};
+          }
+          result[name] = element.attributes;
+        }
       }
-    }
-    const result = original ? json : onlyJson();
-    return result as XmlCdfi;
+      /* console.log(`
+          ============
+          parent: ${parent}
+          name: ${name}
+          isPlural: ${isPlural}
+          isElementPlural: ${isElementPlural}
+          attributes: ${JSON.stringify(attributes)}
+          ===========`); */
+      if (element.elements && element.elements.length > 0) {
+        if (isElementPlural) {
+        /*   console.log('isElementPlural if ', isElementPlural);
+          console.log('element', element); */
+          const compact = toCompacts(element.elements, {
+            parent: name,
+            isPlural: false,
+          });
+        /*   console.log('compact parent if', name);
+          console.log('compact --->', JSON.stringify(compact, null, 2));
+          console.log("result", result) */
+          result[i] = {
+            ...result[i],
+            ...compact
+          }
+          //result['amir'] = {
+           // compact
+            //...element.attributes,
+            //...result[name],
+            //...compact
+          //}
+        } else {
+          const compact = toCompacts(element.elements, {
+            parent: name,
+            isPlural: isElementPlural,
+          });
+          /* console.log('compact parent else', name);
+          console.log('compact --->', compact);
+          console.log('isElementPlural', isElementPlural);
+          console.log('isPlural', isPlural);  */
+          if (!isPlural) {
+            if (!result) {
+              result = {};
+            }
+            let r: any;
+            if (Array.isArray(compact)) {
+              r = {
+                [name]: compact,
+              };
+              result ={
+               ...result,
+              ...r,
+              }
+            } else {
+              r = compact;
+              result[name] = {
+                ...result[name],
+                ...r,
+              };
+            }
+          } else {
+            console.log('isPlural else', isPlural);
+            // result.push(compact);
+          }
+        }
+      }
+    });
+
+  /*   console.log('==============');
+    console.log('result', JSON.stringify(result, null, 2));
+    console.log('=============='); */
+
+    return result;
+  };
+
+  const compactJson = toCompacts(json.elements, {
+    isPlural: false,
+    parent: 'Comprobante',
+  });
+
+  return compactJson;
 }
