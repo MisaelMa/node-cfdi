@@ -1,0 +1,25 @@
+{
+  "name": "@cfdi/designs",
+  "version": "1.0.0",
+  "description": "Un paquete para Node con Vite y TypeScript",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@types/pdfmake": "^0.2.11",
+    "pdfmake": "^0.2.18",
+    "vite-plugin-dts": "^4.5.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-url":"^8.0.2",
+    "@cfdi/2json": "workspace:*",
+    "@cfdi/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vite": "^6.2.2"
+  }
+}

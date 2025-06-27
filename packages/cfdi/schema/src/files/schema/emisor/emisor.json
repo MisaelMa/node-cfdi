@@ -1,0 +1,35 @@
+{
+  "$id": "comprobante_Emisor.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "This JSON Schema file was generated from comprobante_Emisor on Tue Dec 26 2023 18:56:11 GMT-0500 (Eastern Standard Time).  For more information please see http://www.xsd2jsonschema.org",
+  "description": "Atributo requerido para incorporar la clave del régimen del contribuyente emisor al que aplicará el efecto fiscal de este comprobante.",
+  "required": [
+    "Rfc",
+    "Nombre",
+    "RegimenFiscal"
+  ],
+  "properties": {
+    "Rfc": {
+      "$ref": "tipoDatos.json#/definitions/t_RFC"
+    },
+    "Nombre": {
+      "description": "Atributo requerido para registrar el nombre, denominación o razón social del contribuyente inscrito en el RFC, del emisor del comprobante.",
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "[^|]{1,300}",
+      "type": "string"
+    },
+    "RegimenFiscal": {
+      "$ref": "catalogos.json#/definitions/c_RegimenFiscal"
+    },
+    "FacAtrAdquirente": {
+      "description": "Atributo condicional para expresar el número de operación proporcionado por el SAT cuando se trate de un comprobante a través de un PCECFDI o un PCGCFDISP.",
+      "maxLength": 10,
+      "minLength": 10,
+      "pattern": "[0-9]{10}",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "definitions": {}
+}

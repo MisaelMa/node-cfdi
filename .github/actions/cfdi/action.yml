@@ -9,20 +9,20 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Schema
-      uses: actions/checkout@v4
-      with:
-        repository: MisaelMa/cfdi-schema
-        branch: main
-        path: packages/cfdi/schema
-        token: ${{ inputs.token }}
-    - name: Desings
-      uses: actions/checkout@v4
-      with:
-        repository: MisaelMa/designs
-        branch: main
-        path: packages/cfdi/designs
-        token: ${{ inputs.token }}
+    # - name: Schema
+    #   uses: actions/checkout@v4
+    #   with:
+    #     repository: MisaelMa/cfdi-schema
+    #     branch: main
+    #     path: packages/cfdi/schema
+    #     token: ${{ inputs.token }}
+    # - name: Desings
+    #   uses: actions/checkout@v4
+    #   with:
+    #     repository: MisaelMa/designs
+    #     branch: main
+    #     path: packages/cfdi/designs
+    #     token: ${{ inputs.token }}
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1

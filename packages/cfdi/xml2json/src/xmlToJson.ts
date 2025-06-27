@@ -14,8 +14,9 @@ export function XmlToJson(
     ignoreComment: false,
     compact: false,
     ignoreDeclaration: false,
-    elementNameFn: (name: string) =>
-      original ? name : name.replace(/^.*:/, ''),
+    elementNameFn: (name: string) => {
+      return original ? name : name.replace(/^.*:/, '')
+    }
   };
   const json = xml2js(stringXml, options);
 
