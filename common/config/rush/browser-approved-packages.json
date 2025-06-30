@@ -68,7 +68,7 @@
     },
     {
       "name": "@cfdi/schema",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/types",

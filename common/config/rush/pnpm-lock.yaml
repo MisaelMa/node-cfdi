@@ -1607,18 +1607,15 @@ importers:
       '@cfdi/pdf':
         specifier: workspace:*
         version: link:../cfdi/pdf
+      '@cfdi/schema':
+        specifier: workspace:*
+        version: link:../cfdi/schema
       '@cfdi/utils':
         specifier: workspace:*
         version: link:../cfdi/utils
-      '@types/pdfmake':
-        specifier: ^0.2.11
-        version: 0.2.11
       next:
         specifier: 15.2.3
         version: 15.2.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      pdfmake:
-        specifier: ~0.2.18
-        version: 0.2.18
       react:
         specifier: ^19.0.0
         version: 19.0.0

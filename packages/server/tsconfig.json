@@ -22,7 +22,9 @@
       "@/*": ["./src/*"],
       "@cfdi/utils": ["./node_modules/@cfdi/utils/src"],
       "@cfdi/utils/*": ["./node_modules/@cfdi/utils/src/*"],
-      "@cfdi/2json/*": ["./node_modules/@cfdi/2json/src/*"]
+      "@cfdi/2json/*": ["./node_modules/@cfdi/2json/src/*"],
+      "@cfdi/schema": ["./node_modules/@cfdi/schema/src"],
+      "@cfdi/schema/*": ["./node_modules/@cfdi/schema/src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

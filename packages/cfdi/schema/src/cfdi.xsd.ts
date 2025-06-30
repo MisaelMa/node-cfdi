@@ -1,0 +1,124 @@
+import { ElementCompact } from 'xml-js';
+import { BaseXSDProcessor } from './common/base-processor';
+import { XMLUtils } from './common/xml-utils';
+import { XSD_CONSTANTS } from './common/constants';
+
+export class CfdiXsd extends BaseXSDProcessor {
+  private static instance: CfdiXsd;
+  
+  public static of(): CfdiXsd {
+    if (!CfdiXsd.instance) {
+      CfdiXsd.instance = new CfdiXsd();
+    }
+    return CfdiXsd.instance;
+  }
+
+  async process() {
+    this.validateConfig();
+    const targetXsd = await this.readXsd();
+    const xsd: ElementCompact[] = [];
+    this.schemaWrap(targetXsd, xsd, null, 'comprobante', 'comprobante');
+
+    const comprobante = this.createComprobanteElement(targetXsd);
+    xsd.unshift({
+      name: 'comprobante',
+      path: 'comprobante',
+      key: 'comprobante',
+      folder: 'comprobante',
+      xsd: comprobante,
+    });
+
+    return XMLUtils.transformSchemasToXsd(xsd);
+  }
+
+  private schemaWrap(
+    xsd: ElementCompact,
+    base: ElementCompact[] = [],
+    folder: string | null = null,
+    path = '',
+    key = ''
+  ): void {
+    const schema = xsd['xs:schema']['xs:element']['xs:complexType'][
+      'xs:sequence'
+    ]['xs:element'] as Array<any>;
+    const items = Array.isArray(schema) ? schema : [schema];
+
+    items.forEach((element) => {
+      const name = XMLUtils.getElementName(element);
+      const newXsd = this.generateXsd(
+        element,
+        'json',
+        folder || name,
+        path,
+        `${key}_${name}`
+      );
+      
+      const isOnlyAttribute = !!newXsd.xsd['xs:schema']?.['xs:element']?.['xs:complexType']?.['xs:sequence'];
+
+      if (!isOnlyAttribute) {
+        base.push(newXsd);
+      } else {
+        const newXsdElement = { ...newXsd };
+
+        this.schemaWrap(
+          newXsdElement.xsd,
+          base,
+          folder || name,
+          `${path}_${name}` || name,
+          `${path}_${name}`
+        );
+        
+        delete newXsd.xsd['xs:schema']?.['xs:element']['xs:complexType']['xs:sequence'];
+        base.push(newXsd);
+      }
+    });
+  }
+
+  private createComprobanteElement(xsd: ElementCompact): ElementCompact {
+    const comprobante = { ...xsd };
+    delete comprobante['xs:schema']['xs:element']['xs:complexType']['xs:sequence'];
+    return comprobante;
+  }
+
+  /**
+   * Genera esquemas indexados por nombre (utilidad legacy)
+   */
+  generateSchemas(schemas: any[]): Record<string, any> {
+    return XMLUtils.generateSchemasMap(schemas);
+  }
+
+  /**
+   * Verifica si elemento tiene solo atributos (utilidad legacy)
+   */
+  isOnlyAttribute(element: any): boolean {
+    return XMLUtils.isOnlyAttribute(element);
+  }
+
+  private generateXsd(
+    element: any,
+    type: 'xsd' | 'json' = 'xsd',
+    folder: string,
+    path = '',
+    key = ''
+  ): any {
+    XMLUtils.removeAnnotations(element);
+
+    const name = XMLUtils.getElementName(element);
+    const schemaBase = XMLUtils.createSchemaBase();
+
+    const newElement = {
+      'xs:schema': {
+        ...schemaBase,
+        'xs:element': element,
+      },
+    };
+
+    return {
+      name,
+      folder,
+      path: path || name,
+      key,
+      xsd: type === 'xsd' ? XMLUtils.toXsd(newElement) : newElement,
+    };
+  }
+}

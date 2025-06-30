@@ -23,9 +23,6 @@ describe('CFDI Class ', () => {
     const xml = path.resolve(files_path,'conceptos.xml')
     const cfdi = new CFDI(xml);
 
-    cfdi.conceptos.forEach((c) => {
-        console.log(c.Descripcion);
-        c.impuestos.data()
-    })
+    
   });
 });

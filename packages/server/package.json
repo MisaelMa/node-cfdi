@@ -16,7 +16,8 @@
     "@cfdi/pdf": "workspace:*",
     "@cfdi/catalogos": "workspace:*",
     "@cfdi/utils": "workspace:*",
-    "@cfdi/2json": "workspace:*"
+    "@cfdi/2json": "workspace:*",
+    "@cfdi/schema": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5",

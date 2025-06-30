@@ -1,8 +1,8 @@
 import { ElementCompact, js2xml, json2xml, xml2js } from 'xml-js';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 
-import { Catalogs } from './CatalogProcess';
-import { CfdiProcess } from './CfdiProcess';
+import { CatalogProcess } from './catalogos.xsd';
+import { CfdiXsd } from './cfdi.xsd';
 import { STRUCTURE } from './common/const/structure';
 // @ts-ignore
 import { Xsd2JsonSchema } from 'xsd2jsonschema';
@@ -33,15 +33,14 @@ export class CfdiSchema {
     path: string;
     key: string;
   }[] = [];
-  private cfdiProcess: CfdiProcess;
-  private catalogProcess: Catalogs;
+  private cfdiProcess: CfdiXsd;
+  private catalogProcess: CatalogProcess;
   private complementos: Complementos;
 
   constructor() {
     this.xs2js = new Xsd2JsonSchema();
-    this.catalogProcess = Catalogs.of();
-    this.cfdiProcess = CfdiProcess.of();
-    this.cfdiProcess = CfdiProcess.of();
+    this.catalogProcess = CatalogProcess.of();
+    this.cfdiProcess = CfdiXsd.of();
     this.complementos = Complementos.of();
   }
   setConfig(options: any) {
@@ -75,6 +74,7 @@ export class CfdiSchema {
       ...catalog,
       // ...cfdi,
     };
+
     cfdi
       .filter((c: any) => c.name !== 'unknow')
       .forEach((c: any) => {
@@ -108,7 +108,7 @@ export class CfdiSchema {
     };
   }
 
-  generateSchema(schemasJSON: any, c: any) {
+  generateSchema(schemasJSON: Record<string, any>, c: any) {
     const xs2js = new Xsd2JsonSchema();
 
     const convertedSchemas = xs2js.processAllSchemas({
