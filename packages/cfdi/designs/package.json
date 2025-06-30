@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@types/pdfmake": "^0.2.11",
-    "pdfmake": "^0.2.18",
+    "pdfmake": "^0.2.20", 
     "vite-plugin-dts": "^4.5.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-url":"^8.0.2",
@@ -19,7 +19,7 @@
     "@cfdi/utils": "workspace:*"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
-    "vite": "^6.2.2"
+    "typescript": "^5.6.3",
+    "vite": "^7.0.0"
   }
 }
