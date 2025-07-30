@@ -3,6 +3,11 @@ import { BaseXSDProcessor } from './common/base-processor';
 import { XMLUtils } from './common/xml-utils';
 import { XSD_CONSTANTS } from './common/constants';
 
+export interface XsdElement {
+  xsd: ElementCompact;
+  name: string;
+}
+
 export class CfdiXsd extends BaseXSDProcessor {
   private static instance: CfdiXsd;
   
@@ -15,7 +20,13 @@ export class CfdiXsd extends BaseXSDProcessor {
 
   async process() {
     this.validateConfig();
+    const xsd = await this.getXsd();
+    return XMLUtils.transformSchemasToXsd(xsd);
+  }
+
+  public async getXsd(): Promise<XsdElement[]> {
     const targetXsd = await this.readXsd();
+
     const xsd: ElementCompact[] = [];
     this.schemaWrap(targetXsd, xsd, null, 'comprobante', 'comprobante');
 
@@ -28,7 +39,13 @@ export class CfdiXsd extends BaseXSDProcessor {
       xsd: comprobante,
     });
 
-    return XMLUtils.transformSchemasToXsd(xsd);
+    return xsd as XsdElement[];
+  }
+
+  public async getXsdByElement(element: string): Promise<XsdElement | undefined> {
+    const xsd = await this.getXsd();
+    const elementXsd = xsd.find((x) => x.name === element);
+    return elementXsd || undefined;
   }
 
   private schemaWrap(
@@ -77,6 +94,7 @@ export class CfdiXsd extends BaseXSDProcessor {
   private createComprobanteElement(xsd: ElementCompact): ElementCompact {
     const comprobante = { ...xsd };
     delete comprobante['xs:schema']['xs:element']['xs:complexType']['xs:sequence'];
+    //console.log(JSON.stringify(comprobante, null, 2));
     return comprobante;
   }
 

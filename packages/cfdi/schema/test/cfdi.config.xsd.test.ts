@@ -132,7 +132,6 @@ describe('CfdiXsd - Integration Tests', () => {
       const result = await cfdiXsd.process();
       const withoutXsd = result.map(({xsd, ...item}) => item);
       const elementNames = result.map((element) => element.name);
-      console.log(withoutXsd);
 
         expect(result).toBeDefined();
         expect(result.length).toBeGreaterThan(0);

@@ -5,7 +5,7 @@ import { CatalogProcess } from './catalogos.xsd';
 import { CfdiXsd } from './cfdi.xsd';
 import { STRUCTURE } from './common/const/structure';
 // @ts-ignore
-import { Xsd2JsonSchema } from 'xsd2jsonschema';
+import { Xsd2JsonSchema, ConverterDraft07 } from 'xsd2jsonschema';
 import { Complementos } from './complementos/complementos.process';
 
 export class CfdiSchema {
@@ -108,12 +108,22 @@ export class CfdiSchema {
     };
   }
 
-  generateSchema(schemasJSON: Record<string, any>, c: any) {
-    const xs2js = new Xsd2JsonSchema();
+  xsd2Json(schemasJSON: Record<string, any>) {
+    const xs2js = new Xsd2JsonSchema({
+     // jsonSchemaVersion: 'draft-07',
+      //converter: new ConverterDraft07()
+      //generateTitle: false
+    });
 
     const convertedSchemas = xs2js.processAllSchemas({
-      schemas: schemasJSON,
+      schemas: schemasJSON
     });
+
+    return convertedSchemas;
+  }
+
+  generateSchema(schemasJSON: Record<string, any>, c: any) {
+    const convertedSchemas = this.xsd2Json(schemasJSON);
 
     return Object.keys(schemasJSON).map((key) => {
       const d = STRUCTURE[c.name] ? 'comprobante' : 'catalogos';
