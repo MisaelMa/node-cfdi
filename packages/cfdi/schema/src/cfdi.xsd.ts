@@ -42,9 +42,10 @@ export class CfdiXsd extends BaseXSDProcessor {
     return xsd as XsdElement[];
   }
 
-  public async getXsdByElement(element: string): Promise<XsdElement | undefined> {
+  public async getXsdByElement(element: string, key: string = 'name'): Promise<XsdElement | undefined> {
     const xsd = await this.getXsd();
-    const elementXsd = xsd.find((x) => x.name === element);
+    //console.log(xsd);
+    const elementXsd = xsd.find((x: Record<string, any>) => x[key] === element);
     return elementXsd || undefined;
   }
 
