@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" Version="3.3" TipoDeComprobante="E" Serie="NC" Folio="501" Fecha="2019-04-10T09:00:00" LugarExpedicion="06600" SubTotal="1500.00" Total="1740.00" Moneda="MXN" MetodoPago="PUE" FormaPago="03" Sello="" NoCertificado="" Certificado="">
+  <cfdi:CfdiRelacionados TipoRelacion="01">
+    <cfdi:CfdiRelacionado UUID="CEE4BE01-ADFA-4DEB-8421-ADD60F0BEDAC"/>
+  </cfdi:CfdiRelacionados>
+  <cfdi:Emisor Rfc="POT9207213D6" Nombre="PROMOTORA OTIR SA DE CV" RegimenFiscal="601"/>
+  <cfdi:Receptor Rfc="DIM8701081LA" Nombre="DAY INTERNATIONAL DE MEXICO SA DE CV" UsoCFDI="G02"/>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="84111506" Cantidad="1" ClaveUnidad="ACT" Descripcion="Devolucion parcial por servicio no prestado" ValorUnitario="1500.00" Importe="1500.00">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="1500.00" Importe="240.00" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"/>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="240.00">
+    <cfdi:Traslados>
+      <cfdi:Traslado Importe="240.00" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

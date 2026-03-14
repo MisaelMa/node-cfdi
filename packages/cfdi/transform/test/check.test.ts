@@ -81,6 +81,11 @@ function compareSaxonVsTransform(xmlFilePath: string, xsltPath: string) {
   const transform = new Transform();
   const cadenaTransform = transform.s(xmlFilePath).xsl(xsltPath).run();
 
+  console.log(`
+    Saxon: ${cadenaSaxon}
+    Transform: ${cadenaTransform}
+    Difference: ${cadenaTransform !== cadenaSaxon}
+    `);
   expect(cadenaTransform).toBe(cadenaSaxon);
 }
 
@@ -104,6 +109,50 @@ describe('transform vs saxon-he (examples cfdi33 con xslt 3.3)', () => {
 
     it.skipIf(!saxonAvailable)(`${xmlFile}: output must match Saxon-HE`, () => {
       compareSaxonVsTransform(xmlFilePath, xslt_33);
+    });
+  }
+});
+
+describe('transform vs saxon-he (test-cfdi40 con xslt 4.0)', () => {
+  const testFiles = getExampleFiles('test-cfdi40');
+
+  for (const xmlFile of testFiles) {
+    const xmlFilePath = `${examplesPath}/test-cfdi40/${xmlFile}`;
+
+    it.skipIf(!saxonAvailable)(`${xmlFile}: output must match Saxon-HE`, () => {
+      compareSaxonVsTransform(xmlFilePath, xslt_40);
+    });
+
+    it(`${xmlFile}: cadena original should be valid`, () => {
+      const transform = new Transform();
+      const cadena = transform.s(xmlFilePath).xsl(xslt_40).run();
+
+      expect(cadena).toBeTypeOf('string');
+      expect(cadena.startsWith('||')).toBe(true);
+      expect(cadena.endsWith('||')).toBe(true);
+      expect(cadena.length).toBeGreaterThan(4);
+    });
+  }
+});
+
+describe('transform vs saxon-he (test-cfdi33 con xslt 3.3)', () => {
+  const testFiles = getExampleFiles('test-cfdi33');
+
+  for (const xmlFile of testFiles) {
+    const xmlFilePath = `${examplesPath}/test-cfdi33/${xmlFile}`;
+
+    it.skipIf(!saxonAvailable)(`${xmlFile}: output must match Saxon-HE`, () => {
+      compareSaxonVsTransform(xmlFilePath, xslt_33);
+    });
+
+    it(`${xmlFile}: cadena original should be valid`, () => {
+      const transform = new Transform();
+      const cadena = transform.s(xmlFilePath).xsl(xslt_33).run();
+
+      expect(cadena).toBeTypeOf('string');
+      expect(cadena.startsWith('||')).toBe(true);
+      expect(cadena.endsWith('||')).toBe(true);
+      expect(cadena.length).toBeGreaterThan(4);
     });
   }
 });

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd" Version="4.0" TipoDeComprobante="I" Serie="IE" Folio="780" Fecha="2024-09-10T11:30:00" LugarExpedicion="06600" SubTotal="8000.00" Total="11136.00" Moneda="MXN" Exportacion="01" MetodoPago="PUE" FormaPago="01" Sello="" NoCertificado="" Certificado="">
+  <cfdi:Emisor Rfc="EKU9003173C9" Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="601"/>
+  <cfdi:Receptor Rfc="URE180429TM6" Nombre="UNIVERSIDAD ROBOTICA ESPAÑOLA" DomicilioFiscalReceptor="65000" RegimenFiscalReceptor="601" UsoCFDI="G03"/>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="50201706" Cantidad="100" ClaveUnidad="LTR" Unidad="Litro" Descripcion="Bebida alcoholica preparada" ValorUnitario="80.00" Importe="8000.00" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="8000.00" Importe="2080.00" Impuesto="003" TasaOCuota="0.260000" TipoFactor="Tasa"/>
+          <cfdi:Traslado Base="10080.00" Importe="1612.80" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"/>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="3692.80">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="8000.00" Importe="2080.00" Impuesto="003" TasaOCuota="0.260000" TipoFactor="Tasa"/>
+      <cfdi:Traslado Base="10080.00" Importe="1612.80" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>
