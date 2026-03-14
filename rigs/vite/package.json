@@ -4,7 +4,8 @@
   "type": "module",
   "main": "./vite.config.mts",
   "exports": {
-    ".": "./vite.config.mts"
+    ".": "./vite.config.mts",
+    "./lib": "./vite.config.lib.mts"
   },
   "scripts": {
      "build": "",
@@ -15,7 +16,8 @@
     "test:ui": "vitest --ui"
   },
   "dependencies": {
-    "vite": "^7.0.0"
+    "vite": "^7.0.0",
+    "vite-plugin-dts": "^4.5.3"
   },
   "devDependencies": {
     "typescript": "^5.6.3",

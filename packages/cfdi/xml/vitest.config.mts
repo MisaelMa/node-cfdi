@@ -18,6 +18,7 @@ export default defineConfig({
       '@cfdi/complementos': resolve(__dirname, '../complementos/src'),
       '@cfdi/csd': resolve(__dirname, '../csd/src'),
       '@saxon-he/cli': resolve(__dirname, '../../clir/saxon-he/src'),
+      '@clir/openssl': resolve(__dirname, '../../clir/openssl/src'),
     },
   },
 });

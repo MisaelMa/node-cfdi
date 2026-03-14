@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-  "rushVersion": "5.140.1",
-  "pnpmVersion": "9.9.0",
+  "rushVersion": "5.169.2",
+  "pnpmVersion": "9.15.0",
   "pnpmOptions": {
     "strictPeerDependencies": false,
     "useWorkspaces": true
   },
   "projectFolderMaxDepth": 3,
-  "nodeSupportedVersionRange": ">=16.14.2",
+  "nodeSupportedVersionRange": ">=22.0.0",
   "approvedPackagesPolicy": {
     "reviewCategories": [
       "production",
