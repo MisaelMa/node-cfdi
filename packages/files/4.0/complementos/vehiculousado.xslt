@@ -3,6 +3,9 @@
 
   <!-- Con el siguiente método se establece que la salida deberá ser en texto -->
   <xsl:output method="text" version="1.0" encoding="UTF-8" indent="no"/> 
+
+  <!-- Aquí iniciamos el procesamiento de la cadena original con su | inicial y el terminador || -->
+  <xsl:template match="/">|<xsl:apply-templates select="/vehiculousado:VehiculoUsado"/>||</xsl:template>
   <!--  Aquí iniciamos el procesamiento de los datos incluidos en el comprobante -->
   <xsl:template match="vehiculousado:VehiculoUsado">
     <!-- Iniciamos el tratamiento de los atributos de comprobante -->

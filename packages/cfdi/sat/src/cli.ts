@@ -27,6 +27,21 @@ sat
       console.log(`  TipoDatos: ${result.tipoDatosSchema}`);
     }
     console.log(`  Complementos: ${result.complementos.length} archivos`);
+
+    if (result.added.length > 0) {
+      console.log(`\n  Nuevos complementos (no existian localmente):`);
+      result.added.forEach(f => console.log(`    + ${f}`));
+    }
+
+    if (result.unused.length > 0) {
+      console.log(`\n  Complementos sin uso (ya no estan en el XSLT del SAT):`);
+      result.unused.forEach(f => console.log(`    - ${f}`));
+    }
+
+    if (result.unused.length === 0 && result.added.length === 0) {
+      console.log('\n  Complementos al dia, sin cambios.');
+    }
+
     console.log('\nListo!');
   })
   .catch(err => {

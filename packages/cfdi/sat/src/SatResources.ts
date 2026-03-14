@@ -14,6 +14,8 @@ export interface DownloadResult {
   catalogSchema: string | null;
   tipoDatosSchema: string | null;
   complementos: string[];
+  unused: string[];
+  added: string[];
 }
 
 interface VersionUrls {
@@ -125,12 +127,23 @@ export class SatResources {
     const xsltPath = path.join(this.outputDir, 'cadenaoriginal.xslt');
     fs.writeFileSync(xsltPath, localXslt, 'utf-8');
 
+    // 9. Comparar complementos locales vs los del SAT
+    const downloadedFileNames = new Set(
+      downloadedComplementos.map(p => path.basename(p))
+    );
+    const { unused, added } = this._diffComplementos(
+      complementosDir,
+      downloadedFileNames
+    );
+
     return {
       schema: schemaPath,
       xslt: xsltPath,
       catalogSchema: catalogSchemaPath,
       tipoDatosSchema: tipoDatosSchemaPath,
       complementos: downloadedComplementos,
+      unused,
+      added,
     };
   }
 
@@ -243,6 +256,30 @@ export class SatResources {
    *   href="http://www.sat.gob.mx/sitio_internet/cfd/donat/donat11.xslt"
    *   -> href="./complementos/donat11.xslt"
    */
+  /**
+   * Compara los archivos .xslt existentes en el directorio de complementos
+   * contra los que se descargaron del SAT.
+   * - unused: archivos locales que ya no estan en el XSLT del SAT
+   * - added: archivos nuevos del SAT que no existian localmente
+   */
+  private _diffComplementos(
+    complementosDir: string,
+    downloadedFileNames: Set<string>
+  ): { unused: string[]; added: string[] } {
+    const localFiles: string[] = fs.existsSync(complementosDir)
+      ? fs
+          .readdirSync(complementosDir)
+          .filter((f: string) => f.endsWith('.xslt'))
+      : [];
+
+    const localSet = new Set(localFiles);
+
+    const unused = localFiles.filter((f: string) => !downloadedFileNames.has(f));
+    const added = [...downloadedFileNames].filter((f: string) => !localSet.has(f));
+
+    return { unused, added };
+  }
+
   private _rewriteIncludes(
     xsltContent: string,
     includeUrls: string[]
