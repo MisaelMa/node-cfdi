@@ -1,6 +1,6 @@
 # @cfdi/transform
 
-Transforma XML CFDI extrayendo valores para generar la cadena original u otras representaciones. Procesa recursivamente los nodos del XML y genera cadenas con formato pipe-separated.
+Transformacion de datos XML CFDI. Extrae los valores de un comprobante fiscal XML y genera una cadena con formato de expresion impresa.
 
 ## Instalacion
 
@@ -13,21 +13,41 @@ npm install @cfdi/transform
 ```typescript
 import { Transform } from '@cfdi/transform';
 
-const transform = new Transform();
-const cadena = await transform.s('ruta/factura.xml').run();
-// "||valor1|valor2|valor3||"
+// Crear instancia con el XML parseado
+const transform = new Transform(xmlObject);
+
+// Ejecutar la transformacion para obtener la cadena de valores
+const resultado = await transform.run();
+// Resultado: ||valor1|valor2|valor3|...||
+```
+
+### Configuracion adicional
+
+```typescript
+const transform = new Transform(xmlObject);
+
+// Especificar ruta XSLT
+transform.json('/ruta/al/archivo.xsl');
+
+// Configurar advertencias
+transform.warnings('silent');
+
+// Ejecutar
+const cadena = await transform.run();
 ```
 
 ## API
 
 ### Clase `Transform`
 
-| Metodo | Descripcion |
-|--------|-------------|
-| `s(archivo)` | Define el archivo XML de entrada |
-| `json(xslPath)` | Especifica ruta del XSLT |
-| `warnings(type)` | Configura manejo de warnings |
-| `run()` | Ejecuta la transformacion |
+| Metodo | Retorno | Descripcion |
+|--------|---------|-------------|
+| `constructor(xml)` | `Transform` | Recibe el objeto XML parseado del CFDI |
+| `run()` | `Promise<string>` | Extrae los valores del comprobante y retorna la cadena con formato `\|\|valor1\|valor2\|...\|\|` |
+| `json(xslPath)` | `Transform` | Establece la ruta del archivo XSLT |
+| `warnings(type)` | `Transform` | Configura el nivel de advertencias (`'silent'` por defecto) |
+
+La transformacion recorre la estructura del comprobante en el siguiente orden: atributos, InformacionGlobal, CfdiRelacionados, Emisor, Receptor, Conceptos, Impuestos y Complemento. Omite automaticamente namespaces, esquemas y el sello digital.
 
 ## Licencia
 
