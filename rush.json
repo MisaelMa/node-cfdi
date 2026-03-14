@@ -183,6 +183,12 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@cfdi/sat",
+      "projectFolder": "packages/cfdi/sat",
+      "reviewCategory": "libraries",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@cfdi/2json",
       "projectFolder": "packages/cfdi/xml2json",
       "versionPolicyName": "2json",

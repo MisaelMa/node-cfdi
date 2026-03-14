@@ -34,8 +34,7 @@
     "test": "vitest",
     "test:ci": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui",
-    "prepare": "npm run build"
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "@cfdi/catalogos": "workspace:*",

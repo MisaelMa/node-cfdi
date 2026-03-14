@@ -759,6 +759,10 @@
       "allowedCategories": [ "libraries", "production" ]
     },
     {
+      "name": "tsx",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "typeorm",
       "allowedCategories": [ "libraries" ]
     },
