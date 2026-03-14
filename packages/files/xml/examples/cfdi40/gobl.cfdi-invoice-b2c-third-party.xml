@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd" Version="4.0" TipoDeComprobante="I" Serie="LMC" Folio="0010" Fecha="2025-10-20T12:00:00" LugarExpedicion="26015" SubTotal="200.00" Total="232.00" Moneda="MXN" Exportacion="01" MetodoPago="PPD" FormaPago="99" Sello="" NoCertificado="00000000000000000000" Certificado="">
+  <cfdi:Emisor Rfc="EKU9003173C9" Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="601"></cfdi:Emisor>
+  <cfdi:Receptor Rfc="XAXX010101000" Nombre="PÚBLICO EN GENERAL" DomicilioFiscalReceptor="26015" RegimenFiscalReceptor="616" UsoCFDI="S01"></cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="50211502" Cantidad="2" ClaveUnidad="ZZ" Descripcion="Cigarros" ValorUnitario="100.00" Importe="200.00" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="200.0000" Importe="32.0000" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+      <cfdi:ACuentaTerceros RfcACuentaTerceros="URE180429TM6" NombreACuentaTerceros="UNIVERSIDAD ROBOTICA ESPAÑOLA" RegimenFiscalACuentaTerceros="601" DomicilioFiscalACuentaTerceros="65000"></cfdi:ACuentaTerceros>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="32.00">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="200.00" Importe="32.00" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

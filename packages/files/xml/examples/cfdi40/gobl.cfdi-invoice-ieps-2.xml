@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd" Version="4.0" TipoDeComprobante="I" Serie="FA" Folio="FA000130" Fecha="2025-03-15T12:00:00" LugarExpedicion="06100" SubTotal="95.79" Total="120.00" Moneda="MXN" Exportacion="01" MetodoPago="PUE" FormaPago="01" CondicionesDePago="Condiciones de pago" Sello="" NoCertificado="00000000000000000000" Certificado="">
+  <cfdi:Emisor Rfc="EKU9003173C9" Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="601"></cfdi:Emisor>
+  <cfdi:Receptor Rfc="URE180429TM6" Nombre="UNIVERSIDAD ROBOTICA ESPAÑOLA" DomicilioFiscalReceptor="86991" RegimenFiscalReceptor="601" UsoCFDI="G03"></cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="90101500" Cantidad="1" ClaveUnidad="ZZ" Descripcion="Consumo de alimentos y bebidas del ticket 2225" ValorUnitario="95.79" Importe="95.79" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="103.4500" Importe="16.5520" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+          <cfdi:Traslado Base="95.79" Importe="7.66" Impuesto="003" TasaOCuota="0.080000" TipoFactor="Tasa"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="24.21">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="103.45" Importe="16.55" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+      <cfdi:Traslado Base="95.79" Importe="7.66" Impuesto="003" TasaOCuota="0.080000" TipoFactor="Tasa"></cfdi:Traslado>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

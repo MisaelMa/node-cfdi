@@ -41,8 +41,7 @@
     "url": ""
   },
   "dependencies": {
-    "xml-js": "^1.6.11",
-    "@cfdi/2json": "workspace:*"
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@recreando/vite": "workspace:*",

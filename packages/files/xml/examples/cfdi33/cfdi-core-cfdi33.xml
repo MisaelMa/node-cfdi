@@ -1,0 +1,55 @@
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" Version="3.3" Serie="A" Folio="167ABC" Fecha="2021-01-13T14:15:16" Sello="Zq+z1yaFV+o37lLb5DpbIJ9fHbffFTJyI4PFw8iLNYFGynOL5x+y8di65mZc6O0GkaGIxtsKzsvtuns9Jly+3QEgVLIbipFTDLKtJ2y3LIBb4DSbBN5Szi/u7N+G3l0sS+IQgxMrklFe7DyNraWP1SLAQAi/GL+8FGTu43KtJv/YJI3XCkC2dzQxsJIOHS8Sc4fmTnSarRqoTFXIW7lT1Eef6QFD+lULsM4mOla9a78xHCSP1jFFwvuZ4EtR+Caik9zDjCQdeiSamodF3MWcc8prkLEhKJtwzDVWMLIa3pzxlAOB1iKzgLdfD/uPsdGBQrjZbj+af4yxcBaQlAZ4Cg==" NoCertificado="30001000000400002434" Certificado="MIIFuzCCA6OgAwIBAgIUMzAwMDEwMDAwMDA0MDAwMDI0MzQwDQYJKoZIhvcNAQELBQAwggErMQ8wDQYDVQQDDAZBQyBVQVQxLjAsBgNVBAoMJVNFUlZJQ0lPIERFIEFETUlOSVNUUkFDSU9OIFRSSUJVVEFSSUExGjAYBgNVBAsMEVNBVC1JRVMgQXV0aG9yaXR5MSgwJgYJKoZIhvcNAQkBFhlvc2Nhci5tYXJ0aW5lekBzYXQuZ29iLm14MR0wGwYDVQQJDBQzcmEgY2VycmFkYSBkZSBjYWRpejEOMAwGA1UEEQwFMDYzNzAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBDSVVEQUQgREUgTUVYSUNPMREwDwYDVQQHDAhDT1lPQUNBTjERMA8GA1UELRMIMi41LjQuNDUxJTAjBgkqhkiG9w0BCQITFnJlc3BvbnNhYmxlOiBBQ0RNQS1TQVQwHhcNMTkwNjE3MTk0NDE0WhcNMjMwNjE3MTk0NDE0WjCB4jEnMCUGA1UEAxMeRVNDVUVMQSBLRU1QRVIgVVJHQVRFIFNBIERFIENWMScwJQYDVQQpEx5FU0NVRUxBIEtFTVBFUiBVUkdBVEUgU0EgREUgQ1YxJzAlBgNVBAoTHkVTQ1VFTEEgS0VNUEVSIFVSR0FURSBTQSBERSBDVjElMCMGA1UELRMcRUtVOTAwMzE3M0M5IC8gWElRQjg5MTExNlFFNDEeMBwGA1UEBRMVIC8gWElRQjg5MTExNk1HUk1aUjA1MR4wHAYDVQQLExVFc2N1ZWxhIEtlbXBlciBVcmdhdGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCN0peKpgfOL75iYRv1fqq+oVYsLPVUR/GibYmGKc9InHFy5lYF6OTYjnIIvmkOdRobbGlCUxORX/tLsl8Ya9gm6Yo7hHnODRBIDup3GISFzB/96R9K/MzYQOcscMIoBDARaycnLvy7FlMvO7/rlVnsSARxZRO8Kz8Zkksj2zpeYpjZIya/369+oGqQk1cTRkHo59JvJ4Tfbk/3iIyf4H/Ini9nBe9cYWo0MnKob7DDt/vsdi5tA8mMtA953LapNyCZIDCRQQlUGNgDqY9/8F5mUvVgkcczsIgGdvf9vMQPSf3jjCiKj7j6ucxl1+FwJWmbvgNmiaUR/0q4m2rm78lFAgMBAAGjHTAbMAwGA1UdEwEB/wQCMAAwCwYDVR0PBAQDAgbAMA0GCSqGSIb3DQEBCwUAA4ICAQBcpj1TjT4jiinIujIdAlFzE6kRwYJCnDG08zSp4kSnShjxADGEXH2chehKMV0FY7c4njA5eDGdA/G2OCTPvF5rpeCZP5Dw504RZkYDl2suRz+wa1sNBVpbnBJEK0fQcN3IftBwsgNFdFhUtCyw3lus1SSJbPxjLHS6FcZZ51YSeIfcNXOAuTqdimusaXq15GrSrCOkM6n2jfj2sMJYM2HXaXJ6rGTEgYmhYdwxWtil6RfZB+fGQ/H9I9WLnl4KTZUS6C9+NLHh4FPDhSk19fpS2S/56aqgFoGAkXAYt9Fy5ECaPcULIfJ1DEbsXKyRdCv3JY89+0MNkOdaDnsemS2o5Gl08zI4iYtt3L40gAZ60NPh31kVLnYNsmvfNxYyKp+AeJtDHyW9w7ftM0Hoi+BuRmcAQSKFV3pk8j51la+jrRBrAUv8blbRcQ5BiZUwJzHFEKIwTsRGoRyEx96sNnB03n6GTwjIGz92SmLdNl95r9rkvp+2m4S6q1lPuXaFg7DGBrXWC8iyqeWE2iobdwIIuXPTMVqQb12m1dAkJVRO5NdHnP/MpqOvOgLqoZBNHGyBg4Gqm4sCJHCxA1c8Elfa2RQTCk0tAzllL4vOnI1GHkGJn65xokGsaU4B4D36xh7eWrfj4/pgWHmtoDAYa8wzSwo2GVCZOs+mtEgOQB91/g==" SubTotal="2269400" Moneda="MXN" Total="2382870" TipoDeComprobante="I" FormaPago="01" MetodoPago="PUE" CondicionesDePago="CONDICIONES" Descuento="0.00" TipoCambio="1" LugarExpedicion="45079">
+    <cfdi:CfdiRelacionados TipoRelacion="01">
+        <cfdi:CfdiRelacionado UUID="A39DA66B-52CA-49E3-879B-5C05185B0EF7"/>
+    </cfdi:CfdiRelacionados>
+    <cfdi:Emisor Rfc="EKU9003173C9" Nombre="ESCUELA KEMPER URGATE SA DE CV" RegimenFiscal="601"/>
+    <cfdi:Receptor Rfc="COSC8001137NA" Nombre="CARLOS CORTES SOTO" UsoCFDI="G01"/>
+    <cfdi:Conceptos>
+        <cfdi:Concepto ClaveProdServ="01010101" ClaveUnidad="F52" NoIdentificacion="00001" Cantidad="1.5" Unidad="TONELADA" Descripcion="ACERO" ValorUnitario="1500000" Importe="2250000">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="2250000" Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="360000"/>
+                </cfdi:Traslados>
+                <cfdi:Retenciones>
+                    <cfdi:Retencion Base="2250000" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.110000" Importe="247500"/>
+                </cfdi:Retenciones>
+            </cfdi:Impuestos>
+            <cfdi:CuentaPredial Numero="51888"/>
+        </cfdi:Concepto>
+        <cfdi:Concepto ClaveProdServ="01010101" ClaveUnidad="F52" NoIdentificacion="00002" Cantidad="1.6" Unidad="TONELADA" Descripcion="ALUMINIO" ValorUnitario="1500" Importe="2400">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="2400" Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="384"/>
+                </cfdi:Traslados>
+                <cfdi:Retenciones>
+                    <cfdi:Retencion Base="2400" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.110000" Importe="264"/>
+                </cfdi:Retenciones>
+            </cfdi:Impuestos>
+            <cfdi:InformacionAduanera NumeroPedimento="15  48  4567  6001234"/>
+        </cfdi:Concepto>
+        <cfdi:Concepto ClaveProdServ="01010101" ClaveUnidad="F52" NoIdentificacion="00003" Cantidad="1.7" Unidad="TONELADA" Descripcion="ZAMAC" ValorUnitario="10000" Importe="17000">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="17000" Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="2720"/>
+                </cfdi:Traslados>
+                <cfdi:Retenciones>
+                    <cfdi:Retencion Base="17000" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.110000" Importe="1870"/>
+                </cfdi:Retenciones>
+            </cfdi:Impuestos>
+            <cfdi:Parte ClaveProdServ="01010101" NoIdentificacion="055155" Cantidad="1.0" Descripcion="PARTE EJEMPLO" Unidad="UNIDAD" ValorUnitario="1.00" Importe="1.00">
+                <cfdi:InformacionAduanera NumeroPedimento="15  48  4567  6981235"/>
+            </cfdi:Parte>
+        </cfdi:Concepto>
+    </cfdi:Conceptos>
+    <cfdi:Impuestos TotalImpuestosRetenidos="249634" TotalImpuestosTrasladados="363104">
+        <cfdi:Retenciones>
+            <cfdi:Retencion Impuesto="002" Importe="249634"/>
+        </cfdi:Retenciones>
+        <cfdi:Traslados>
+            <cfdi:Traslado Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="363104"/>
+        </cfdi:Traslados>
+    </cfdi:Impuestos>
+    <cfdi:Complemento>
+        <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="9FB6ED1A-5F37-4FEF-980A-7F8C83B51894" FechaTimbrado="2017-06-05T09:09:37" RfcProvCertif="SFE0807172W7" SelloCFD="W2Fr9AiEuUIFJUVRWMXWMHndDcwvpNCu2g0uTE58wutNkUgjq3J+5f7Kl/ygpAlQggmJB9dKBd2UsYjd94dGTvIso26CFdmW3QY+KBa5d/qpFBsnLxVq+NgP4l2MpAzMMlzD4AsyaTSPnKc6/xmFzIQszCEQ0DsQO+twW0VsxrI=" NoCertificadoSAT="20001000000300022779" SelloSAT="a0U3KSPH6ouIzOnO3A5KUG+wKJ0Kg77SeDLdw8c4a4bLaib5dCxh4nv1Y/GFq7fgm3DQDCmPTzmcJ8BATwO8r9+e36Zcw0kHcVlJ8+VRz/oHYWyCgq4etsTybXtrqcnLeyCy6Oi38Yk/2lvEwnvtqSFSXrNTL/jA5ZEyeZxpwerGmuQ/NmUC4Ta5+DjjON7bZomfMNBMoAsnLj5uTEQa03mZGhbPg+h/RMLZ7GA2VXLFhxj68YXt/uR5tu4kJTjwTn0ZAK83wzYp68V2TJdEaW3JMLw/5EwXpqctV2drek3u2gt63S9Po2FHpmXDKVNM6LTw57iRQ8tnLSCeKP68Nw=="/>
+    </cfdi:Complemento>
+</cfdi:Comprobante>
