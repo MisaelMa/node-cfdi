@@ -6,52 +6,54 @@ Ecosistema completo de paquetes Node.js/TypeScript para la generación, validaci
 
 ### Core Fiscal
 
-| Paquete | Descripcion |
-|---------|-------------|
-| [@cfdi/xml](packages/cfdi/xml) | Generacion y sellado de XML CFDI 4.0 |
+| Paquete                                          | Descripcion                                              |
+| ------------------------------------------------ | -------------------------------------------------------- |
+| [@cfdi/xml](packages/cfdi/xml)                   | Generacion y sellado de XML CFDI 4.0                     |
 | [@cfdi/complementos](packages/cfdi/complementos) | Complementos fiscales (pagos, nomina, carta porte, etc.) |
-| [@cfdi/elements](packages/cfdi/elements) | Elementos estructurales del comprobante |
-| [@cfdi/types](packages/cfdi/types) | Definiciones de tipos TypeScript para CFDI |
-| [@cfdi/catalogos](packages/cfdi/catalogos) | Catalogos del SAT (formas de pago, regimenes, etc.) |
+| [@cfdi/elements](packages/cfdi/elements)         | Elementos estructurales del comprobante                  |
+| [@cfdi/types](packages/cfdi/types)               | Definiciones de tipos TypeScript para CFDI               |
+| [@cfdi/catalogos](packages/cfdi/catalogos)       | Catalogos del SAT (formas de pago, regimenes, etc.)      |
 
 ### Validacion
 
-| Paquete | Descripcion |
-|---------|-------------|
-| [@cfdi/xsd](packages/cfdi/xsd) | Validacion XSD con JSON Schema |
+| Paquete                              | Descripcion                           |
+| ------------------------------------ | ------------------------------------- |
+| [@cfdi/xsd](packages/cfdi/xsd)       | Validacion XSD con JSON Schema        |
 | [@cfdi/schema](packages/cfdi/schema) | Procesamiento de esquemas XSD del SAT |
 
 ### Identidades y Certificados
 
-| Paquete | Descripcion |
-|---------|-------------|
-| [@cfdi/csd](packages/cfdi/csd) | Manejo de Certificados de Sello Digital (.cer/.key) |
-| [@cfdi/csf](packages/cfdi/csf) | Lectura de Constancia de Situacion Fiscal (PDF) |
-| [@cfdi/rfc](packages/cfdi/rfc) | Validacion de RFC |
-| [@cfdi/curp](packages/cfdi/curp) | Validacion y consulta de CURP |
+| Paquete                                | Descripcion                                         |
+| -------------------------------------- | --------------------------------------------------- |
+| [@cfdi/csd](packages/cfdi/csd)         | Manejo de Certificados de Sello Digital (.cer/.key) |
+| [@cfdi/csf](packages/cfdi/csf)         | Lectura de Constancia de Situacion Fiscal (PDF)     |
+| [@cfdi/rfc](packages/cfdi/rfc)         | Validacion de RFC                                   |
+| [@renapo/curp](packages/renapo/curp)   | Validacion y consulta de CURP                       |
+| [@sat/auth](packages/sat/auth)         | Autenticacion con webservices del SAT (FIEL)        |
+| [@sat/recursos](packages/sat/recursos) | Descarga de recursos XSD/XSLT del SAT               |
 
 ### Transformacion
 
-| Paquete | Descripcion |
-|---------|-------------|
-| [@cfdi/2json](packages/cfdi/xml2json) | Conversion de XML CFDI a JSON |
-| [@cfdi/transform](packages/cfdi/transform) | Transformacion de datos CFDI |
+| Paquete                                        | Descripcion                   |
+| ---------------------------------------------- | ----------------------------- |
+| [@cfdi/2json](packages/cfdi/xml2json)          | Conversion de XML CFDI a JSON |
+| [@cfdi/transform](packages/cfdi/transform)     | Transformacion de datos CFDI  |
 | [@cfdi/expresiones](packages/cfdi/expresiones) | Expresiones impresas del CFDI |
 
 ### PDF
 
-| Paquete | Descripcion |
-|---------|-------------|
-| [@cfdi/designs](packages/cfdi/designs) | Disenos y plantillas PDF para facturas |
-| [@cfdi/pdf](packages/cfdi/pdf) | Opciones de generacion PDF |
-| [@cfdi/utils](packages/cfdi/utils) | Utilidades (numeros a letras, logos, archivos) |
+| Paquete                                | Descripcion                                    |
+| -------------------------------------- | ---------------------------------------------- |
+| [@cfdi/designs](packages/cfdi/designs) | Disenos y plantillas PDF para facturas         |
+| [@cfdi/pdf](packages/cfdi/pdf)         | Opciones de generacion PDF                     |
+| [@cfdi/utils](packages/cfdi/utils)     | Utilidades (numeros a letras, logos, archivos) |
 
 ### CLI Tools
 
-| Paquete | Descripcion |
-|---------|-------------|
-| [@clir/openssl](packages/clir/openssl) | Wrapper de OpenSSL para certificados |
-| [@saxon-he/cli](packages/clir/saxon-he) | Wrapper de Saxon-HE para XSLT/XPath |
+| Paquete                                 | Descripcion                          |
+| --------------------------------------- | ------------------------------------ |
+| [@clir/openssl](packages/clir/openssl)  | Wrapper de OpenSSL para certificados |
+| [@saxon-he/cli](packages/clir/saxon-he) | Wrapper de Saxon-HE para XSLT/XPath  |
 
 ## Requisitos del sistema
 
@@ -109,8 +111,16 @@ import { CFDI } from '@cfdi/xml';
 const cfdi = new CFDI({ xslt: 'path/to/cadenaoriginal.xslt' });
 
 cfdi.certificar('path/to/certificado.cer');
-cfdi.setEmisor({ Rfc: 'AAA010101AAA', Nombre: 'Empresa SA', RegimenFiscal: '601' });
-cfdi.setReceptor({ Rfc: 'XAXX010101000', Nombre: 'Publico General', UsoCFDI: 'S01' });
+cfdi.setEmisor({
+  Rfc: 'AAA010101AAA',
+  Nombre: 'Empresa SA',
+  RegimenFiscal: '601',
+});
+cfdi.setReceptor({
+  Rfc: 'XAXX010101000',
+  Nombre: 'Publico General',
+  UsoCFDI: 'S01',
+});
 cfdi.addConcepto({
   ClaveProdServ: '01010101',
   Cantidad: '1',

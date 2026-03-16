@@ -75,8 +75,29 @@
       "@cfdi/pdf": [
         "./node_modules/@cfdi/pdf/src"
       ],
-      "@cfdi/curp": [
-        "./node_modules/@cfdi/curp/src"
+      "@renapo/curp": [
+        "./node_modules/@renapo/curp/src"
+      ],
+      "@sat/auth": [
+        "./node_modules/@sat/auth/src"
+      ],
+      "@sat/recursos": [
+        "./node_modules/@sat/recursos/src"
+      ],
+      "@sat/scraper": [
+        "./node_modules/@sat/scraper/src"
+      ],
+      "@sat/opinion": [
+        "./node_modules/@sat/opinion/src"
+      ],
+      "@sat/contabilidad": [
+        "./node_modules/@sat/contabilidad/src"
+      ],
+      "@sat/captcha": [
+        "./node_modules/@sat/captcha/src"
+      ],
+      "@cfdi/cancelacion": [
+        "./node_modules/@cfdi/cancelacion/src"
       ],
       "@clir/openssl": [
         "./node_modules/@clir/openssl/src"
@@ -122,7 +143,15 @@
     "../../../../../node_modules/@clir/**/src/**/*.ts",
     "../../../../../node_modules/@clir/**/src/**/*.tsx",
     "../../../../../node_modules/@clir/**/src/**/*.d.ts",
-    "../../../../../node_modules/@clir/**/src/**/*.json"
+    "../../../../../node_modules/@clir/**/src/**/*.json",
+    "../../../../../node_modules/@sat/**/src/**/*.ts",
+    "../../../../../node_modules/@sat/**/src/**/*.tsx",
+    "../../../../../node_modules/@sat/**/src/**/*.d.ts",
+    "../../../../../node_modules/@sat/**/src/**/*.json",
+    "../../../../../node_modules/@renapo/**/src/**/*.ts",
+    "../../../../../node_modules/@renapo/**/src/**/*.tsx",
+    "../../../../../node_modules/@renapo/**/src/**/*.d.ts",
+    "../../../../../node_modules/@renapo/**/src/**/*.json"
 
   ],
   "exclude": [

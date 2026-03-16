@@ -1,0 +1,11 @@
+{
+  "name": "@sat/auth",
+  "entries": [
+    {
+      "version": "1.0.1",
+      "tag": "@sat/auth_v1.0.1",
+      "date": "Sun, 15 Mar 2026 22:26:50 GMT",
+      "comments": {}
+    }
+  ]
+}

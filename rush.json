@@ -135,8 +135,8 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@cfdi/curp",
-      "projectFolder": "packages/cfdi/curp",
+      "packageName": "@renapo/curp",
+      "projectFolder": "packages/renapo/curp",
       "versionPolicyName": "curp",
       "reviewCategory": "libraries",
       "shouldPublish": true,
@@ -183,8 +183,28 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@cfdi/sat",
-      "projectFolder": "packages/cfdi/sat",
+      "packageName": "@cfdi/estado",
+      "projectFolder": "packages/cfdi/estado",
+      "versionPolicyName": "estado",
+      "reviewCategory": "libraries",
+      "shouldPublish": true,
+      "tags": [
+        "beta"
+      ]
+    },
+    {
+      "packageName": "@cfdi/descarga",
+      "projectFolder": "packages/cfdi/descarga",
+      "versionPolicyName": "descarga",
+      "reviewCategory": "libraries",
+      "shouldPublish": true,
+      "tags": [
+        "beta"
+      ]
+    },
+    {
+      "packageName": "@sat/recursos",
+      "projectFolder": "packages/sat/recursos",
       "reviewCategory": "libraries",
       "shouldPublish": true
     },
@@ -213,6 +233,62 @@
       "packageName": "@cfdi/designs",
       "projectFolder": "packages/cfdi/designs",
       "versionPolicyName": "designs",
+      "reviewCategory": "libraries",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@sat/auth",
+      "projectFolder": "packages/sat/auth",
+      "versionPolicyName": "auth",
+      "reviewCategory": "libraries",
+      "shouldPublish": true,
+      "tags": [
+        "beta"
+      ]
+    },
+    {
+      "packageName": "@cfdi/validador",
+      "projectFolder": "packages/cfdi/validador",
+      "versionPolicyName": "validador",
+      "reviewCategory": "libraries",
+      "shouldPublish": true,
+      "tags": [
+        "beta"
+      ]
+    },
+    {
+      "packageName": "@cfdi/cleaner",
+      "projectFolder": "packages/cfdi/cleaner",
+      "reviewCategory": "libraries",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@cfdi/cancelacion",
+      "projectFolder": "packages/cfdi/cancelacion",
+      "reviewCategory": "libraries",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@sat/scraper",
+      "projectFolder": "packages/sat/scraper",
+      "reviewCategory": "libraries",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@sat/opinion",
+      "projectFolder": "packages/sat/opinion",
+      "reviewCategory": "libraries",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@sat/contabilidad",
+      "projectFolder": "packages/sat/contabilidad",
+      "reviewCategory": "libraries",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "@sat/captcha",
+      "projectFolder": "packages/sat/captcha",
       "reviewCategory": "libraries",
       "shouldPublish": true
     },

@@ -13,7 +13,10 @@ export default defineConfig({
         /^@cfdi\//,
         /^@clir\//,
         /^@saxon-he\//,
+        /^@sat\//,
+        /^@renapo\//,
         /^node:/,
+        'crypto',
       ],
     },
     minify: 'esbuild',
@@ -24,6 +27,7 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       rollupTypes: true,
+      exclude: ['node_modules/**'],
     }),
   ],
 });

@@ -36,6 +36,12 @@
     "nextBump": "prerelease"
   },
   {
+    "policyName": "auth",
+    "definitionName": "lockStepVersion",
+    "version": "1.0.1",
+    "nextBump": "patch"
+  },
+  {
     "policyName": "curp",
     "definitionName": "lockStepVersion",
     "version": "0.0.10-beta.2",

@@ -47,7 +47,35 @@
       "allowedCategories": [ "libraries" ]
     },
     {
-      "name": "@cfdi/curp",
+      "name": "@renapo/curp",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/auth",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/recursos",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/scraper",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/opinion",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/contabilidad",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/captcha",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@cfdi/cancelacion",
       "allowedCategories": [ "libraries" ]
     },
     {

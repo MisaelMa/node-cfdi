@@ -36,11 +36,15 @@ packages/
     expresiones/    # Expresiones impresas (QR)
     xml2json/       # Conversion XML a JSON
     csf/            # Lectura de Constancia de Situacion Fiscal
-    curp/           # Validacion y consulta de CURP
     rfc/            # Validacion de RFC
     pdf/            # Opciones de generacion PDF
     designs/        # Plantillas y disenos PDF
     utils/          # Utilidades (numeros a letras, logos)
+  sat/              # Paquetes de integracion con el SAT
+    auth/           # Autenticacion con webservices del SAT (FIEL)
+    recursos/       # Descarga de recursos XSD/XSLT del SAT
+  renapo/           # Paquetes de integracion con RENAPO
+    curp/           # Validacion y consulta de CURP
   clir/             # CLI wrappers
     openssl/        # Wrapper OpenSSL
     saxon-he/       # Wrapper Saxon-HE (XSLT)

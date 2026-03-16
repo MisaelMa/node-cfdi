@@ -98,13 +98,25 @@ function getDependences(scope) {
     },
     sat: {
       sat: true
+    },
+    estado: {
+      estado: true
+    },
+    validador: {
+      validador: true
+    },
+    cleaner: {
+      cleaner: true
+    },
+    auth: {
+      auth: true
     }
   };
   return dependencies[scope] || {};
 }
 
 function getScopes(commits = []) {
-  const list = ['catalogs','csd','csf','curp','pdf','rfc','utils','xml','complementos','openssl','saxon','xsd', '2json','designs','sat']
+  const list = ['catalogs','csd','csf','curp','pdf','rfc','utils','xml','complementos','openssl','saxon','xsd', '2json','designs','sat','estado','validador','cleaner','auth']
   const onlys = {
     'only-complementos': 'complementos'
   }
