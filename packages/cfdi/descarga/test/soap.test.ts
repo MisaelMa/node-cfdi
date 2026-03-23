@@ -12,7 +12,7 @@ import {
   parseDescargarResponse,
 } from '../src/soap/descargar';
 import { digestSha256, canonicalize } from '../src/soap/signer';
-import { TipoSolicitud, TipoDescarga, EstadoSolicitud } from '../src/types';
+import { TipoSolicitud, TipoDescarga, EstadoSolicitud, EstadoComprobante } from '../src/types';
 
 // ---------------------------------------------------------------------------
 // Fixtures
@@ -174,6 +174,36 @@ describe('buildSolicitarRequest', () => {
       SIGNATURE
     );
     expect(xml).toContain('RfcReceptor="BBB020202BBB"');
+  });
+
+  it('no incluye EstadoComprobante cuando no se especifica', () => {
+    const xml = buildSolicitarRequest(
+      SOLICITUD_PARAMS,
+      TOKEN,
+      CERT,
+      SIGNATURE
+    );
+    expect(xml).not.toContain('EstadoComprobante');
+  });
+
+  it('incluye EstadoComprobante="1" para vigentes', () => {
+    const xml = buildSolicitarRequest(
+      { ...SOLICITUD_PARAMS, estadoComprobante: EstadoComprobante.Vigente },
+      TOKEN,
+      CERT,
+      SIGNATURE
+    );
+    expect(xml).toContain('EstadoComprobante="1"');
+  });
+
+  it('incluye EstadoComprobante="0" para cancelados', () => {
+    const xml = buildSolicitarRequest(
+      { ...SOLICITUD_PARAMS, estadoComprobante: EstadoComprobante.Cancelado },
+      TOKEN,
+      CERT,
+      SIGNATURE
+    );
+    expect(xml).toContain('EstadoComprobante="0"');
   });
 
   it('incluye el certificado en el header de seguridad', () => {

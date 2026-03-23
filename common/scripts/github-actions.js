@@ -110,13 +110,46 @@ function getDependences(scope) {
     },
     auth: {
       auth: true
+    },
+    descarga: {
+      descarga: true
+    },
+    cancelacion: {
+      cancelacion: true
+    },
+    recursos: {
+      recursos: true
+    },
+    scraper: {
+      scraper: true
+    },
+    opinion: {
+      opinion: true
+    },
+    contabilidad: {
+      contabilidad: true
+    },
+    captcha: {
+      captcha: true
+    },
+    retenciones: {
+      retenciones: true
+    },
+    pacs: {
+      pacs: true
+    },
+    banxico: {
+      banxico: true
+    },
+    diot: {
+      diot: true
     }
   };
   return dependencies[scope] || {};
 }
 
 function getScopes(commits = []) {
-  const list = ['catalogs','csd','csf','curp','pdf','rfc','utils','xml','complementos','openssl','saxon','xsd', '2json','designs','sat','estado','validador','cleaner','auth']
+  const list = ['catalogs','csd','csf','curp','pdf','rfc','utils','xml','complementos','openssl','saxon','xsd','2json','designs','sat','estado','validador','cleaner','auth','transform','expresiones','elements','types','descarga','cancelacion','recursos','scraper','opinion','contabilidad','captcha','retenciones','pacs','banxico','diot']
   const onlys = {
     'only-complementos': 'complementos'
   }

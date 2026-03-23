@@ -112,5 +112,89 @@
     "definitionName": "lockStepVersion",
     "version": "4.0.13",
     "nextBump": "patch"
+  },
+  {
+    "policyName": "cleaner",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
+  },
+  {
+    "policyName": "estado",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
+  },
+  {
+    "policyName": "validador",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1-beta.0",
+    "nextBump": "prerelease"
+  },
+  {
+    "policyName": "descarga",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1-beta.0",
+    "nextBump": "prerelease"
+  },
+  {
+    "policyName": "cancelacion",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
+  },
+  {
+    "policyName": "recursos",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
+  },
+  {
+    "policyName": "scraper",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
+  },
+  {
+    "policyName": "opinion",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
+  },
+  {
+    "policyName": "contabilidad",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
+  },
+  {
+    "policyName": "captcha",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
+  },
+  {
+    "policyName": "retenciones",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
+  },
+  {
+    "policyName": "pacs",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
+  },
+  {
+    "policyName": "banxico",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
+  },
+  {
+    "policyName": "diot",
+    "definitionName": "lockStepVersion",
+    "version": "0.0.1",
+    "nextBump": "patch"
   }
 ]

@@ -17,6 +17,11 @@ export enum EstadoSolicitud {
   Vencida = 6,
 }
 
+export enum EstadoComprobante {
+  Cancelado = '0',
+  Vigente = '1',
+}
+
 export interface SolicitudParams {
   rfcSolicitante: string;
   /** Fecha en formato YYYY-MM-DD */
@@ -29,6 +34,8 @@ export interface SolicitudParams {
   rfcEmisor?: string;
   /** RFC receptor para filtrar (opcional) */
   rfcReceptor?: string;
+  /** Filtro por estado del comprobante: 0=Cancelado, 1=Vigente, undefined=Todos */
+  estadoComprobante?: EstadoComprobante;
 }
 
 export interface SolicitudResult {

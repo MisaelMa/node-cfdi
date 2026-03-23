@@ -24,6 +24,7 @@ export function buildSolicitarRequest(
     tipoDescarga,
     rfcEmisor,
     rfcReceptor,
+    estadoComprobante,
   } = params;
 
   // Construir el atributo de filtro segun el tipo de descarga
@@ -31,6 +32,11 @@ export function buildSolicitarRequest(
     tipoDescarga === 'RfcEmisor'
       ? `RfcEmisor="${rfcEmisor ?? rfcSolicitante}"`
       : `RfcReceptor="${rfcReceptor ?? rfcSolicitante}"`;
+
+  const estadoAttr =
+    estadoComprobante != null
+      ? ` EstadoComprobante="${estadoComprobante}"`
+      : '';
 
   return `<?xml version="1.0" encoding="utf-8"?>
 <s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"
@@ -69,7 +75,7 @@ export function buildSolicitarRequest(
                      FechaInicial="${fechaInicio}T00:00:00"
                      FechaFinal="${fechaFin}T23:59:59"
                      RfcSolicitante="${rfcSolicitante}"
-                     TipoSolicitud="${tipoSolicitud}">
+                     TipoSolicitud="${tipoSolicitud}"${estadoAttr}>
         <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
                       Id="SelloDigital">
           <ds:SignedInfo>
