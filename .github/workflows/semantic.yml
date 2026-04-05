@@ -15,10 +15,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Platform label
-        uses: agilepathway/label-checker@v1.0.104
+        uses: actions/github-script@v7
         with:
-          any_of: config,core,catalogs,csd,csf,curp,pdf,rfc,utils,xml,xsd,complementos,openssl,saxon,schema,transform,types,elements,2json,expresiones,publish,sat,estado,descarga,validador,cleaner,auth,designs,cancelacion,recursos,scraper,opinion,contabilidad,captcha,retenciones,pacs,banxico,diot
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const validLabels = [
+              'config','core','catalogs','csd','csf','curp','pdf','rfc','utils',
+              'xml','xsd','complementos','openssl','saxon','schema','transform',
+              'types','elements','2json','expresiones','publish','sat','estado',
+              'descarga','validador','cleaner','auth','designs','cancelacion',
+              'recursos','scraper','opinion','contabilidad','captcha','retenciones',
+              'pacs','banxico','diot'
+            ];
+            const labels = context.payload.pull_request.labels.map(l => l.name);
+            const hasValid = labels.some(l => validLabels.includes(l));
+            if (!hasValid) {
+              core.setFailed(`PR must have at least one label: ${validLabels.join(', ')}`);
+            }
 
   check-title:
     name: Check PR title
