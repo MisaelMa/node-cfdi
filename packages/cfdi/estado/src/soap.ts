@@ -11,16 +11,13 @@ const SOAP_ACTION =
  * Ejemplo: '1000.00' → '0000001000.000000'
  */
 export function formatTotal(total: string): string {
-  const num = parseFloat(total);
-  if (isNaN(num)) {
+  if (!total || !/^\d+(\.\d+)?$/.test(total.trim())) {
     throw new Error(`Total invalido: '${total}'`);
   }
-  // Separar la parte entera y decimal con 6 decimales fijos
-  const fixed = num.toFixed(6);
-  const [integer, decimal] = fixed.split('.');
-  // La parte entera debe ocupar 10 caracteres (17 total - 1 punto - 6 decimales)
+  const [integer, decimal = ''] = total.trim().split('.');
   const paddedInteger = integer.padStart(10, '0');
-  return `${paddedInteger}.${decimal}`;
+  const paddedDecimal = decimal.padEnd(6, '0').slice(0, 6);
+  return `${paddedInteger}.${paddedDecimal}`;
 }
 
 /**
