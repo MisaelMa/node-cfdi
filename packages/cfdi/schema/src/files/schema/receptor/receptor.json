@@ -1,0 +1,43 @@
+{
+  "$id": "comprobante_Receptor.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "This JSON Schema file was generated from comprobante_Receptor on Tue Dec 26 2023 18:31:04 GMT-0500 (Eastern Standard Time).  For more information please see http://www.xsd2jsonschema.org",
+  "description": "Atributo requerido para expresar la clave del uso que dará a esta factura el receptor del CFDI.",
+  "required": ["Rfc", "Nombre", "DomicilioFiscalReceptor", "RegimenFiscalReceptor", "UsoCFDI"],
+  "properties": {
+    "Rfc": {
+      "$ref": "tipoDatos.json#/definitions/t_RFC"
+    },
+    "Nombre": {
+      "description": "Atributo requerido para registrar el nombre(s), primer apellido, segundo apellido, según corresponda, denominación o razón social del contribuyente, inscrito en el RFC, del receptor del comprobante.",
+      "maxLength": 300,
+      "minLength": 1,
+      "pattern": "[^|]{1,300}",
+      "type": "string"
+    },
+    "DomicilioFiscalReceptor": {
+      "description": "Atributo requerido para registrar el código postal del domicilio fiscal del receptor del comprobante.",
+      "maxLength": 5,
+      "minLength": 5,
+      "pattern": "[0-9]{5}",
+      "type": "string"
+    },
+    "ResidenciaFiscal": {
+      "$ref": "catalogos.json#/definitions/c_Pais"
+    },
+    "NumRegIdTrib": {
+      "description": "Atributo condicional para expresar el número de registro de identidad fiscal del receptor cuando sea residente en el extranjero. Es requerido cuando se incluya el complemento de comercio exterior.",
+      "maxLength": 40,
+      "minLength": 1,
+      "type": "string"
+    },
+    "RegimenFiscalReceptor": {
+      "$ref": "catalogos.json#/definitions/c_RegimenFiscal"
+    },
+    "UsoCFDI": {
+      "$ref": "catalogos.json#/definitions/c_UsoCFDI"
+    }
+  },
+  "type": "object",
+  "definitions": {}
+}

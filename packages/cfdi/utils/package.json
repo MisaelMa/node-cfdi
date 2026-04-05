@@ -2,65 +2,37 @@
   "name": "@cfdi/utils",
   "version": "4.0.16",
   "license": "MIT",
-  "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
-  "module": "./dist/utils.esm.min.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "source": "./src/index.ts",
   "files": [
     "dist"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=22"
   },
   "scripts": {
-    "build": "tsdx build --env production --minify && rimraf ./dist/index.js ./dist/utils.cjs.development.*",
-    "cp": "cp ./config/index.js ./dist",
-    "start": "tsdx watch",
+    "build": "vite build",
     "test": "vitest",
     "test:ci": "vitest run",
-    "test:coverage": "vitest --coverage run",
-    "test:ui": "vitest --ui",
-    "lint": "tsdx lint",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   },
- 
   "dependencies": {
     "xml-js": "^1.6.11"
   },
   "devDependencies": {
-    "rimraf": "^6.0.1",
     "@recreando/eslint-settings": "workspace:*",
-    "@recreando/jest": "workspace:*",
     "@recreando/vite": "workspace:*",
     "@recreando/typescript-settings": "workspace:*",
-    "@rushstack/eslint-config": "^4.0.2",
-    "@rushstack/heft": "^0.68.6",
-    "@size-limit/preset-small-lib": "^7.0.8",
-    "@testing-library/dom": "^8.19.0",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@types/deep-freeze": "^0.1.2",
-    "@types/jest": "^27.5.0",
-    "@types/node": "^18.11.3",
-    "@types/testing-library__jest-dom": "^5.9.1",
-    "chalk": "^4.0.0",
-    "chokidar": "^3.5.2",
+    "@types/node": "^22",
     "eslint": "^8.57.0",
-    "husky": "^8.0.1",
-    "jest": "^28.1.2",
-    "size-limit": "^7.0.8",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.4.0",
     "typescript": "^5.6.3",
     "vitest": "2.1.3",
     "vite-tsconfig-paths": "~4.2.1",
     "@vitest/coverage-v8": "2.1.3",
     "@vitest/ui": "2.1.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -70,25 +42,9 @@
     "type": "git",
     "url": "https://github.com/MisaelMa/recreando"
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
   "author": {
     "name": "Amir Misael Marin Coh, Signati",
     "email": "amisael.amir.misae@gmail.com, signatidev@gmail.com,",
     "url": ""
-  },
-  "size-limit": [
-    {
-      "path": "dist/utils.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/utils.esm.js",
-      "limit": "10 KB"
-    }
-  ]
+  }
 }

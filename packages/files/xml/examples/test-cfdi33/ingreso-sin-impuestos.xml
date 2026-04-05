@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" Version="3.3" TipoDeComprobante="I" Serie="SI" Folio="50" Fecha="2019-01-15T08:00:00" LugarExpedicion="06600" SubTotal="3000.00" Total="3000.00" Moneda="MXN" MetodoPago="PUE" FormaPago="03" Sello="" NoCertificado="" Certificado="">
+  <cfdi:Emisor Rfc="POT9207213D6" Nombre="PROMOTORA OTIR SA DE CV" RegimenFiscal="621"/>
+  <cfdi:Receptor Rfc="DIM8701081LA" Nombre="DAY INTERNATIONAL DE MEXICO SA DE CV" UsoCFDI="G03"/>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="84111506" Cantidad="1" ClaveUnidad="ACT" Descripcion="Servicios profesionales independientes" ValorUnitario="3000.00" Importe="3000.00"/>
+  </cfdi:Conceptos>
+</cfdi:Comprobante>

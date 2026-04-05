@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd" Version="4.0" TipoDeComprobante="I" Serie="LMC" Folio="0010" Fecha="2023-05-29T12:00:00" LugarExpedicion="26015" SubTotal="420.90" Descuento="200.20" Total="211.36" Moneda="MXN" Exportacion="01" MetodoPago="PUE" FormaPago="03" CondicionesDePago="Pago a 30 días." Sello="" NoCertificado="00000000000000000000" Certificado="">
+  <cfdi:Emisor Rfc="EKU9003173C9" Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="601"></cfdi:Emisor>
+  <cfdi:Receptor Rfc="URE180429TM6" Nombre="UNIVERSIDAD ROBOTICA ESPAÑOLA" DomicilioFiscalReceptor="65000" RegimenFiscalReceptor="601" UsoCFDI="G01"></cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="50211502" Cantidad="2" ClaveUnidad="H87" Descripcion="Cigarros" ValorUnitario="200.2020" Importe="400.40" Descuento="200.20" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="200.2000" Importe="32.0320" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+        </cfdi:Traslados>
+        <cfdi:Retenciones>
+          <cfdi:Retencion Base="200.2000" Importe="21.3547" Impuesto="002" TasaOCuota="0.106667" TipoFactor="Tasa"></cfdi:Retencion>
+          <cfdi:Retencion Base="200.2000" Importe="20.0200" Impuesto="001" TasaOCuota="0.100000" TipoFactor="Tasa"></cfdi:Retencion>
+        </cfdi:Retenciones>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="50211502" Cantidad="1" ClaveUnidad="H87" Descripcion="Cerveza" ValorUnitario="10.50" Importe="10.50" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="10.5000" Impuesto="002" TipoFactor="Exento"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="50211502" Cantidad="1" ClaveUnidad="H87" Descripcion="No Tax" ValorUnitario="10.00" Importe="10.00" ObjetoImp="01"></cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="32.03" TotalImpuestosRetenidos="41.37">
+    <cfdi:Retenciones>
+      <cfdi:Retencion Importe="21.35" Impuesto="002"></cfdi:Retencion>
+      <cfdi:Retencion Importe="20.02" Impuesto="001"></cfdi:Retencion>
+    </cfdi:Retenciones>
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="200.20" Importe="32.03" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+      <cfdi:Traslado Base="10.50" Impuesto="002" TipoFactor="Exento"></cfdi:Traslado>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

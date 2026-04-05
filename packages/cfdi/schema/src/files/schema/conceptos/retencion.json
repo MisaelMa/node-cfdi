@@ -1,0 +1,36 @@
+{
+  "$id": "comprobante_Conceptos_Concepto_Impuestos_Retenciones_Retencion.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "This JSON Schema file was generated from comprobante_Conceptos_Concepto_Impuestos_Retenciones_Retencion on Tue Dec 26 2023 18:31:04 GMT-0500 (Eastern Standard Time).  For more information please see http://www.xsd2jsonschema.org",
+  "description": "Atributo requerido para señalar el importe del impuesto retenido que aplica al concepto. No se permiten valores negativos.",
+  "required": [
+    "Base",
+    "Impuesto",
+    "TipoFactor",
+    "TasaOCuota",
+    "Importe"
+  ],
+  "properties": {
+    "Base": {
+      "description": "Atributo requerido para señalar la base para el cálculo de la retención, la determinación de la base se realiza de acuerdo con las disposiciones fiscales vigentes. No se permiten valores negativos.",
+      "minimum": 0.000001,
+      "type": "number"
+    },
+    "Impuesto": {
+      "$ref": "catalogos.json#/definitions/c_Impuesto"
+    },
+    "TipoFactor": {
+      "$ref": "catalogos.json#/definitions/c_TipoFactor"
+    },
+    "TasaOCuota": {
+      "description": "Atributo requerido para señalar la tasa o cuota del impuesto que se retiene para el presente concepto.",
+      "minimum": 0,
+      "type": "number"
+    },
+    "Importe": {
+      "$ref": "tipoDatos.json#/definitions/t_Importe"
+    }
+  },
+  "type": "object",
+  "definitions": {}
+}

@@ -1,0 +1,1 @@
+export { FinkokProvider } from './finkok';

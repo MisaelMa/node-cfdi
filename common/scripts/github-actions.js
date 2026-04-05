@@ -92,13 +92,64 @@ function getDependences(scope) {
     },
     '2json': {
       '2json': true
+    },
+    designs: {
+      designs: true
+    },
+    sat: {
+      sat: true
+    },
+    estado: {
+      estado: true
+    },
+    validador: {
+      validador: true
+    },
+    cleaner: {
+      cleaner: true
+    },
+    auth: {
+      auth: true
+    },
+    descarga: {
+      descarga: true
+    },
+    cancelacion: {
+      cancelacion: true
+    },
+    recursos: {
+      recursos: true
+    },
+    scraper: {
+      scraper: true
+    },
+    opinion: {
+      opinion: true
+    },
+    contabilidad: {
+      contabilidad: true
+    },
+    captcha: {
+      captcha: true
+    },
+    retenciones: {
+      retenciones: true
+    },
+    pacs: {
+      pacs: true
+    },
+    banxico: {
+      banxico: true
+    },
+    diot: {
+      diot: true
     }
   };
   return dependencies[scope] || {};
 }
 
 function getScopes(commits = []) {
-  const list = ['catalogs','csd','csf','curp','pdf','rfc','utils','xml','complementos','openssl','saxon','xsd']
+  const list = ['catalogs','csd','csf','curp','pdf','rfc','utils','xml','complementos','openssl','saxon','xsd','2json','designs','sat','estado','validador','cleaner','auth','transform','expresiones','elements','types','descarga','cancelacion','recursos','scraper','opinion','contabilidad','captcha','retenciones','pacs','banxico','diot']
   const onlys = {
     'only-complementos': 'complementos'
   }

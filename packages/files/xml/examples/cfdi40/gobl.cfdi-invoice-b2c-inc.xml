@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd" Version="4.0" TipoDeComprobante="I" Serie="XAMA620210DQ5" Folio="000037" Fecha="2025-10-24T11:38:18" LugarExpedicion="01219" SubTotal="68.97" Total="80.00" Moneda="MXN" Exportacion="01" MetodoPago="PUE" FormaPago="01" Sello="" NoCertificado="00000000000000000000" Certificado="">
+  <cfdi:Emisor Rfc="XAMA620210DQ5" Nombre="ALBA XKARAJAM MENDEZ" RegimenFiscal="612"></cfdi:Emisor>
+  <cfdi:Receptor Rfc="XAXX010101000" Nombre="PÚBLICO EN GENERAL" DomicilioFiscalReceptor="01219" RegimenFiscalReceptor="616" UsoCFDI="S01"></cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="84141602" Cantidad="1" ClaveUnidad="ZZ" Descripcion="Vela Matcha" ValorUnitario="43.1034" Importe="43.1034" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="43.1034" Importe="6.8965" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="84141602" Cantidad="1" ClaveUnidad="ZZ" Descripcion="Vela Milkberry" ValorUnitario="25.8621" Importe="25.8621" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="25.8621" Importe="4.1379" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="11.03">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="68.97" Importe="11.03" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

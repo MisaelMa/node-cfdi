@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" Version="3.3" TipoDeComprobante="I" Serie="A" Folio="1001" Fecha="2019-06-15T10:30:00" LugarExpedicion="06600" SubTotal="5000.00" Total="5800.00" Moneda="MXN" MetodoPago="PUE" FormaPago="03" CondicionesDePago="CONTADO" Sello="" NoCertificado="" Certificado="">
+  <cfdi:Emisor Rfc="POT9207213D6" Nombre="PROMOTORA OTIR SA DE CV" RegimenFiscal="601"/>
+  <cfdi:Receptor Rfc="DIM8701081LA" Nombre="DAY INTERNATIONAL DE MEXICO SA DE CV" UsoCFDI="G03"/>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="84111506" Cantidad="1" ClaveUnidad="E48" Unidad="Unidad de servicio" Descripcion="Servicio de contabilidad mensual" ValorUnitario="5000.00" Importe="5000.00">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="5000.00" Importe="800.00" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"/>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="800.00">
+    <cfdi:Traslados>
+      <cfdi:Traslado Importe="800.00" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

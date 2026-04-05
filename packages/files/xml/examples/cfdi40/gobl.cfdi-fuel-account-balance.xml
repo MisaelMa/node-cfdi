@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecc12="http://www.sat.gob.mx/EstadoDeCuentaCombustible12" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd http://www.sat.gob.mx/EstadoDeCuentaCombustible12 http://www.sat.gob.mx/sitio_internet/cfd/EstadoDeCuentaCombustible/ecc12.xsd" Version="4.0" TipoDeComprobante="I" Serie="TEST" Folio="00002" Fecha="2023-07-10T12:00:00" LugarExpedicion="26015" SubTotal="10.00" Total="11.60" Moneda="MXN" Exportacion="01" MetodoPago="PPD" FormaPago="99" CondicionesDePago="Condiciones de pago" Sello="" NoCertificado="00000000000000000000" Certificado="">
+  <cfdi:Emisor Rfc="EKU9003173C9" Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="601"></cfdi:Emisor>
+  <cfdi:Receptor Rfc="URE180429TM6" Nombre="UNIVERSIDAD ROBOTICA ESPAÑOLA" DomicilioFiscalReceptor="86991" RegimenFiscalReceptor="601" UsoCFDI="G01"></cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="84141602" Cantidad="1" ClaveUnidad="ZZ" Descripcion="Comisión servicio de monedero electrónico" ValorUnitario="10.00" Importe="10.00" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="10.0000" Importe="1.6000" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="1.60">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="10.00" Importe="1.60" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+  <cfdi:Complemento>
+    <ecc12:EstadoDeCuentaCombustible Version="1.2" TipoOperacion="Tarjeta" NumeroDeCuenta="0123456789" SubTotal="246.13" Total="400.00">
+      <ecc12:Conceptos>
+        <ecc12:ConceptoEstadoDeCuentaCombustible Identificador="1234" Fecha="2022-07-19T10:20:30" Rfc="RWT860605OF5" ClaveEstacion="8171650" Cantidad="9.661" TipoCombustible="3" Unidad="LTR" NombreCombustible="Diesel" FolioOperacion="2794668" ValorUnitario="12.743" Importe="123.11">
+          <ecc12:Traslados>
+            <ecc12:Traslado Impuesto="IVA" TasaOCuota="0.1600" Importe="19.70"></ecc12:Traslado>
+            <ecc12:Traslado Impuesto="IEPS" TasaOCuota="5.9195" Importe="57.19"></ecc12:Traslado>
+          </ecc12:Traslados>
+        </ecc12:ConceptoEstadoDeCuentaCombustible>
+        <ecc12:ConceptoEstadoDeCuentaCombustible Identificador="1234" Fecha="2022-08-19T10:20:30" Rfc="DJV320816JT1" ClaveEstacion="8171667" Cantidad="9.680" TipoCombustible="1" NombreCombustible="Gasolina Magna" FolioOperacion="2794669" ValorUnitario="12.709" Importe="123.02">
+          <ecc12:Traslados>
+            <ecc12:Traslado Impuesto="IVA" TasaOCuota="0.1600" Importe="19.68"></ecc12:Traslado>
+            <ecc12:Traslado Impuesto="IEPS" TasaOCuota="5.9195" Importe="57.30"></ecc12:Traslado>
+          </ecc12:Traslados>
+        </ecc12:ConceptoEstadoDeCuentaCombustible>
+      </ecc12:Conceptos>
+    </ecc12:EstadoDeCuentaCombustible>
+  </cfdi:Complemento>
+</cfdi:Comprobante>

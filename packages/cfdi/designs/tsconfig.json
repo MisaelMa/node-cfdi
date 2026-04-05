@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "outDir": "dist",
+      "module": "ESNext",
+      "target": "ESNext",
+      "declaration": true,
+      "declarationDir": "dist",
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "paths": {
+        "@cfdi/utils/*": [
+          "./node_modules/@cfdi/utils/src",
+          "./node_modules/@cfdi/utils/src/*"
+        ],
+        "@cfdi/utils": [
+          "./node_modules/@cfdi/utils/src"
+        ],
+      }
+    },
+    "include": ["src"]
+  }
+  

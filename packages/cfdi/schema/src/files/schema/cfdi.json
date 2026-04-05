@@ -1,0 +1,129 @@
+{
+  "catalogos": [
+    {
+      "name": "tipodatos",
+      "type": "catalogos",
+      "key": "CATALOGOS_TIPODATOS",
+      "path": "catalogos"
+    },
+    {
+      "name": "catalogos",
+      "type": "catalogos",
+      "key": "CATALOGOS_CATALOGOS",
+      "path": "catalogos"
+    }
+  ],
+  "comprobante": [
+    {
+      "name": "comprobante",
+      "type": "comprobante",
+      "key": "COMPROBANTE",
+      "path": "comprobante"
+    },
+    {
+      "name": "informacionglobal",
+      "type": "comprobante",
+      "key": "COMPROBANTE_INFORMACIONGLOBAL",
+      "path": "informacionglobal"
+    },
+    {
+      "name": "cfdirelacionado",
+      "type": "comprobante",
+      "key": "COMPROBANTE_CFDIRELACIONADOS_CFDIRELACIONADO",
+      "path": "cfdirelacionados"
+    },
+    {
+      "name": "cfdirelacionados",
+      "type": "comprobante",
+      "key": "COMPROBANTE_CFDIRELACIONADOS",
+      "path": "cfdirelacionados"
+    },
+    {
+      "name": "emisor",
+      "type": "comprobante",
+      "key": "COMPROBANTE_EMISOR",
+      "path": "emisor"
+    },
+    {
+      "name": "receptor",
+      "type": "comprobante",
+      "key": "COMPROBANTE_RECEPTOR",
+      "path": "receptor"
+    },
+    {
+      "name": "traslado",
+      "type": "comprobante",
+      "key": "COMPROBANTE_CONCEPTOS_CONCEPTO_IMPUESTOS_TRASLADOS_TRASLADO",
+      "path": "conceptos"
+    },
+    {
+      "name": "retencion",
+      "type": "comprobante",
+      "key": "COMPROBANTE_CONCEPTOS_CONCEPTO_IMPUESTOS_RETENCIONES_RETENCION",
+      "path": "conceptos"
+    },
+    {
+      "name": "acuentaterceros",
+      "type": "comprobante",
+      "key": "COMPROBANTE_CONCEPTOS_CONCEPTO_ACUENTATERCEROS",
+      "path": "conceptos"
+    },
+    {
+      "name": "informacionaduanera",
+      "type": "comprobante",
+      "key": "COMPROBANTE_CONCEPTOS_CONCEPTO_INFORMACIONADUANERA",
+      "path": "conceptos"
+    },
+    {
+      "name": "cuentapredial",
+      "type": "comprobante",
+      "key": "COMPROBANTE_CONCEPTOS_CONCEPTO_CUENTAPREDIAL",
+      "path": "conceptos"
+    },
+    {
+      "name": "informacionaduanera",
+      "type": "comprobante",
+      "key": "COMPROBANTE_CONCEPTOS_CONCEPTO_PARTE_INFORMACIONADUANERA",
+      "path": "conceptos"
+    },
+    {
+      "name": "parte",
+      "type": "comprobante",
+      "key": "COMPROBANTE_CONCEPTOS_CONCEPTO_PARTE",
+      "path": "conceptos"
+    },
+    {
+      "name": "concepto",
+      "type": "comprobante",
+      "key": "COMPROBANTE_CONCEPTOS_CONCEPTO",
+      "path": "conceptos"
+    },
+    {
+      "name": "retencion",
+      "type": "comprobante",
+      "key": "COMPROBANTE_IMPUESTOS_RETENCIONES_RETENCION",
+      "path": "impuestos"
+    },
+    {
+      "name": "traslado",
+      "type": "comprobante",
+      "key": "COMPROBANTE_IMPUESTOS_TRASLADOS_TRASLADO",
+      "path": "impuestos"
+    },
+    {
+      "name": "impuestos",
+      "type": "comprobante",
+      "key": "COMPROBANTE_IMPUESTOS",
+      "path": "impuestos"
+    }
+  ],
+  "complementos": [
+    {
+      "name": "iedu",
+      "type": "complementos",
+      "key": "IEDU",
+      "path": "complementos"
+    }
+  ],
+  "unknow": []
+}
