@@ -68,7 +68,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"oidcToken\": \"${OIDC_TOKEN}\"}" | jq -r '.token')
           echo "::add-mask::$NPM_TOKEN"
-          echo "NPM_AUTH_TOKEN=$NPM_TOKEN" >> $GITHUB_ENV
+          echo "NODE_AUTH_TOKEN=$NPM_TOKEN" >> $GITHUB_ENV
 
       - name: Publish (main)
         if: steps.branch.outputs.is_main == 'true'
