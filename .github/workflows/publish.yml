@@ -24,22 +24,16 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.PAT_TOKEN }}
 
-      - name: Setup Node.js
+      - name: CFDI dependencies
+        uses: ./.github/actions/cfdi
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Setup registry
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
-
-      - name: Install Rush
-        run: npm install -g @microsoft/rush@5.169.2
-
-      - name: Rush Update
-        run: rush update
-
-      - name: Configure git
-        run: |
-          git config user.name MisaelMa
-          git config user.email amisael.amir.misael@gmail.com
 
       - name: Determine branch
         id: branch
@@ -52,13 +46,8 @@ jobs:
             echo "is_main=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Version bump
-        uses: actions/github-script@v7
-        with:
-          debug: true
-          script: |
-            const script = require('./common/scripts/github-actions.js')
-            await script({github, context, core})
+      - name: Build
+        run: rush build
 
       - name: Get npm token via OIDC
         run: |
