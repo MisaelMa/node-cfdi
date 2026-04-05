@@ -24,15 +24,15 @@ runs:
     #     path: packages/cfdi/designs
     #     token: ${{ inputs.token }}
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '22'
 
     - name: Rush CLI
       shell: bash
       run: | 
-        npm install -g @microsoft/rush@5.140.1
+        npm install -g @microsoft/rush@5.169.2
         rush update
 
     - name: Rush Update
