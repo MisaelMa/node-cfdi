@@ -24,6 +24,11 @@ jobs:
           path: packages/cfdi/schema
           token: ${{ secrets.PAT_TOKEN }}
       
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
       - name: Set up Java 11
         uses: actions/setup-java@v3
         with:
