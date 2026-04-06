@@ -2,6 +2,10 @@
   "name": "@cfdi/rfc",
   "version": "0.0.10-beta.2",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MisaelMa/node-cfdi.git"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

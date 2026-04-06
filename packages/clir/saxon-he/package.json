@@ -1,6 +1,10 @@
 {
   "version": "12.5.1",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MisaelMa/node-cfdi.git"
+  },
   "name": "@saxon-he/cli",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
