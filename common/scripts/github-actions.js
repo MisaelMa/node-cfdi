@@ -193,15 +193,29 @@ async function getCommitsPR(url) {
 
 }
 module.exports = async ({ github, context, core }) => {
-  const branch = context.ref.split('/').slice(2).join('/')
+  // For pull_request events, use the target branch (base_ref), not the PR ref
+  const branch = context.payload.pull_request
+    ? context.payload.pull_request.base.ref
+    : context.ref.split('/').slice(2).join('/');
+
+  console.log("branch:", branch);
+  console.log("eventName:", context.eventName);
 
   const branchs =  ['next','beta', 'alpha','dev']
   const eventName = context.eventName
   let commits = context.payload.commits || [];
 
   if(eventName==='pull_request'){
-    const commits_url = context.payload.pull_request.commits_url
-    const commits_local = await getCommitsPR(commits_url)
+    const { owner, repo } = context.repo;
+    const pull_number = context.payload.pull_request.number;
+    console.log(`Fetching commits for PR #${pull_number}...`);
+    const { data: commits_local } = await github.rest.pulls.listCommits({
+      owner,
+      repo,
+      pull_number,
+      per_page: 100,
+    });
+    console.log(`Found ${commits_local.length} commits in PR`);
     commits = commits_local.map(({commit})=>commit)
   }
   const scopes =  getScopes(commits);
