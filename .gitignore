@@ -65,6 +65,10 @@ common/temp/
 common/autoinstallers/*/.npmrc
 **/.rush/temp/
 
+# Build output
+**/dist/
+**/src/**/*.d.ts
+
 # Heft
 .heft
 maca961017759.cer
