@@ -1,5 +1,6 @@
 import type {
   CredencialPortal,
+  CredencialFIEL,
   SesionSAT,
   ConsultaCfdiParams,
   CfdiConsultaResult,
@@ -116,7 +117,7 @@ export class SatPortal {
   }
 
   private async _loginFIEL(
-    credencial: CredencialPortal & { tipo: 'fiel' }
+    credencial: CredencialFIEL
   ): Promise<SesionSAT> {
     const loginUrl = `${this._baseUrl}/nidp/wsfed/ep?id=SATx509Custom&sid=0&option=credential`;
 

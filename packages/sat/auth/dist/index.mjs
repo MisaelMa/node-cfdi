@@ -41,11 +41,12 @@ function I(t, e) {
 function $(t) {
   return `<SignedInfo xmlns="http://www.w3.org/2000/09/xmldsig#"><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#_0"><Transforms><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>${t}</DigestValue></Reference></SignedInfo>`;
 }
-const R = "https://cfdidescargamasivasolicitud.clouda.sat.gob.mx/Autenticacion/Autenticacion.svc", _ = "http://DescargaMasivaTerceros.gob.mx/IAutenticacion/Autentica";
+const _ = "https://cfdidescargamasivasolicitud.clouda.sat.gob.mx/Autenticacion/Autenticacion.svc", R = "http://DescargaMasivaTerceros.gob.mx/IAutenticacion/Autentica";
 class v {
   constructor(e) {
     this._credential = e;
   }
+  _credential;
   /**
    * Realiza la autenticacion contra el SAT y retorna el token de sesion.
    *
@@ -59,11 +60,11 @@ class v {
       digest: a,
       signature: p,
       tokenId: r
-    }), c = await fetch(R, {
+    }), c = await fetch(_, {
       method: "POST",
       headers: {
         "Content-Type": "text/xml; charset=utf-8",
-        SOAPAction: _
+        SOAPAction: R
       },
       body: h
     });

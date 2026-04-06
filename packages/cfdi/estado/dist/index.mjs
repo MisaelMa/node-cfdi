@@ -1,59 +1,58 @@
 const l = "https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc", d = "http://tempuri.org/IConsultaCFDIService/Consulta";
 function u(t) {
-  const e = parseFloat(t);
-  if (isNaN(e))
+  if (!t || !/^\d+(\.\d+)?$/.test(t.trim()))
     throw new Error(`Total invalido: '${t}'`);
-  const r = e.toFixed(6), [o, n] = r.split(".");
-  return `${o.padStart(10, "0")}.${n}`;
+  const [n, r = ""] = t.trim().split("."), e = n.padStart(10, "0"), o = r.padEnd(6, "0").slice(0, 6);
+  return `${e}.${o}`;
 }
 function p(t) {
-  const { rfcEmisor: e, rfcReceptor: r, total: o, uuid: n } = t, a = u(o);
+  const { rfcEmisor: n, rfcReceptor: r, total: e, uuid: o } = t, c = u(e);
   return `<?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
   <soap:Header/>
   <soap:Body>
     <tem:Consulta>
-      <tem:expresionImpresa><![CDATA[${`?re=${e}&rr=${r}&tt=${a}&id=${n}`}]]></tem:expresionImpresa>
+      <tem:expresionImpresa><![CDATA[${`?re=${n}&rr=${r}&tt=${c}&id=${o}`}]]></tem:expresionImpresa>
     </tem:Consulta>
   </soap:Body>
 </soap:Envelope>`;
 }
-function c(t, e) {
+function a(t, n) {
   const r = new RegExp(
-    `<(?:[a-zA-Z0-9_]+:)?${e}[^>]*>([\\s\\S]*?)<\\/(?:[a-zA-Z0-9_]+:)?${e}>`,
+    `<(?:[a-zA-Z0-9_]+:)?${n}[^>]*>([\\s\\S]*?)<\\/(?:[a-zA-Z0-9_]+:)?${n}>`,
     "i"
-  ), o = t.match(r);
-  return o ? o[1].trim() : "";
+  ), e = t.match(r);
+  return e ? e[1].trim() : "";
 }
 function E(t) {
   if (t.includes("<s:Fault>") || t.includes("<soap:Fault>")) {
-    const s = c(t, "faultstring");
+    const s = a(t, "faultstring");
     throw new Error(`SOAP Fault: ${s || "Error desconocido del servicio"}`);
   }
-  const e = c(t, "CodigoEstatus"), r = c(t, "EsCancelable"), o = c(t, "Estado"), n = c(t, "EstatusCancelacion"), a = c(t, "ValidacionEFOS");
+  const n = a(t, "CodigoEstatus"), r = a(t, "EsCancelable"), e = a(t, "Estado"), o = a(t, "EstatusCancelacion"), c = a(t, "ValidacionEFOS");
   return {
-    codigoEstatus: e,
+    codigoEstatus: n,
     esCancelable: r,
-    estado: o,
-    estatusCancelacion: n,
-    validacionEFOS: a,
-    activo: o === "Vigente",
-    cancelado: o === "Cancelado",
-    noEncontrado: o === "No Encontrado"
+    estado: e,
+    estatusCancelacion: o,
+    validacionEFOS: c,
+    activo: e === "Vigente",
+    cancelado: e === "Cancelado",
+    noEncontrado: e === "No Encontrado"
   };
 }
 const i = 3e4;
 async function m(t) {
-  const e = p(t), r = new AbortController(), o = setTimeout(() => r.abort(), i);
-  let n;
+  const n = p(t), r = new AbortController(), e = setTimeout(() => r.abort(), i);
+  let o;
   try {
-    n = await fetch(l, {
+    o = await fetch(l, {
       method: "POST",
       headers: {
         "Content-Type": "text/xml; charset=utf-8",
         SOAPAction: d
       },
-      body: e,
+      body: n,
       signal: r.signal
     });
   } catch (s) {
@@ -63,14 +62,14 @@ async function m(t) {
       `Error de red al consultar el estado del CFDI: ${s instanceof Error ? s.message : String(s)}`
     );
   } finally {
-    clearTimeout(o);
+    clearTimeout(e);
   }
-  if (!n.ok)
+  if (!o.ok)
     throw new Error(
-      `El webservice del SAT retorno HTTP ${n.status}: ${n.statusText}`
+      `El webservice del SAT retorno HTTP ${o.status}: ${o.statusText}`
     );
-  const a = await n.text();
-  return E(a);
+  const c = await o.text();
+  return E(c);
 }
 export {
   d as SOAP_ACTION,

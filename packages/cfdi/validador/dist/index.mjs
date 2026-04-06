@@ -1,0 +1,688 @@
+import V from "fs";
+import U from "xml-js";
+function h(o) {
+  const e = o.indexOf(":");
+  return e >= 0 ? o.slice(e + 1) : o;
+}
+function f(o) {
+  if (!o) return {};
+  const e = {};
+  for (const [s, t] of Object.entries(o))
+    e[h(s)] = String(t ?? "");
+  return e;
+}
+function d(o, e) {
+  if (o)
+    return o.find(
+      (s) => s.type === "element" && h(s.name ?? "") === e
+    );
+}
+function b(o, e) {
+  return o ? o.filter(
+    (s) => s.type === "element" && h(s.name ?? "") === e
+  ) : [];
+}
+function A(o) {
+  const e = d(o?.elements, "Traslados");
+  return b(e?.elements, "Traslado").map(
+    (s) => f(s.attributes)
+  );
+}
+function X(o) {
+  const e = d(o?.elements, "Retenciones");
+  return b(e?.elements, "Retencion").map(
+    (s) => f(s.attributes)
+  );
+}
+function P(o) {
+  const e = f(
+    o.attributes
+  ), s = d(o.elements, "Impuestos");
+  return s ? {
+    attributes: e,
+    impuestos: {
+      traslados: A(s),
+      retenciones: X(s)
+    }
+  } : { attributes: e };
+}
+function q(o) {
+  if (!o) return;
+  const e = f(o.attributes);
+  return {
+    totalImpuestosTrasladados: e.TotalImpuestosTrasladados,
+    totalImpuestosRetenidos: e.TotalImpuestosRetenidos,
+    traslados: A(o),
+    retenciones: X(o)
+  };
+}
+function x(o) {
+  if (!o) return;
+  const e = d(o.elements, "TimbreFiscalDigital");
+  if (!e) return;
+  const s = f(e.attributes);
+  return {
+    uuid: s.UUID ?? "",
+    fechaTimbrado: s.FechaTimbrado ?? "",
+    rfcProvCertif: s.RfcProvCertif ?? "",
+    selloCFD: s.SelloCFD ?? "",
+    selloSAT: s.SelloSAT ?? "",
+    noCertificadoSAT: s.NoCertificadoSAT ?? "",
+    version: s.Version ?? ""
+  };
+}
+function G(o) {
+  const e = U.xml2js(o, {
+    compact: !1,
+    ignoreComment: !0,
+    ignoreDeclaration: !0,
+    ignoreInstruction: !0,
+    ignoreDoctype: !0
+  }), s = d(e.elements, "Comprobante");
+  if (!s)
+    throw new Error(
+      "XML no contiene el elemento Comprobante en el namespace cfdi"
+    );
+  const t = f(
+    s.attributes
+  ), n = t.Version ?? "", i = d(s.elements, "Emisor"), c = d(s.elements, "Receptor"), r = d(s.elements, "Conceptos"), a = d(s.elements, "Impuestos"), u = d(s.elements, "Complemento"), p = b(r?.elements, "Concepto");
+  return {
+    version: n,
+    comprobante: t,
+    emisor: f(i?.attributes),
+    receptor: f(c?.attributes),
+    conceptos: p.map(P),
+    impuestos: q(a),
+    complemento: u ?? void 0,
+    timbre: x(u),
+    raw: o
+  };
+}
+const j = ["3.3", "4.0"], R = ["I", "E", "T", "P", "N"], $ = [
+  "Version",
+  "Fecha",
+  "LugarExpedicion",
+  "Moneda",
+  "SubTotal",
+  "Total",
+  "TipoDeComprobante",
+  "NoCertificado",
+  "Sello",
+  "Certificado"
+], L = ["Exportacion"];
+function Z(o) {
+  const e = [];
+  return j.includes(o.version) || e.push({
+    code: "CFDI001",
+    message: `Version '${o.version}' no es valida. Se esperaba 3.3 o 4.0`,
+    field: "Version",
+    rule: "estructura.version"
+  }), e;
+}
+function y(o) {
+  const e = [], s = o.version === "4.0" ? [...$, ...L] : $;
+  for (const t of s)
+    (o.comprobante[t] === void 0 || o.comprobante[t] === null) && e.push({
+      code: "CFDI002",
+      message: `Campo requerido '${t}' no esta presente en el Comprobante`,
+      field: t,
+      rule: "estructura.camposRequeridos"
+    });
+  return e;
+}
+function Y(o) {
+  const e = [], s = o.comprobante.TipoDeComprobante;
+  return s && !R.includes(s) && e.push({
+    code: "CFDI003",
+    message: `TipoDeComprobante '${s}' no es valido. Valores permitidos: ${R.join(", ")}`,
+    field: "TipoDeComprobante",
+    rule: "estructura.tipoDeComprobante"
+  }), e;
+}
+function w(o) {
+  const e = [];
+  if (o.comprobante.TipoDeComprobante === "T") {
+    const t = o.comprobante.SubTotal, n = o.comprobante.Total;
+    t !== "0" && t !== "0.00" && e.push({
+      code: "CFDI004",
+      message: "Para TipoDeComprobante='T' (Traslado), SubTotal debe ser '0'",
+      field: "SubTotal",
+      rule: "estructura.tipoTraslado"
+    }), n !== "0" && n !== "0.00" && e.push({
+      code: "CFDI005",
+      message: "Para TipoDeComprobante='T' (Traslado), Total debe ser '0'",
+      field: "Total",
+      rule: "estructura.tipoTraslado"
+    });
+  }
+  return e;
+}
+function H(o) {
+  const e = [], s = o.comprobante.Moneda, t = o.comprobante.TipoCambio;
+  return s === "XXX" && t !== void 0 && e.push({
+    code: "CFDI006",
+    message: "Cuando Moneda='XXX', no debe existir el atributo TipoCambio",
+    field: "TipoCambio",
+    rule: "estructura.monedaTipoCambio"
+  }), s && s !== "MXN" && s !== "XXX" && t === void 0 && e.push({
+    code: "CFDI007",
+    message: `Cuando Moneda='${s}' (distinta de MXN y XXX), TipoCambio es requerido`,
+    field: "TipoCambio",
+    rule: "estructura.monedaTipoCambio"
+  }), e;
+}
+function B(o) {
+  const e = [], s = o.comprobante.Fecha;
+  return s && (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/.test(s) || e.push({
+    code: "CFDI008",
+    message: `Fecha '${s}' no tiene el formato ISO 8601 requerido (YYYY-MM-DDTHH:mm:ss)`,
+    field: "Fecha",
+    rule: "estructura.fecha"
+  })), e;
+}
+const z = [
+  Z,
+  y,
+  Y,
+  w,
+  H,
+  B
+], g = 6, O = 0.01;
+function m(o) {
+  if (o == null || o === "") return null;
+  const e = parseFloat(o);
+  return isNaN(e) ? null : e;
+}
+function Q(o) {
+  const e = o.split(".");
+  return e.length > 1 ? e[1].length : 0;
+}
+function T(o, e, s) {
+  return o && Q(o) > g ? {
+    code: "CFDI201",
+    message: `El campo '${e}' tiene mas de ${g} decimales: '${o}'`,
+    field: e,
+    rule: s
+  } : null;
+}
+function W(o) {
+  const e = [], s = o.comprobante.SubTotal, t = m(s);
+  if (s !== void 0 && t === null)
+    return e.push({
+      code: "CFDI202",
+      message: `SubTotal '${s}' no es un numero valido`,
+      field: "SubTotal",
+      rule: "montos.subtotal"
+    }), e;
+  t !== null && t < 0 && e.push({
+    code: "CFDI203",
+    message: `SubTotal no puede ser negativo: '${s}'`,
+    field: "SubTotal",
+    rule: "montos.subtotal"
+  });
+  const n = T(s, "SubTotal", "montos.subtotal");
+  return n && e.push(n), e;
+}
+function J(o) {
+  const e = [], s = o.comprobante.Total, t = m(s);
+  if (s !== void 0 && t === null)
+    return e.push({
+      code: "CFDI204",
+      message: `Total '${s}' no es un numero valido`,
+      field: "Total",
+      rule: "montos.total"
+    }), e;
+  t !== null && t < 0 && e.push({
+    code: "CFDI205",
+    message: `Total no puede ser negativo: '${s}'`,
+    field: "Total",
+    rule: "montos.total"
+  });
+  const n = T(s, "Total", "montos.total");
+  return n && e.push(n), e;
+}
+function K(o) {
+  const e = [], s = o.comprobante.Descuento;
+  if (s === void 0) return e;
+  const t = m(s), n = m(o.comprobante.SubTotal);
+  if (t === null)
+    return e.push({
+      code: "CFDI206",
+      message: `Descuento '${s}' no es un numero valido`,
+      field: "Descuento",
+      rule: "montos.descuento"
+    }), e;
+  n !== null && t > n + O && e.push({
+    code: "CFDI207",
+    message: `Descuento (${t}) no puede ser mayor que SubTotal (${n})`,
+    field: "Descuento",
+    rule: "montos.descuento"
+  });
+  const i = T(s, "Descuento", "montos.descuento");
+  return i && e.push(i), e;
+}
+function ee(o) {
+  const e = [], s = m(o.comprobante.SubTotal), t = m(o.comprobante.Total), n = m(o.comprobante.Descuento) ?? 0, i = m(
+    o.impuestos?.totalImpuestosTrasladados
+  ) ?? 0, c = m(o.impuestos?.totalImpuestosRetenidos) ?? 0;
+  if (s === null || t === null) return e;
+  const r = s - n + i - c, a = Math.abs(t - r);
+  return a > O && e.push({
+    code: "CFDI208",
+    message: `Total (${t}) no coincide con SubTotal - Descuento + TotalImpuestosTrasladados - TotalImpuestosRetenidos = ${r.toFixed(2)} (diferencia: ${a.toFixed(6)})`,
+    field: "Total",
+    rule: "montos.totalCalculado"
+  }), e;
+}
+const oe = [
+  W,
+  J,
+  K,
+  ee
+], se = /^[A-Z&Ñ]{3}[0-9]{6}[A-Z0-9]{3}$/, te = /^[A-Z&Ñ]{4}[0-9]{6}[A-Z0-9]{3}$/, ne = /^(XAXX010101000|XEXX010101000)$/;
+function ie(o) {
+  return o ? ne.test(o) ? !0 : se.test(o) || te.test(o) : !1;
+}
+function re(o) {
+  const e = [], s = o.emisor.Rfc;
+  return s ? (ie(s) || e.push({
+    code: "CFDI302",
+    message: `RFC del Emisor '${s}' no tiene un formato valido (12 chars PM o 13 chars PF)`,
+    field: "Emisor.Rfc",
+    rule: "emisor.rfc"
+  }), e) : (e.push({
+    code: "CFDI301",
+    message: "RFC del Emisor es requerido",
+    field: "Emisor.Rfc",
+    rule: "emisor.rfc"
+  }), e);
+}
+function ce(o) {
+  const e = [], s = o.emisor.Nombre;
+  return o.version === "4.0" && (!s || s.trim() === "") && e.push({
+    code: "CFDI303",
+    message: "Nombre del Emisor es requerido en CFDI 4.0",
+    field: "Emisor.Nombre",
+    rule: "emisor.nombre"
+  }), e;
+}
+function ue(o) {
+  const e = [], s = o.emisor.RegimenFiscal;
+  return (!s || s.trim() === "") && e.push({
+    code: "CFDI304",
+    message: "RegimenFiscal del Emisor es requerido",
+    field: "Emisor.RegimenFiscal",
+    rule: "emisor.regimenFiscal"
+  }), e;
+}
+const ae = [
+  re,
+  ce,
+  ue
+], le = /^[A-Z&Ñ]{3}[0-9]{6}[A-Z0-9]{3}$/, de = /^[A-Z&Ñ]{4}[0-9]{6}[A-Z0-9]{3}$/, me = /^(XAXX010101000|XEXX010101000)$/, pe = /^\d{5}$/;
+function fe(o) {
+  return o ? me.test(o) ? !0 : le.test(o) || de.test(o) : !1;
+}
+function Ce(o) {
+  const e = [], s = o.receptor.Rfc;
+  return s ? (fe(s) || e.push({
+    code: "CFDI402",
+    message: `RFC del Receptor '${s}' no tiene un formato valido (12 chars PM o 13 chars PF)`,
+    field: "Receptor.Rfc",
+    rule: "receptor.rfc"
+  }), e) : (e.push({
+    code: "CFDI401",
+    message: "RFC del Receptor es requerido",
+    field: "Receptor.Rfc",
+    rule: "receptor.rfc"
+  }), e);
+}
+function Ie(o) {
+  const e = [], s = o.receptor.UsoCFDI;
+  return (!s || s.trim() === "") && e.push({
+    code: "CFDI403",
+    message: "UsoCFDI del Receptor es requerido",
+    field: "Receptor.UsoCFDI",
+    rule: "receptor.usoCFDI"
+  }), e;
+}
+function Fe(o) {
+  const e = [];
+  if (o.version !== "4.0") return e;
+  const s = o.receptor.DomicilioFiscalReceptor;
+  return !s || s.trim() === "" ? e.push({
+    code: "CFDI404",
+    message: "DomicilioFiscalReceptor es requerido en CFDI 4.0",
+    field: "Receptor.DomicilioFiscalReceptor",
+    rule: "receptor.domicilioFiscal"
+  }) : pe.test(s) || e.push({
+    code: "CFDI405",
+    message: `DomicilioFiscalReceptor '${s}' debe ser un codigo postal de 5 digitos`,
+    field: "Receptor.DomicilioFiscalReceptor",
+    rule: "receptor.domicilioFiscal"
+  }), e;
+}
+function he(o) {
+  const e = [];
+  if (o.version !== "4.0") return e;
+  const s = o.receptor.RegimenFiscalReceptor;
+  return (!s || s.trim() === "") && e.push({
+    code: "CFDI406",
+    message: "RegimenFiscalReceptor es requerido en CFDI 4.0",
+    field: "Receptor.RegimenFiscalReceptor",
+    rule: "receptor.regimenFiscal"
+  }), e;
+}
+const be = [
+  Ce,
+  Ie,
+  Fe,
+  he
+], E = 0.011;
+function C(o) {
+  if (o == null || o === "") return null;
+  const e = parseFloat(o);
+  return isNaN(e) ? null : e;
+}
+function Te(o) {
+  const e = [];
+  return o.conceptos.length === 0 && e.push({
+    code: "CFDI501",
+    message: "El CFDI debe tener al menos un Concepto",
+    field: "Conceptos",
+    rule: "conceptos.minimo"
+  }), e;
+}
+function De(o, e, s) {
+  const t = [], n = o.attributes, i = `Conceptos[${e}]`, c = [
+    "ClaveProdServ",
+    "Cantidad",
+    "ClaveUnidad",
+    "Descripcion",
+    "ValorUnitario",
+    "Importe"
+  ];
+  for (const l of c)
+    (n[l] === void 0 || n[l] === null) && t.push({
+      code: "CFDI502",
+      message: `Campo requerido '${l}' no presente en Concepto[${e}]`,
+      field: `${i}.${l}`,
+      rule: "conceptos.camposRequeridos"
+    });
+  const r = C(n.Cantidad);
+  r !== null && r <= 0 && t.push({
+    code: "CFDI503",
+    message: `Cantidad en Concepto[${e}] debe ser mayor a 0, valor actual: ${n.Cantidad}`,
+    field: `${i}.Cantidad`,
+    rule: "conceptos.cantidad"
+  });
+  const a = C(n.ValorUnitario);
+  a !== null && a < 0 && t.push({
+    code: "CFDI504",
+    message: `ValorUnitario en Concepto[${e}] no puede ser negativo: ${n.ValorUnitario}`,
+    field: `${i}.ValorUnitario`,
+    rule: "conceptos.valorUnitario"
+  });
+  const u = C(n.Importe);
+  if (u !== null && u < 0 && t.push({
+    code: "CFDI505",
+    message: `Importe en Concepto[${e}] no puede ser negativo: ${n.Importe}`,
+    field: `${i}.Importe`,
+    rule: "conceptos.importe"
+  }), r !== null && a !== null && u !== null) {
+    const l = r * a, D = Math.abs(u - l);
+    D > E && t.push({
+      code: "CFDI506",
+      message: `Importe en Concepto[${e}] (${u}) no coincide con Cantidad * ValorUnitario = ${l.toFixed(6)} (diferencia: ${D.toFixed(6)})`,
+      field: `${i}.Importe`,
+      rule: "conceptos.importeCalculado"
+    });
+  }
+  const p = C(n.Descuento);
+  if (p !== null && u !== null && p > u + E && t.push({
+    code: "CFDI507",
+    message: `Descuento en Concepto[${e}] (${p}) no puede ser mayor al Importe (${u})`,
+    field: `${i}.Descuento`,
+    rule: "conceptos.descuento"
+  }), s === "4.0") {
+    const l = n.ObjetoImp;
+    (!l || l.trim() === "") && t.push({
+      code: "CFDI508",
+      message: `ObjetoImp es requerido en Concepto[${e}] para CFDI 4.0`,
+      field: `${i}.ObjetoImp`,
+      rule: "conceptos.objetoImp"
+    });
+  }
+  return t;
+}
+function Re(o) {
+  const e = [];
+  return o.conceptos.forEach((s, t) => {
+    e.push(...De(s, t, o.version));
+  }), e;
+}
+const $e = [
+  Te,
+  Re
+], k = 0.011, S = ["001", "002", "003"], v = ["Tasa", "Cuota", "Exento"];
+function I(o) {
+  if (o == null || o === "") return null;
+  const e = parseFloat(o);
+  return isNaN(e) ? null : e;
+}
+function F(o, e) {
+  return o ? S.includes(o) ? null : {
+    code: "CFDI601",
+    message: `Impuesto '${o}' en ${e} no es valido. Valores permitidos: ${S.join(", ")} (001=ISR, 002=IVA, 003=IEPS)`,
+    field: `${e}.Impuesto`,
+    rule: "impuestos.impuestoValido"
+  } : null;
+}
+function _(o, e) {
+  return o ? v.includes(o) ? null : {
+    code: "CFDI602",
+    message: `TipoFactor '${o}' en ${e} no es valido. Valores permitidos: ${v.join(", ")}`,
+    field: `${e}.TipoFactor`,
+    rule: "impuestos.tipoFactor"
+  } : null;
+}
+function N(o, e) {
+  const s = [];
+  return o.TipoFactor === "Exento" && (o.TasaOCuota !== void 0 && s.push({
+    code: "CFDI603",
+    message: `TasaOCuota no debe estar presente cuando TipoFactor='Exento' en ${e}`,
+    field: `${e}.TasaOCuota`,
+    rule: "impuestos.exento"
+  }), o.Importe !== void 0 && s.push({
+    code: "CFDI604",
+    message: `Importe no debe estar presente cuando TipoFactor='Exento' en ${e}`,
+    field: `${e}.Importe`,
+    rule: "impuestos.exento"
+  })), s;
+}
+function ge(o) {
+  const e = [];
+  return o.conceptos.forEach((s, t) => {
+    (s.impuestos?.traslados ?? []).forEach((c, r) => {
+      const a = `Concepto[${t}].Impuestos.Traslados[${r}]`, u = F(c.Impuesto, a);
+      u && e.push(u);
+      const p = _(c.TipoFactor, a);
+      p && e.push(p), e.push(...N(c, a));
+    }), (s.impuestos?.retenciones ?? []).forEach((c, r) => {
+      const a = `Concepto[${t}].Impuestos.Retenciones[${r}]`, u = F(c.Impuesto, a);
+      u && e.push(u);
+    });
+  }), e;
+}
+function Ee(o) {
+  const e = [];
+  return o.impuestos && (o.impuestos.traslados.forEach((s, t) => {
+    const n = `Impuestos.Traslados[${t}]`, i = F(s.Impuesto, n);
+    i && e.push(i);
+    const c = _(s.TipoFactor, n);
+    c && e.push(c), e.push(...N(s, n));
+  }), o.impuestos.retenciones.forEach((s, t) => {
+    const n = `Impuestos.Retenciones[${t}]`, i = F(s.Impuesto, n);
+    i && e.push(i);
+  })), e;
+}
+function Se(o) {
+  const e = [], s = I(
+    o.impuestos?.totalImpuestosTrasladados
+  );
+  if (s === null) return e;
+  let t = 0;
+  for (const i of o.conceptos)
+    for (const c of i.impuestos?.traslados ?? [])
+      if (c.TipoFactor !== "Exento") {
+        const r = I(c.Importe);
+        r !== null && (t += r);
+      }
+  const n = Math.abs(s - t);
+  return n > k && e.push({
+    code: "CFDI605",
+    message: `TotalImpuestosTrasladados (${s}) no coincide con la suma de traslados en conceptos (${t.toFixed(2)}) (diferencia: ${n.toFixed(6)})`,
+    field: "Impuestos.TotalImpuestosTrasladados",
+    rule: "impuestos.sumaTrasladados"
+  }), e;
+}
+function ve(o) {
+  const e = [], s = I(o.impuestos?.totalImpuestosRetenidos);
+  if (s === null) return e;
+  let t = 0;
+  for (const i of o.conceptos)
+    for (const c of i.impuestos?.retenciones ?? []) {
+      const r = I(c.Importe);
+      r !== null && (t += r);
+    }
+  const n = Math.abs(s - t);
+  return n > k && e.push({
+    code: "CFDI606",
+    message: `TotalImpuestosRetenidos (${s}) no coincide con la suma de retenciones en conceptos (${t.toFixed(2)}) (diferencia: ${n.toFixed(6)})`,
+    field: "Impuestos.TotalImpuestosRetenidos",
+    rule: "impuestos.sumaRetenidos"
+  }), e;
+}
+const Ae = [
+  ge,
+  Ee,
+  Se,
+  ve
+], Xe = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/, Oe = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/;
+function ke(o) {
+  const e = [];
+  if (!o.timbre) return e;
+  const { uuid: s, fechaTimbrado: t, version: n } = o.timbre;
+  return Xe.test(s) || e.push({
+    code: "CFDI701",
+    message: `UUID del TimbreFiscalDigital '${s}' no tiene el formato valido (8-4-4-4-12 hex)`,
+    field: "Complemento.TimbreFiscalDigital.UUID",
+    rule: "timbre.uuid"
+  }), t && !Oe.test(t) && e.push({
+    code: "CFDI702",
+    message: `FechaTimbrado '${t}' no tiene el formato ISO 8601 requerido (YYYY-MM-DDTHH:mm:ss)`,
+    field: "Complemento.TimbreFiscalDigital.FechaTimbrado",
+    rule: "timbre.fechaTimbrado"
+  }), n && n !== "1.1" && e.push({
+    code: "CFDI703",
+    message: `Version del TimbreFiscalDigital debe ser '1.1', se encontro '${n}'`,
+    field: "Complemento.TimbreFiscalDigital.Version",
+    rule: "timbre.version"
+  }), e;
+}
+const _e = [ke], Ne = /^\d{20}$/, Me = /^[A-Za-z0-9+/]*={0,2}$/;
+function M(o) {
+  return !o || o.trim() === "" ? !0 : Me.test(o) && o.length % 4 === 0;
+}
+function Ve(o) {
+  const e = [], s = o.comprobante.NoCertificado;
+  return s == null ? (e.push({
+    code: "CFDI801",
+    message: "NoCertificado es requerido en el Comprobante",
+    field: "NoCertificado",
+    rule: "sello.noCertificado"
+  }), e) : (s !== "" && !Ne.test(s) && e.push({
+    code: "CFDI802",
+    message: `NoCertificado '${s}' debe tener exactamente 20 digitos numericos`,
+    field: "NoCertificado",
+    rule: "sello.noCertificado"
+  }), e);
+}
+function Ue(o) {
+  const e = [], s = o.comprobante.Sello;
+  return s == null ? (e.push({
+    code: "CFDI803",
+    message: "Sello es requerido en el Comprobante",
+    field: "Sello",
+    rule: "sello.sello"
+  }), e) : (s !== "" && !M(s) && e.push({
+    code: "CFDI804",
+    message: "Sello no es una cadena base64 valida",
+    field: "Sello",
+    rule: "sello.sello"
+  }), e);
+}
+function Pe(o) {
+  const e = [], s = o.comprobante.Certificado;
+  return s == null ? (e.push({
+    code: "CFDI805",
+    message: "Certificado es requerido en el Comprobante",
+    field: "Certificado",
+    rule: "sello.certificado"
+  }), e) : (s !== "" && !M(s) && e.push({
+    code: "CFDI806",
+    message: "Certificado no es una cadena base64 valida",
+    field: "Certificado",
+    rule: "sello.certificado"
+  }), e);
+}
+const qe = [
+  Ve,
+  Ue,
+  Pe
+];
+class je {
+  _rules;
+  constructor() {
+    this._rules = [
+      ...z,
+      ...oe,
+      ...ae,
+      ...be,
+      ...$e,
+      ...Ae,
+      ..._e,
+      ...qe
+    ];
+  }
+  validate(e) {
+    const s = G(e), t = [], n = [];
+    for (const i of this._rules) {
+      const c = i(s);
+      for (const r of c)
+        r.code.endsWith("W") ? n.push(r) : t.push(r);
+    }
+    return {
+      valid: t.length === 0,
+      errors: t,
+      warnings: n,
+      version: s.version
+    };
+  }
+  validateFile(e) {
+    const s = V.readFileSync(e, "utf-8");
+    return this.validate(s);
+  }
+}
+export {
+  je as Validador,
+  $e as conceptosRules,
+  ae as emisorRules,
+  z as estructuraRules,
+  Ae as impuestosRules,
+  oe as montosRules,
+  G as parseXml,
+  be as receptorRules,
+  qe as selloRules,
+  _e as timbreRules
+};
