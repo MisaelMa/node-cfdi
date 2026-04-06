@@ -49,17 +49,6 @@ jobs:
       - name: Build
         run: rush build
 
-      - name: Get npm token via OIDC
-        run: |
-          OIDC_TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=https://registry.npmjs.org" | jq -r '.value')
-          NPM_TOKEN=$(curl -sS -X POST "https://registry.npmjs.org/-/npm/v1/security/oidc/token" \
-            -H "Content-Type: application/json" \
-            -d "{\"oidcToken\": \"${OIDC_TOKEN}\"}" | jq -r '.token')
-          echo "::add-mask::$NPM_TOKEN"
-          echo "NPM_AUTH_TOKEN=$NPM_TOKEN" >> $GITHUB_ENV
-          echo "NODE_AUTH_TOKEN=$NPM_TOKEN" >> $GITHUB_ENV
-
       - name: Publish (main)
         if: steps.branch.outputs.is_main == 'true'
         run: rush publish --publish --target-branch main --include-all --set-access-level=public
