@@ -46,9 +46,6 @@ jobs:
             echo "is_main=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Update npm for trusted publishing
-        run: npm install -g npm@latest
-
       - name: Build
         run: rush build
 
