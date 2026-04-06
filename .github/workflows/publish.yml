@@ -29,14 +29,11 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
-      - name: Setup Node.js and npm for Trusted Publishing
+      - name: Setup Node.js for Trusted Publishing
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '23'
           registry-url: 'https://registry.npmjs.org'
-
-      - name: Install npm 11+ for OIDC Trusted Publishing
-        run: corepack install -g npm@latest
 
       - name: Determine branch
         id: branch
