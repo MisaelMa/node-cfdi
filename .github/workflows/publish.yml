@@ -36,7 +36,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install npm 11+ for OIDC Trusted Publishing
-        run: corepack install npm@latest
+        run: corepack install -g npm@latest
 
       - name: Determine branch
         id: branch
