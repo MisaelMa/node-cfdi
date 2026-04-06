@@ -33,7 +33,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '23'
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Determine branch
         id: branch
