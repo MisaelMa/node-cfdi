@@ -15,12 +15,12 @@ export class PDF {
     content: [],
   };
 
-  setContent(content: Content | Content[]): this {
+  setContent(content: any): this {
     this.definition.content = Array.isArray(content) ? content : [content];
     return this;
   }
 
-  addContent(content: Content | any): this {
+  addContent(content: any): this {
     this.definition.content.push(content);
     return this;
   }

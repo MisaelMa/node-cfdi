@@ -1,6 +1,7 @@
 {
   "extends": "./node_modules/@recreando/typescript-settings/profiles/default/tsconfig-base.json",
   "compilerOptions": {
+    "outDir": "./dist",
     "lib": ["dom", "esnext"],
     "types": ["node"],
     "importHelpers": true,

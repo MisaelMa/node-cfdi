@@ -34,6 +34,6 @@ export class Cell {
     return this;
   }
   toJSON(): TableCell {
-    return this.cell;
+    return this.cell as TableCell;
   }
 }

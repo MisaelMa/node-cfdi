@@ -1,3 +1,6 @@
+import type { CFDIComprobante, XmlEmisorAttribute, XmlReceptor, XmlImpuestos, XmlConcepto, XmlEmisor } from '@cfdi/types';
+import type { XmlTfd } from '@cfdi/complementos';
+
 export abstract class GeneradorPdf {
   
   constructor(xml: string) {
