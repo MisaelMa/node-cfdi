@@ -49,6 +49,59 @@ jobs:
       - name: Build
         run: rush build
 
+      - name: Get npm token via OIDC
+        run: |
+          echo "Requesting OIDC token from GitHub..."
+          OIDC_TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=https://registry.npmjs.org" | jq -r '.value')
+
+          if [ -z "$OIDC_TOKEN" ] || [ "$OIDC_TOKEN" = "null" ]; then
+            echo "::error::Failed to get OIDC token from GitHub"
+            exit 1
+          fi
+          echo "OIDC token obtained successfully"
+
+          echo "Exchanging OIDC token for npm token..."
+          RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST "https://registry.npmjs.org/-/npm/v1/security/oidc/token" \
+            -H "Content-Type: application/json" \
+            -d "{\"oidcToken\": \"${OIDC_TOKEN}\"}")
+
+          HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+
+          echo "npm OIDC exchange HTTP status: $HTTP_CODE"
+
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "::error::npm OIDC exchange failed with status $HTTP_CODE"
+            echo "Response: $BODY"
+            exit 1
+          fi
+
+          NPM_TOKEN=$(echo "$BODY" | jq -r '.token')
+          if [ -z "$NPM_TOKEN" ] || [ "$NPM_TOKEN" = "null" ]; then
+            echo "::error::npm returned empty token"
+            echo "Response: $BODY"
+            exit 1
+          fi
+
+          echo "::add-mask::$NPM_TOKEN"
+          echo "NPM_AUTH_TOKEN=$NPM_TOKEN" >> $GITHUB_ENV
+          echo "npm token obtained successfully"
+
+      - name: Verify npm auth
+        run: |
+          echo "=== .npmrc content (masked) ==="
+          cat ~/.npmrc 2>/dev/null | sed 's/_authToken=.*/_authToken=***/' || echo "No ~/.npmrc"
+          echo ""
+          echo "=== NPM_AUTH_TOKEN set? ==="
+          if [ -n "$NPM_AUTH_TOKEN" ]; then echo "YES (length: ${#NPM_AUTH_TOKEN})"; else echo "NO"; fi
+          echo ""
+          echo "=== npm whoami ==="
+          npm whoami 2>&1 || echo "npm whoami failed - NOT authenticated"
+          echo ""
+          echo "=== publish .npmrc ==="
+          cat common/temp/publish-home/.npmrc 2>/dev/null | sed 's/_authToken=.*/_authToken=***/' || echo "No publish .npmrc yet"
+
       - name: Publish (main)
         if: steps.branch.outputs.is_main == 'true'
         run: rush publish --publish --target-branch main --include-all --set-access-level=public
