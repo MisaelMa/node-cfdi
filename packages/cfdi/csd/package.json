@@ -2,6 +2,10 @@
   "name": "@cfdi/csd",
   "version": "4.0.15",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MisaelMa/node-cfdi.git"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

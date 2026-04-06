@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Misael/recreando"
+    "url": "git+https://github.com/MisaelMa/node-cfdi.git"
   },
   "files": [
     "dist"
