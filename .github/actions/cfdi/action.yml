@@ -31,20 +31,18 @@ runs:
 
     - name: Rush CLI
       shell: bash
-      run: | 
+      run: |
         npm install -g @microsoft/rush@5.169.2
         rush update
 
-    - name: Rush Update
+    - name: GitHub User
       shell: bash
       run: |
         git config user.name MisaelMa
         git config user.email amisael.amir.misael@gmail.com
-       
+
         ls -la
-    #- name: execa
-    #  shell: bash
-    #  run: npm install execa
+
     - name: Script
       uses: actions/github-script@v7
       with:

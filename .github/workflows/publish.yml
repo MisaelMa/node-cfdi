@@ -32,7 +32,8 @@ jobs:
       - name: Setup Node.js for Trusted Publishing
         uses: actions/setup-node@v4
         with:
-          node-version: '23'
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Determine branch
         id: branch
@@ -50,11 +51,11 @@ jobs:
 
       - name: Publish (main)
         if: steps.branch.outputs.is_main == 'true'
-        run: node common/scripts/npm-publish.js
+        run: rush publish -p -b main --include-all --set-access-level=public
 
       - name: Publish (prerelease)
         if: steps.branch.outputs.is_main == 'false'
-        run: node common/scripts/npm-publish.js --tag ${{ steps.branch.outputs.name }}
+        run: rush publish --publish --tag ${{ steps.branch.outputs.name }} --include-all --set-access-level=public --apply
 
       - name: Commit version bumps
         run: |
