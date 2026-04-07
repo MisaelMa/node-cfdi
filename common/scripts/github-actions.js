@@ -1,27 +1,4 @@
 
-async function execa(command, params) {
-  const { spawn } = require('child_process');
-  const child = spawn(command, params);
-
-  let data = '';
-  for await (const chunk of child.stdout) {
-    //console.log('stdout chunk: ' + chunk);
-    data += chunk;
-  }
-  let error = '';
-  for await (const chunk of child.stderr) {
-    //console.error('stderr chunk: ' + chunk);
-    error += chunk;
-  }
-  const exitCode = await new Promise((resolve, reject) => {
-    child.on('close', resolve);
-  });
-
-  if (exitCode) {
-    throw new Error(`subprocess error exit ${exitCode}, ${error}`);
-  }
-  return data;
-}
 function getDependences(scope) {
   const dependencies = {
     xml: {
@@ -201,7 +178,6 @@ module.exports = async ({ github, context, core }) => {
   console.log("branch:", branch);
   console.log("eventName:", context.eventName);
 
-  const branchs =  ['next','beta', 'alpha','dev']
   const eventName = context.eventName
   let commits = context.payload.commits || [];
 
@@ -219,26 +195,18 @@ module.exports = async ({ github, context, core }) => {
     commits = commits_local.map(({commit})=>commit)
   }
   const scopes =  getScopes(commits);
-  console.log("commits", scopes);
+  console.log("scopes from commits", scopes);
 
-  for (var i = 0; i < scopes.length; i++) {
-    const scope = scopes[i];
-    const comands = [
-      'version',
-      '--version-policy',
-      scope,
-      '--bump',
-    ]
-    if (branchs.includes(branch)) {
-      comands.push('--override-bump');
-      comands.push('prerelease');
-      comands.push('--override-prerelease-id');
-      comands.push(branch);
-    }
-    console.log(comands);
-    const data = await execa('rush', comands);
-    console.log(data);
-  }
+  // Filtrar scopes que no tienen shouldPublish: true
+  const rushJson = JSON.parse(require('fs').readFileSync('./rush.json', 'utf8'));
+  const publishablePolicies = new Set(
+    rushJson.projects
+      .filter(p => p.shouldPublish && p.versionPolicyName)
+      .map(p => p.versionPolicyName)
+  );
+  const filteredScopes = scopes.filter(s => publishablePolicies.has(s));
+  console.log("publishable scopes", filteredScopes);
 
-  core.setOutput('scopes', JSON.stringify(scopes));
+  core.setOutput('scopes', JSON.stringify(filteredScopes));
+  core.setOutput('branch', branch);
 };

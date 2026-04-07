@@ -54,30 +54,60 @@ jobs:
         if: steps.branch.outputs.is_main == 'true'
         run: |
           SCOPES='${{ steps.cfdi.outputs.scopes }}'
+          FAILED=""
           for scope in $(echo "$SCOPES" | jq -r '.[]'); do
-            echo "Publishing version-policy: $scope"
-            rush publish -p -b main --version-policy "$scope" --include-all --set-access-level=public
+            echo "=== Publishing $scope ==="
+            rush version --version-policy "$scope" --bump
+            if rush publish -p -b main --version-policy "$scope" --include-all --set-access-level=public; then
+              git add -A
+              echo "✓ $scope published"
+            else
+              FAILED="$FAILED $scope"
+              git checkout -- .
+              echo "::warning::✗ $scope failed, reverted"
+            fi
           done
+          if [ -n "$FAILED" ]; then
+            echo "::error::Failed scopes:$FAILED"
+            exit 1
+          fi
 
       - name: Publish (prerelease)
         if: steps.branch.outputs.is_main == 'false'
         run: |
+          TAG="${{ steps.branch.outputs.name }}"
           SCOPES='${{ steps.cfdi.outputs.scopes }}'
+          FAILED=""
           for scope in $(echo "$SCOPES" | jq -r '.[]'); do
-            echo "Publishing version-policy: $scope"
-            rush publish --publish --version-policy "$scope" --tag ${{ steps.branch.outputs.name }} --include-all --set-access-level=public --apply
+            echo "=== Publishing $scope ==="
+            rush version --version-policy "$scope" --bump --override-bump prerelease --override-prerelease-id "$TAG"
+            if rush publish --publish --version-policy "$scope" --tag "$TAG" --include-all --set-access-level=public --apply; then
+              git add -A
+              echo "✓ $scope published"
+            else
+              FAILED="$FAILED $scope"
+              git checkout -- .
+              echo "::warning::✗ $scope failed, reverted"
+            fi
           done
+          if [ -n "$FAILED" ]; then
+            echo "::error::Failed scopes:$FAILED"
+            exit 1
+          fi
 
       - name: Commit version bumps
         run: |
           BRANCH="${{ steps.branch.outputs.name }}"
-          git add -A
-          if [ "$BRANCH" = "main" ]; then
-            git commit -m "chore: release $(date +%Y-%m-%d)" || echo "No changes to commit"
+          if [ -n "$(git diff --cached --name-only)" ]; then
+            if [ "$BRANCH" = "main" ]; then
+              git commit -m "chore: release $(date +%Y-%m-%d)"
+            else
+              git commit -m "chore: prerelease $BRANCH $(date +%Y-%m-%d)"
+            fi
+            git push origin $BRANCH
           else
-            git commit -m "chore: prerelease $BRANCH $(date +%Y-%m-%d)" || echo "No changes to commit"
+            echo "No changes to commit"
           fi
-          git push origin $BRANCH
 
       - name: Create GitHub Releases
         run: node common/scripts/github-release.js

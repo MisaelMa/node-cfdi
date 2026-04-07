@@ -8,8 +8,11 @@ inputs:
 
 outputs:
   scopes:
-    description: 'JSON array of bumped scopes'
+    description: 'JSON array of publishable scopes'
     value: ${{ steps.script.outputs.scopes }}
+  branch:
+    description: 'Target branch name'
+    value: ${{ steps.script.outputs.branch }}
 
 runs:
   using: 'composite'
