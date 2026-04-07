@@ -1,5 +1,5 @@
 {
-  "version": "12.5.2-dev.1",
+  "version": "12.5.2-dev.2",
   "description": "Wrapper de Saxon-HE para transformaciones XSLT en Node.js",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {

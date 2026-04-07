@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/catalogos",
-  "version": "4.0.16-dev.2",
+  "version": "4.0.16-dev.3",
   "description": "Catalogos oficiales del SAT para CFDI 4.0 como enums TypeScript",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {

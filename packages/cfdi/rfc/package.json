@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/rfc",
-  "version": "0.0.10-dev.1",
+  "version": "0.0.10-dev.2",
   "description": "Validacion de RFC mexicano - persona fisica y moral con digito verificador",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {
