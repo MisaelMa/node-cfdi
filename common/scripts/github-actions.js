@@ -239,4 +239,6 @@ module.exports = async ({ github, context, core }) => {
     const data = await execa('rush', comands);
     console.log(data);
   }
+
+  core.setOutput('scopes', JSON.stringify(scopes));
 };

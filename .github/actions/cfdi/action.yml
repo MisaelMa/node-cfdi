@@ -6,6 +6,11 @@ inputs:
     description: 'token of github'
     required: true
 
+outputs:
+  scopes:
+    description: 'JSON array of bumped scopes'
+    value: ${{ steps.script.outputs.scopes }}
+
 runs:
   using: 'composite'
   steps:
@@ -44,6 +49,7 @@ runs:
         ls -la
 
     - name: Script
+      id: script
       uses: actions/github-script@v7
       with:
         debug: true

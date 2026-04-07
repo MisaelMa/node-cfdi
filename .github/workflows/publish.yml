@@ -25,6 +25,7 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
 
       - name: CFDI dependencies
+        id: cfdi
         uses: ./.github/actions/cfdi
         with:
           token: ${{ secrets.PAT_TOKEN }}
@@ -51,11 +52,21 @@ jobs:
 
       - name: Publish (main)
         if: steps.branch.outputs.is_main == 'true'
-        run: rush publish -p -b main --include-all --set-access-level=public
+        run: |
+          SCOPES='${{ steps.cfdi.outputs.scopes }}'
+          for scope in $(echo "$SCOPES" | jq -r '.[]'); do
+            echo "Publishing version-policy: $scope"
+            rush publish -p -b main --version-policy "$scope" --include-all --set-access-level=public
+          done
 
       - name: Publish (prerelease)
         if: steps.branch.outputs.is_main == 'false'
-        run: rush publish --publish --tag ${{ steps.branch.outputs.name }} --set-access-level=public --apply
+        run: |
+          SCOPES='${{ steps.cfdi.outputs.scopes }}'
+          for scope in $(echo "$SCOPES" | jq -r '.[]'); do
+            echo "Publishing version-policy: $scope"
+            rush publish --publish --version-policy "$scope" --tag ${{ steps.branch.outputs.name }} --include-all --set-access-level=public --apply
+          done
 
       - name: Commit version bumps
         run: |
