@@ -1,6 +1,11 @@
 {
   "name": "@cfdi/xsd",
   "version": "4.0.17-dev.2",
+  "description": "Validacion de CFDI contra esquemas XSD oficiales del SAT",
+  "homepage": "https://cfdi.recreando.dev",
+  "bugs": {
+    "url": "https://github.com/MisaelMa/node-cfdi/issues"
+  },
   "license": "MIT",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -34,10 +39,14 @@
     "type": "git",
     "url": "git+https://github.com/MisaelMa/node-cfdi.git"
   },
+  "keywords": [
+    "cfdi", "sat", "xsd", "validacion", "esquema", "schema", "xml",
+    "factura electronica", "mexico", "cfdi 4.0", "node", "typescript"
+  ],
   "author": {
-    "name": "Amir Misael Marin Coh, Signati",
-    "email": "amisael.amir.misae@gmail.com, signatidev@gmail.com,",
-    "url": ""
+    "name": "Amir Misael Marin Coh",
+    "email": "amisael.amir.misael@gmail.com",
+    "url": "https://recreando.dev"
   },
   "dependencies": {
     "xml-js": "^1.6.11",

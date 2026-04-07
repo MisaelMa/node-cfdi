@@ -1,7 +1,10 @@
 {
   "name": "@cfdi/elements",
   "version": "4.0.14-dev.1",
-  "description": "Libreria para crear y sellar xml cfdi V4.0",
+  "description": "Elementos estructurales del comprobante CFDI 4.0: emisor, receptor, conceptos",
+  "bugs": {
+    "url": "https://github.com/MisaelMa/node-cfdi/issues"
+  },
   "homepage": "https://cfdi.recreando.dev",
   "license": "MIT",
   "main": "./dist/index.cjs",
@@ -58,43 +61,12 @@
     "@vitest/ui": "2.1.3"
   },
   "keywords": [
-    "CFDI 3.3.",
-    "Factura Electronica",
-    "Factura Electronica Mexico",
-    "Sellar Xml",
-    "SAT",
-    "Buzon tributario",
-    "cfdiv33",
-    "cfdi",
-    "sat",
-    "3.3",
-    "factura",
-    "mexico",
-    "pdf",
-    "complemento",
-    "timbre",
-    "iedu",
-    "nomina",
-    "exterior",
-    "terceros",
-    "pagos",
-    "ine"
+    "cfdi", "sat", "elementos", "comprobante", "emisor", "receptor",
+    "conceptos", "cfdi 4.0", "factura electronica", "mexico", "node", "typescript"
   ],
   "author": {
-    "name": "Amir Misael Marin Coh, Signati",
-    "email": "amisael.amir.misae@gmail.com, signatidev@gmail.com,",
-    "url": ""
-  },
-  "contributors": [
-    {
-      "name": "Amir Misael Marin Coh",
-      "email": "amisael.amir.misae@gmail.com",
-      "url": "https://cfdi.recreando.dev"
-    },
-    {
-      "name": "Jose Alberto Marin Coh",
-      "email": "",
-      "url": ""
-    }
-  ]
+    "name": "Amir Misael Marin Coh",
+    "email": "amisael.amir.misael@gmail.com",
+    "url": "https://recreando.dev"
+  }
 }

@@ -1,5 +1,10 @@
 {
   "version": "12.5.2-dev.1",
+  "description": "Wrapper de Saxon-HE para transformaciones XSLT en Node.js",
+  "homepage": "https://cfdi.recreando.dev",
+  "bugs": {
+    "url": "https://github.com/MisaelMa/node-cfdi/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -23,7 +28,19 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
   },
-  "author": "MisaelMa",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "keywords": [
+    "saxon", "xslt", "transformacion", "cadena original", "cfdi", "sat",
+    "java", "cli", "node", "typescript"
+  ],
+  "author": {
+    "name": "Amir Misael Marin Coh",
+    "email": "amisael.amir.misael@gmail.com",
+    "url": "https://recreando.dev"
+  },
   "dependencies": {
     "@esm2cjs/execa": "^6.1.1-cjs.1"
   },

@@ -1,6 +1,11 @@
 {
   "name": "@cfdi/rfc",
   "version": "0.0.10-dev.1",
+  "description": "Validacion de RFC mexicano - persona fisica y moral con digito verificador",
+  "homepage": "https://cfdi.recreando.dev",
+  "bugs": {
+    "url": "https://github.com/MisaelMa/node-cfdi/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -23,7 +28,19 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
   },
-  "author": "MisaelMa",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "keywords": [
+    "cfdi", "sat", "rfc", "validacion", "persona fisica", "persona moral",
+    "digito verificador", "mexico", "node", "typescript"
+  ],
+  "author": {
+    "name": "Amir Misael Marin Coh",
+    "email": "amisael.amir.misael@gmail.com",
+    "url": "https://recreando.dev"
+  },
   "devDependencies": {
     "@recreando/eslint-settings": "workspace:*",
     "@recreando/vite": "workspace:*",

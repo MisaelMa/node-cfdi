@@ -1,8 +1,11 @@
 {
   "name": "@cfdi/xml",
   "version": "4.0.18-dev.2",
-  "description": "Libreria para crear y sellar xml cfdi V4.0",
+  "description": "Generacion, sellado y timbrado de XML CFDI 4.0 para Node.js - facturacion electronica Mexico",
   "homepage": "https://cfdi.recreando.dev",
+  "bugs": {
+    "url": "https://github.com/MisaelMa/node-cfdi/issues"
+  },
   "license": "MIT",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -58,47 +61,13 @@
     "@vitest/ui": "2.1.3"
   },
   "keywords": [
-    "CFDI 3.3.",
-    "CFDI 4.0.",
-    "Factura Electronica",
-    "Factura Electronica Mexico",
-    "Sellar Xml",
-    "SAT",
-    "Buzon tributario",
-    "cfdiv33",
-    "cfdi",
-    "sat",
-    "3.3",
-    "4.0",
-    "factura",
-    "mexico",
-    "pdf",
-    "complemento",
-    "timbre",
-    "iedu",
-    "nomina",
-    "exterior",
-    "terceros",
-    "pagos",
-    "ine",
-    "transform",
-    "sello"
+    "cfdi", "sat", "xml", "factura", "factura electronica", "facturacion",
+    "mexico", "comprobante fiscal", "cfdi 4.0", "anexo 20", "sello",
+    "timbrado", "cadena original", "certificado", "node", "typescript"
   ],
   "author": {
-    "name": "Amir Misael Marin Coh, Signati",
-    "email": "amisael.amir.misae@gmail.com, signatidev@gmail.com,",
-    "url": ""
-  },
-  "contributors": [
-    {
-      "name": "Amir Misael Marin Coh",
-      "email": "amisael.amir.misae@gmail.com",
-      "url": "https://cfdi.recreando.dev"
-    },
-    {
-      "name": "Jose Alberto Marin Coh",
-      "email": "",
-      "url": ""
-    }
-  ]
+    "name": "Amir Misael Marin Coh",
+    "email": "amisael.amir.misael@gmail.com",
+    "url": "https://recreando.dev"
+  }
 }
