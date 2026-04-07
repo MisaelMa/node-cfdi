@@ -98,7 +98,7 @@ jobs:
           for scope in $(echo "$SCOPES" | jq -r '.[]'); do
             echo "=== Publishing $scope ==="
             rush version --version-policy "$scope" --bump --override-bump prerelease --override-prerelease-id "$TAG"
-            if rush publish --publish --version-policy "$scope" --tag "$TAG" --include-all --set-access-level=public; then
+            if rush publish --publish --version-policy "$scope" --tag "$TAG" --include-all --set-access-level=public --apply; then
               git add -A
               PUBLISHED=$((PUBLISHED + 1))
               echo "✓ $scope published"
