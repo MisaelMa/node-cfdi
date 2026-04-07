@@ -67,6 +67,7 @@ common/autoinstallers/*/.npmrc
 
 # Build output
 dist/
+index.d.ts
 
 # Heft
 .heft
