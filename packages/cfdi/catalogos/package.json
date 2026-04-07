@@ -1,6 +1,11 @@
 {
   "name": "@cfdi/catalogos",
   "version": "4.0.16-dev.2",
+  "description": "Catalogos oficiales del SAT para CFDI 4.0 como enums TypeScript",
+  "homepage": "https://cfdi.recreando.dev",
+  "bugs": {
+    "url": "https://github.com/MisaelMa/node-cfdi/issues"
+  },
   "license": "MIT",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -30,7 +35,20 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
   },
-  "author": "MisaelMa",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "keywords": [
+    "cfdi", "sat", "catalogos", "enums", "forma pago", "metodo pago",
+    "uso cfdi", "regimen fiscal", "moneda", "factura electronica",
+    "mexico", "cfdi 4.0", "node", "typescript"
+  ],
+  "author": {
+    "name": "Amir Misael Marin Coh",
+    "email": "amisael.amir.misael@gmail.com",
+    "url": "https://recreando.dev"
+  },
   "devDependencies": {
     "@recreando/vite": "workspace:*",
     "@recreando/eslint-settings": "workspace:*",

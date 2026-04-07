@@ -1,6 +1,11 @@
 {
   "name": "@cfdi/csd",
   "version": "4.0.16-dev.2",
+  "description": "Certificados de Sello Digital (CSD) - lectura de archivos .cer y .key para CFDI",
+  "homepage": "https://cfdi.recreando.dev",
+  "bugs": {
+    "url": "https://github.com/MisaelMa/node-cfdi/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -23,7 +28,19 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
   },
-  "author": "MisaelMa",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "keywords": [
+    "cfdi", "sat", "csd", "certificado", "sello digital", "cer", "key",
+    "firma", "fiel", "factura electronica", "mexico", "node", "typescript"
+  ],
+  "author": {
+    "name": "Amir Misael Marin Coh",
+    "email": "amisael.amir.misael@gmail.com",
+    "url": "https://recreando.dev"
+  },
   "dependencies": {
     "@clir/openssl": "workspace:*",
     "moment": "^2.29.4",

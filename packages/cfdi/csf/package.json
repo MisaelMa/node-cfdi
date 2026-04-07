@@ -1,6 +1,11 @@
 {
   "name": "@cfdi/csf",
   "version": "4.0.16-dev.2",
+  "description": "Lectura y parseo de Constancia de Situacion Fiscal (CSF) del SAT",
+  "homepage": "https://cfdi.recreando.dev",
+  "bugs": {
+    "url": "https://github.com/MisaelMa/node-cfdi/issues"
+  },
   "license": "MIT",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -27,10 +32,14 @@
     "type": "git",
     "url": "git+https://github.com/MisaelMa/node-cfdi.git"
   },
+  "keywords": [
+    "cfdi", "sat", "csf", "constancia", "situacion fiscal", "rfc",
+    "factura electronica", "mexico", "node", "typescript"
+  ],
   "author": {
-    "name": "Amir Misael Marin Coh, Signati",
-    "email": "amisael.amir.misae@gmail.com, signatidev@gmail.com,",
-    "url": ""
+    "name": "Amir Misael Marin Coh",
+    "email": "amisael.amir.misael@gmail.com",
+    "url": "https://recreando.dev"
   },
   "dependencies": {
     "xml-js": "^1.6.11",

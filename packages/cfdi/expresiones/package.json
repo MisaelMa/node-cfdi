@@ -1,6 +1,11 @@
 {
   "name": "@cfdi/expresiones",
   "version": "4.0.14-dev.1",
+  "description": "Generacion de expresiones impresas (codigo QR) para CFDI",
+  "homepage": "https://cfdi.recreando.dev",
+  "bugs": {
+    "url": "https://github.com/MisaelMa/node-cfdi/issues"
+  },
   "license": "MIT",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -50,9 +55,13 @@
     "@vitest/coverage-v8": "2.1.3",
     "@vitest/ui": "2.1.3"
   },
+  "keywords": [
+    "cfdi", "sat", "qr", "expresion impresa", "codigo qr",
+    "factura electronica", "mexico", "cfdi 4.0", "node", "typescript"
+  ],
   "author": {
-    "name": "Amir Misael Marin Coh, Signati",
-    "email": "amisael.amir.misae@gmail.com, signatidev@gmail.com,",
-    "url": ""
+    "name": "Amir Misael Marin Coh",
+    "email": "amisael.amir.misael@gmail.com",
+    "url": "https://recreando.dev"
   }
 }

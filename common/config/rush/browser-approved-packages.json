@@ -31,52 +31,24 @@
       "allowedCategories": [ "libraries", "private" ]
     },
     {
+      "name": "@cfdi/cancelacion",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@cfdi/catalogos",
       "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/complementos",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/csd",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/csf",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@renapo/curp",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@sat/auth",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@sat/recursos",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@sat/scraper",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@sat/opinion",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@sat/contabilidad",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@sat/captcha",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "@cfdi/cancelacion",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/designs",
@@ -84,7 +56,11 @@
     },
     {
       "name": "@cfdi/elements",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
+    },
+    {
+      "name": "@cfdi/expresiones",
+      "allowedCategories": [ "private" ]
     },
     {
       "name": "@cfdi/openssl",
@@ -95,12 +71,20 @@
       "allowedCategories": [ "libraries", "private" ]
     },
     {
+      "name": "@cfdi/rfc",
+      "allowedCategories": [ "private" ]
+    },
+    {
       "name": "@cfdi/schema",
       "allowedCategories": [ "libraries", "private" ]
     },
     {
+      "name": "@cfdi/transform",
+      "allowedCategories": [ "private" ]
+    },
+    {
       "name": "@cfdi/types",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/utils",
@@ -108,7 +92,7 @@
     },
     {
       "name": "@cfdi/xml",
-      "allowedCategories": [ "libraries", "production" ]
+      "allowedCategories": [ "libraries", "private", "production" ]
     },
     {
       "name": "@cfdi/xml2json",
@@ -116,11 +100,11 @@
     },
     {
       "name": "@cfdi/xsd",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@clir/openssl",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@emotion/cache",
@@ -271,6 +255,10 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@renapo/curp",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@rollup/plugin-terser",
       "allowedCategories": [ "libraries" ]
     },
@@ -291,8 +279,32 @@
       "allowedCategories": [ "libraries", "production" ]
     },
     {
-      "name": "@saxon-he/cli",
+      "name": "@sat/auth",
       "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/captcha",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/contabilidad",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/opinion",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/recursos",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/scraper",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@saxon-he/cli",
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@size-limit/preset-small-lib",

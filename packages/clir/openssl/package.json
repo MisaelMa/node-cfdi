@@ -1,6 +1,11 @@
 {
   "name": "@clir/openssl",
   "version": "0.0.17-dev.1",
+  "description": "Wrapper de OpenSSL CLI para certificados digitales del SAT",
+  "homepage": "https://cfdi.recreando.dev",
+  "bugs": {
+    "url": "https://github.com/MisaelMa/node-cfdi/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -23,7 +28,19 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
   },
-  "author": "MisaelMa",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "keywords": [
+    "cfdi", "sat", "openssl", "cli", "certificado", "firma digital",
+    "csd", "fiel", "mexico", "node", "typescript"
+  ],
+  "author": {
+    "name": "Amir Misael Marin Coh",
+    "email": "amisael.amir.misael@gmail.com",
+    "url": "https://recreando.dev"
+  },
   "dependencies": {
     "node-forge": "^1.3.1",
     "@esm2cjs/execa": "^6.1.1-cjs.1"
