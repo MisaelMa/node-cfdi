@@ -15,13 +15,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MisaelMa/recreando"
+    "url": "git+https://github.com/MisaelMa/node-cfdi.git"
   },
   "engines": {
     "node": ">=22"
   },
   "scripts": {
-    "build": "vite build",
+    "build": "vite build --config node_modules/@recreando/vite/vite.config.lib.mts",
     "test": "vitest",
     "test:ci": "vitest run",
     "test:coverage": "vitest run --coverage",
@@ -30,6 +30,7 @@
   "dependencies": {},
   "devDependencies": {
     "@recreando/vite": "workspace:*",
+    "vite": "^7.0.0",
     "@recreando/eslint-settings": "workspace:*",
     "@recreando/typescript-settings": "workspace:*",
     "@types/node": "^22",

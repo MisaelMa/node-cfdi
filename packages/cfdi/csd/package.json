@@ -2,6 +2,10 @@
   "name": "@cfdi/csd",
   "version": "4.0.15",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MisaelMa/node-cfdi.git"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -13,7 +17,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "vite build",
+    "build": "vite build --config node_modules/@recreando/vite/vite.config.lib.mts",
     "test": "vitest",
     "test:ci": "vitest run",
     "test:coverage": "vitest run --coverage",
@@ -28,6 +32,7 @@
   "devDependencies": {
     "@recreando/eslint-settings": "workspace:*",
     "@recreando/vite": "workspace:*",
+    "vite": "^7.0.0",
     "@recreando/typescript-settings": "workspace:*",
     "@types/node": "^22",
     "@types/node-forge": "^1.0.4",

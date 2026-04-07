@@ -30,7 +30,7 @@ export class Table {
           };
         }
       });
-    this.content.table.body.unshift(headerRow);
+    this.content.table.body.unshift(headerRow as TableCell[]);
     return this;
   }
 
@@ -47,7 +47,7 @@ export class Table {
         };
       }
     });
-    this.content.table.body.push(rows);
+    this.content.table.body.push(rows as TableCell[]);
     return this;
   }
 

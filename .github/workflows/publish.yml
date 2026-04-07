@@ -29,10 +29,10 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
-      - name: Setup registry
+      - name: Setup Node.js for Trusted Publishing
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Determine branch
@@ -51,7 +51,7 @@ jobs:
 
       - name: Publish (main)
         if: steps.branch.outputs.is_main == 'true'
-        run: rush publish --publish --target-branch main --set-access-level=public
+        run: rush publish -p -b main --include-all --set-access-level=public
 
       - name: Publish (prerelease)
         if: steps.branch.outputs.is_main == 'false'

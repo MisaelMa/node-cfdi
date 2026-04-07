@@ -6,15 +6,18 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "vite build",
+    "build": "vite build --config node_modules/@recreando/vite/vite.config.lib.mts",
     "dev": "vite"
   },
   "dependencies": {
     "pdfmake": "^0.2.20",
     "@cfdi/2json": "workspace:*",
-    "@cfdi/utils": "workspace:*"
+    "@cfdi/utils": "workspace:*",
+    "@cfdi/types": "workspace:*",
+    "@cfdi/complementos": "workspace:*"
   },
   "devDependencies": {
+    "@recreando/vite": "workspace:*",
     "@types/pdfmake": "^0.2.11",
     "vite-plugin-dts": "^4.5.3",
     "@rollup/plugin-terser": "^0.4.4",

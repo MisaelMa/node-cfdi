@@ -66,8 +66,8 @@ common/autoinstallers/*/.npmrc
 **/.rush/temp/
 
 # Build output
-dist/
-index.d.ts
+**/dist/
+**/src/**/*.d.ts
 
 # Heft
 .heft
