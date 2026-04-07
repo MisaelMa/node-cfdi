@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/complementos",
-  "version": "4.0.17-dev.1",
+  "version": "4.0.17-dev.2",
   "description": "Libreria para generar complementos del cfdi V4.0",
   "homepage": "https://cfdi.recreando.dev",
   "license": "MIT",
