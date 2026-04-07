@@ -51,11 +51,11 @@ jobs:
 
       - name: Publish (main)
         if: steps.branch.outputs.is_main == 'true'
-        run: rush publish --publish --target-branch main --include-all --set-access-level=public
+        run: rush publish --publish --target-branch main --set-access-level=public
 
       - name: Publish (prerelease)
         if: steps.branch.outputs.is_main == 'false'
-        run: rush publish --publish --tag ${{ steps.branch.outputs.name }} --include-all --set-access-level=public --apply
+        run: rush publish --publish --tag ${{ steps.branch.outputs.name }} --set-access-level=public --apply
 
       - name: Commit version bumps
         run: |
