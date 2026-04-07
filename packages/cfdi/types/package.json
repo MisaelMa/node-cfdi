@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/types",
-  "version": "4.0.13",
+  "version": "4.0.14-dev.0",
   "description": "Libreria para crear y sellar xml cfdi V4.0",
   "homepage": "https://cfdi.recreando.dev",
   "license": "MIT",
