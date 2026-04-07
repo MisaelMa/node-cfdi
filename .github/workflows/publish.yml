@@ -54,19 +54,33 @@ jobs:
         if: steps.branch.outputs.is_main == 'true'
         run: |
           SCOPES='${{ steps.cfdi.outputs.scopes }}'
+          TOTAL=$(echo "$SCOPES" | jq -r '.[]' | wc -l | tr -d ' ')
+          PUBLISHED=0
+          FAILED_COUNT=0
           FAILED=""
           for scope in $(echo "$SCOPES" | jq -r '.[]'); do
             echo "=== Publishing $scope ==="
             rush version --version-policy "$scope" --bump
             if rush publish -p -b main --version-policy "$scope" --include-all --set-access-level=public; then
               git add -A
+              PUBLISHED=$((PUBLISHED + 1))
               echo "✓ $scope published"
             else
+              FAILED_COUNT=$((FAILED_COUNT + 1))
               FAILED="$FAILED $scope"
               git checkout -- .
               echo "::warning::✗ $scope failed, reverted"
             fi
           done
+          echo ""
+          echo "========== PUBLISH SUMMARY =========="
+          echo "Total scopes: $TOTAL"
+          echo "Published:    $PUBLISHED"
+          echo "Failed:       $FAILED_COUNT"
+          if [ -n "$FAILED" ]; then
+            echo "Failed list: $FAILED"
+          fi
+          echo "====================================="
           if [ -n "$FAILED" ]; then
             echo "::error::Failed scopes:$FAILED"
             exit 1
@@ -77,19 +91,33 @@ jobs:
         run: |
           TAG="${{ steps.branch.outputs.name }}"
           SCOPES='${{ steps.cfdi.outputs.scopes }}'
+          TOTAL=$(echo "$SCOPES" | jq -r '.[]' | wc -l | tr -d ' ')
+          PUBLISHED=0
+          FAILED_COUNT=0
           FAILED=""
           for scope in $(echo "$SCOPES" | jq -r '.[]'); do
             echo "=== Publishing $scope ==="
             rush version --version-policy "$scope" --bump --override-bump prerelease --override-prerelease-id "$TAG"
-            if rush publish --publish --version-policy "$scope" --tag "$TAG" --include-all --set-access-level=public --apply; then
+            if rush publish --publish --version-policy "$scope" --tag "$TAG" --include-all --set-access-level=public; then
               git add -A
+              PUBLISHED=$((PUBLISHED + 1))
               echo "✓ $scope published"
             else
+              FAILED_COUNT=$((FAILED_COUNT + 1))
               FAILED="$FAILED $scope"
               git checkout -- .
               echo "::warning::✗ $scope failed, reverted"
             fi
           done
+          echo ""
+          echo "========== PUBLISH SUMMARY =========="
+          echo "Total scopes: $TOTAL"
+          echo "Published:    $PUBLISHED"
+          echo "Failed:       $FAILED_COUNT"
+          if [ -n "$FAILED" ]; then
+            echo "Failed list: $FAILED"
+          fi
+          echo "====================================="
           if [ -n "$FAILED" ]; then
             echo "::error::Failed scopes:$FAILED"
             exit 1
@@ -98,6 +126,7 @@ jobs:
       - name: Commit version bumps
         run: |
           BRANCH="${{ steps.branch.outputs.name }}"
+          git add -A
           if [ -n "$(git diff --cached --name-only)" ]; then
             if [ "$BRANCH" = "main" ]; then
               git commit -m "chore: release $(date +%Y-%m-%d)"
