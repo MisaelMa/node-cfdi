@@ -8,6 +8,7 @@
     "update-versions": "node update-versions.mjs"
   },
   "dependencies": {
+    "express": "^4.18.2",
     "@cfdi/xml": "4.0.18-dev.3",
     "@cfdi/complementos": "4.0.17-dev.3",
     "@cfdi/xsd": "4.0.17-dev.3",

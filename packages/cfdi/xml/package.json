@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/xml",
-  "version": "4.0.18-dev.3",
+  "version": "4.0.18-dev.5",
   "description": "Generacion, sellado y timbrado de XML CFDI 4.0 para Node.js - facturacion electronica Mexico",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {

@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/csf",
-  "version": "4.0.16-dev.3",
+  "version": "4.0.16-dev.5",
   "description": "Lectura y parseo de Constancia de Situacion Fiscal (CSF) del SAT",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {

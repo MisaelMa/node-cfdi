@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/expresiones",
-  "version": "4.0.14-dev.2",
+  "version": "4.0.14-dev.4",
   "description": "Generacion de expresiones impresas (codigo QR) para CFDI",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {
