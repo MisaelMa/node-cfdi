@@ -54,35 +54,21 @@ jobs:
         if: steps.branch.outputs.is_main == 'true'
         run: |
           SCOPES='${{ steps.cfdi.outputs.scopes }}'
-          TOTAL=$(echo "$SCOPES" | jq -r '.[]' | wc -l | tr -d ' ')
-          PUBLISHED=0
-          FAILED_COUNT=0
-          FAILED=""
+
+          # --- Fase 1: Bump de TODOS los scopes ---
+          echo "========== PHASE 1: VERSION BUMP =========="
           for scope in $(echo "$SCOPES" | jq -r '.[]'); do
-            echo "=== Publishing $scope ==="
+            echo "=== Bumping $scope ==="
             rush version --version-policy "$scope" --bump
-            if rush publish -p -b main --version-policy "$scope" --include-all --set-access-level=public; then
-              git add -A
-              PUBLISHED=$((PUBLISHED + 1))
-              echo "✓ $scope published"
-            else
-              FAILED_COUNT=$((FAILED_COUNT + 1))
-              FAILED="$FAILED $scope"
-              git checkout -- .
-              echo "::warning::✗ $scope failed, reverted"
-            fi
           done
-          echo ""
-          echo "========== PUBLISH SUMMARY =========="
-          echo "Total scopes: $TOTAL"
-          echo "Published:    $PUBLISHED"
-          echo "Failed:       $FAILED_COUNT"
-          if [ -n "$FAILED" ]; then
-            echo "Failed list: $FAILED"
-          fi
-          echo "====================================="
-          if [ -n "$FAILED" ]; then
-            echo "::error::Failed scopes:$FAILED"
+
+          # --- Fase 2: Un solo publish (Rush maneja orden topológico) ---
+          echo "========== PHASE 2: PUBLISH =========="
+          if rush publish -p -b main --set-access-level=public; then
+            git add -A
+            echo "✓ Publish exitoso"
+          else
+            echo "::error::Publish falló"
             exit 1
           fi
 
@@ -91,35 +77,21 @@ jobs:
         run: |
           TAG="${{ steps.branch.outputs.name }}"
           SCOPES='${{ steps.cfdi.outputs.scopes }}'
-          TOTAL=$(echo "$SCOPES" | jq -r '.[]' | wc -l | tr -d ' ')
-          PUBLISHED=0
-          FAILED_COUNT=0
-          FAILED=""
+
+          # --- Fase 1: Bump de TODOS los scopes ---
+          echo "========== PHASE 1: VERSION BUMP =========="
           for scope in $(echo "$SCOPES" | jq -r '.[]'); do
-            echo "=== Publishing $scope ==="
+            echo "=== Bumping $scope ==="
             rush version --version-policy "$scope" --bump --override-bump prerelease --override-prerelease-id "$TAG"
-            if rush publish --publish --version-policy "$scope" --tag "$TAG" --include-all --set-access-level=public --apply; then
-              git add -A
-              PUBLISHED=$((PUBLISHED + 1))
-              echo "✓ $scope published"
-            else
-              FAILED_COUNT=$((FAILED_COUNT + 1))
-              FAILED="$FAILED $scope"
-              git checkout -- .
-              echo "::warning::✗ $scope failed, reverted"
-            fi
           done
-          echo ""
-          echo "========== PUBLISH SUMMARY =========="
-          echo "Total scopes: $TOTAL"
-          echo "Published:    $PUBLISHED"
-          echo "Failed:       $FAILED_COUNT"
-          if [ -n "$FAILED" ]; then
-            echo "Failed list: $FAILED"
-          fi
-          echo "====================================="
-          if [ -n "$FAILED" ]; then
-            echo "::error::Failed scopes:$FAILED"
+
+          # --- Fase 2: Un solo publish (Rush maneja orden topológico) ---
+          echo "========== PHASE 2: PUBLISH =========="
+          if rush publish --publish --tag "$TAG" --set-access-level=public --apply; then
+            git add -A
+            echo "✓ Publish exitoso"
+          else
+            echo "::error::Publish falló"
             exit 1
           fi
 

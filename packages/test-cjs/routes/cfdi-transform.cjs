@@ -1,9 +1,23 @@
-module.exports = {
-  path: '/@cfdi/transform',
-  name: '@cfdi/transform',
-  test() {
-    const pkg = require('@cfdi/transform');
-    const exports = Object.keys(pkg);
-    return { exports };
-  },
-};
+const { Router } = require('express');
+const transform = require('@cfdi/transform');
+
+const router = Router();
+
+router.post('/normalize', (req, res) => {
+  try {
+    const { text } = req.body;
+    if (!text) {
+      return res.status(400).json({ error: 'Missing "text" in request body' });
+    }
+    const normalized = transform.normalizeSpace(text);
+    res.json({ original: text, normalized });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+router.get('/', (req, res) => {
+  res.json({ exports: Object.keys(transform) });
+});
+
+module.exports = router;
