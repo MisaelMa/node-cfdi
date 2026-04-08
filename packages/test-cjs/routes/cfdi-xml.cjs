@@ -81,6 +81,24 @@ function buildCFDI(body) {
   return cfdi;
 }
 
+router.get('/', (req, res) => {
+ const cfdi = new CFDI();
+
+ cfdi.setAttributes({
+
+ })
+
+ cfdi.comprobante(
+   {
+     Rfc: 'XAXX010101000',
+     Nombre: 'PUBLICO EN GENERAL',
+     UsoCFDI: 'G03',
+     DomicilioFiscalReceptor: '06600',
+     RegimenFiscalReceptor: '616',
+   }
+ )
+ res.json({ exports: cfdi.getJsonCdfi() });
+})
 router.post('/create', (req, res) => {
   try {
     const cfdi = buildCFDI(req.body || {});
