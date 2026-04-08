@@ -25,7 +25,6 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
 
       - name: CFDI dependencies
-        id: cfdi
         uses: ./.github/actions/cfdi
         with:
           token: ${{ secrets.PAT_TOKEN }}
@@ -52,63 +51,22 @@ jobs:
 
       - name: Publish (main)
         if: steps.branch.outputs.is_main == 'true'
-        run: |
-          SCOPES='${{ steps.cfdi.outputs.scopes }}'
-
-          # --- Fase 1: Bump de TODOS los scopes ---
-          echo "========== PHASE 1: VERSION BUMP =========="
-          for scope in $(echo "$SCOPES" | jq -r '.[]'); do
-            echo "=== Bumping $scope ==="
-            rush version --version-policy "$scope" --bump
-          done
-
-          # --- Fase 2: Un solo publish (Rush maneja orden topológico) ---
-          echo "========== PHASE 2: PUBLISH =========="
-          if rush publish -p -b main --set-access-level=public; then
-            git add -A
-            echo "✓ Publish exitoso"
-          else
-            echo "::error::Publish falló"
-            exit 1
-          fi
+        run: rush publish -p -b main --include-all --set-access-level=public
 
       - name: Publish (prerelease)
         if: steps.branch.outputs.is_main == 'false'
-        run: |
-          TAG="${{ steps.branch.outputs.name }}"
-          SCOPES='${{ steps.cfdi.outputs.scopes }}'
-
-          # --- Fase 1: Bump de TODOS los scopes ---
-          echo "========== PHASE 1: VERSION BUMP =========="
-          for scope in $(echo "$SCOPES" | jq -r '.[]'); do
-            echo "=== Bumping $scope ==="
-            rush version --version-policy "$scope" --bump --override-bump prerelease --override-prerelease-id "$TAG"
-          done
-
-          # --- Fase 2: Un solo publish (Rush maneja orden topológico) ---
-          echo "========== PHASE 2: PUBLISH =========="
-          if rush publish --publish --tag "$TAG" --set-access-level=public --apply; then
-            git add -A
-            echo "✓ Publish exitoso"
-          else
-            echo "::error::Publish falló"
-            exit 1
-          fi
+        run: rush publish --publish --tag ${{ steps.branch.outputs.name }} --include-all --set-access-level=public --apply
 
       - name: Commit version bumps
         run: |
           BRANCH="${{ steps.branch.outputs.name }}"
           git add -A
-          if [ -n "$(git diff --cached --name-only)" ]; then
-            if [ "$BRANCH" = "main" ]; then
-              git commit -m "chore: release $(date +%Y-%m-%d)"
-            else
-              git commit -m "chore: prerelease $BRANCH $(date +%Y-%m-%d)"
-            fi
-            git push origin $BRANCH
+          if [ "$BRANCH" = "main" ]; then
+            git commit -m "chore: release $(date +%Y-%m-%d)" || echo "No changes to commit"
           else
-            echo "No changes to commit"
+            git commit -m "chore: prerelease $BRANCH $(date +%Y-%m-%d)" || echo "No changes to commit"
           fi
+          git push origin $BRANCH
 
       - name: Create GitHub Releases
         run: node common/scripts/github-release.js
