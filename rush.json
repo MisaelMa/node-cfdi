@@ -120,7 +120,6 @@
     {
       "packageName": "@cfdi/pdf",
       "projectFolder": "packages/cfdi/pdf",
-      "versionPolicyName": "pdf",
       "reviewCategory": "libraries",
       "shouldPublish": false,
       "tags": [
@@ -137,7 +136,6 @@
     {
       "packageName": "@renapo/curp",
       "projectFolder": "packages/renapo/curp",
-      "versionPolicyName": "curp",
       "reviewCategory": "libraries",
       "shouldPublish": false,
       "tags": [
@@ -185,7 +183,6 @@
     {
       "packageName": "@cfdi/estado",
       "projectFolder": "packages/cfdi/estado",
-      "versionPolicyName": "estado",
       "reviewCategory": "libraries",
       "shouldPublish": false,
       "tags": [
@@ -195,7 +192,6 @@
     {
       "packageName": "@cfdi/descarga",
       "projectFolder": "packages/cfdi/descarga",
-      "versionPolicyName": "descarga",
       "reviewCategory": "libraries",
       "shouldPublish": false,
       "tags": [
@@ -205,7 +201,6 @@
     {
       "packageName": "@sat/recursos",
       "projectFolder": "packages/sat/recursos",
-      "versionPolicyName": "recursos",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
@@ -233,14 +228,12 @@
     {
       "packageName": "@cfdi/designs",
       "projectFolder": "packages/cfdi/designs",
-      "versionPolicyName": "designs",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
     {
       "packageName": "@sat/auth",
       "projectFolder": "packages/sat/auth",
-      "versionPolicyName": "auth",
       "reviewCategory": "libraries",
       "shouldPublish": false,
       "tags": [
@@ -250,7 +243,6 @@
     {
       "packageName": "@cfdi/validador",
       "projectFolder": "packages/cfdi/validador",
-      "versionPolicyName": "validador",
       "reviewCategory": "libraries",
       "shouldPublish": false,
       "tags": [
@@ -260,70 +252,60 @@
     {
       "packageName": "@cfdi/cleaner",
       "projectFolder": "packages/cfdi/cleaner",
-      "versionPolicyName": "cleaner",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
     {
       "packageName": "@cfdi/cancelacion",
       "projectFolder": "packages/cfdi/cancelacion",
-      "versionPolicyName": "cancelacion",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
     {
       "packageName": "@cfdi/retenciones",
       "projectFolder": "packages/cfdi/retenciones",
-      "versionPolicyName": "retenciones",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
     {
       "packageName": "@sat/scraper",
       "projectFolder": "packages/sat/scraper",
-      "versionPolicyName": "scraper",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
     {
       "packageName": "@sat/opinion",
       "projectFolder": "packages/sat/opinion",
-      "versionPolicyName": "opinion",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
     {
       "packageName": "@sat/contabilidad",
       "projectFolder": "packages/sat/contabilidad",
-      "versionPolicyName": "contabilidad",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
     {
       "packageName": "@sat/captcha",
       "projectFolder": "packages/sat/captcha",
-      "versionPolicyName": "captcha",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
     {
       "packageName": "@sat/pacs",
       "projectFolder": "packages/sat/pacs",
-      "versionPolicyName": "pacs",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
     {
       "packageName": "@sat/banxico",
       "projectFolder": "packages/sat/banxico",
-      "versionPolicyName": "banxico",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
     {
       "packageName": "@sat/diot",
       "projectFolder": "packages/sat/diot",
-      "versionPolicyName": "diot",
       "reviewCategory": "libraries",
       "shouldPublish": false
     },
