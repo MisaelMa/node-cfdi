@@ -1,26 +1,27 @@
 import express from 'express';
-import { PORT } from './config.mjs';
+import { PORT } from './config';
 
-import catalogosRouter from './routes/cfdi-catalogos.mjs';
-import rfcRouter from './routes/cfdi-rfc.mjs';
-import utilsRouter from './routes/cfdi-utils.mjs';
-import xmlRouter from './routes/cfdi-xml.mjs';
-import jsonRouter from './routes/cfdi-2json.mjs';
-import csdRouter from './routes/cfdi-csd.mjs';
-import complementosRouter from './routes/cfdi-complementos.mjs';
-import elementsRouter from './routes/cfdi-elements.mjs';
-import xsdRouter from './routes/cfdi-xsd.mjs';
-import transformRouter from './routes/cfdi-transform.mjs';
-import csfRouter from './routes/cfdi-csf.mjs';
+import catalogosRouter from './routes/cfdi-catalogos';
+import rfcRouter from './routes/cfdi-rfc';
+import utilsRouter from './routes/cfdi-utils';
+import xmlRouter from './routes/cfdi-xml';
+import jsonRouter from './routes/cfdi-2json';
+import csdRouter from './routes/cfdi-csd';
+import complementosRouter from './routes/cfdi-complementos';
+import elementsRouter from './routes/cfdi-elements';
+import xsdRouter from './routes/cfdi-xsd';
+import transformRouter from './routes/cfdi-transform';
+import csfRouter from './routes/cfdi-csf';
 
 const app = express();
+
 app.use(express.json());
 
 app.get('/', (_req, res) => {
   res.json({
-    type: 'esm',
+    type: 'ts',
     endpoints: {
-      '/catalogos': 'Catalogos del SAT (FormaPago, MetodoPago, etc.)',
+      '/catalogos': 'Catálogos del SAT (FormaPago, MetodoPago, etc.)',
       '/rfc/validate/:rfc': 'Validar RFC',
       '/rfc/faker': 'Generar RFC de prueba',
       '/utils/numero-a-letras': 'POST { numero, moneda? }',
@@ -56,5 +57,5 @@ app.use('/transform', transformRouter);
 app.use('/csf', csfRouter);
 
 app.listen(PORT, () => {
-  console.log(`[ESM] Server running on http://localhost:${PORT}`);
+  console.log(`[TS] Server running on http://localhost:${PORT}`);
 });

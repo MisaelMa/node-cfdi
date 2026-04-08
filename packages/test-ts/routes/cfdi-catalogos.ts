@@ -11,11 +11,11 @@ const router = Router();
 
 router.get('/', (_req, res) => {
   res.json({
-    FormaPago,
-    MetodoPago,
-    RegimenFiscal,
-    TipoComprobante,
-    UsoCFDI,
+    formaPago: FormaPago,
+    metodoPago: MetodoPago,
+    regimenFiscal: RegimenFiscal,
+    tipoComprobante: TipoComprobante,
+    usoCFDI: UsoCFDI,
   });
 });
 
