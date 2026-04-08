@@ -2,31 +2,31 @@
   {
     "policyName": "xml",
     "definitionName": "lockStepVersion",
-    "version": "4.0.18-dev.3",
+    "version": "4.0.18-dev.4",
     "nextBump": "patch"
   },
   {
     "policyName": "complementos",
     "definitionName": "lockStepVersion",
-    "version": "4.0.17-dev.3",
+    "version": "4.0.17-dev.4",
     "nextBump": "patch"
   },
   {
     "policyName": "catalogs",
     "definitionName": "lockStepVersion",
-    "version": "4.0.16-dev.3",
+    "version": "4.0.16-dev.4",
     "nextBump": "patch"
   },
   {
     "policyName": "csd",
     "definitionName": "lockStepVersion",
-    "version": "4.0.16-dev.3",
+    "version": "4.0.16-dev.4",
     "nextBump": "patch"
   },
   {
     "policyName": "csf",
     "definitionName": "lockStepVersion",
-    "version": "4.0.16-dev.3",
+    "version": "4.0.16-dev.4",
     "nextBump": "patch"
   },
   {
@@ -50,61 +50,61 @@
   {
     "policyName": "rfc",
     "definitionName": "lockStepVersion",
-    "version": "0.0.10-dev.2",
+    "version": "0.0.10-dev.3",
     "nextBump": "prerelease"
   },
   {
     "policyName": "utils",
     "definitionName": "lockStepVersion",
-    "version": "4.0.17-dev.2",
+    "version": "4.0.17-dev.3",
     "nextBump": "patch"
   },
   {
     "policyName": "openssl",
     "definitionName": "lockStepVersion",
-    "version": "0.0.17-dev.2",
+    "version": "0.0.17-dev.3",
     "nextBump": "patch"
   },
   {
     "policyName": "saxon",
     "definitionName": "lockStepVersion",
-    "version": "12.5.2-dev.2",
+    "version": "12.5.2-dev.3",
     "nextBump": "patch"
   },
   {
     "policyName": "xsd",
     "definitionName": "lockStepVersion",
-    "version": "4.0.17-dev.3",
+    "version": "4.0.17-dev.4",
     "nextBump": "patch"
   },
   {
     "policyName": "transform",
     "definitionName": "lockStepVersion",
-    "version": "4.0.14-dev.2",
+    "version": "4.0.14-dev.3",
     "nextBump": "patch"
   },
   {
     "policyName": "elements",
     "definitionName": "lockStepVersion",
-    "version": "4.0.14-dev.2",
+    "version": "4.0.14-dev.3",
     "nextBump": "patch"
   },
   {
     "policyName": "types",
     "definitionName": "lockStepVersion",
-    "version": "4.0.14-dev.2",
+    "version": "4.0.14-dev.3",
     "nextBump": "patch"
   },
   {
     "policyName": "expresiones",
     "definitionName": "lockStepVersion",
-    "version": "4.0.14-dev.2",
+    "version": "4.0.14-dev.3",
     "nextBump": "patch"
   },
   {
     "policyName": "2json",
     "definitionName": "lockStepVersion",
-    "version": "4.0.14-dev.2",
+    "version": "4.0.14-dev.3",
     "nextBump": "patch"
   },
   {
