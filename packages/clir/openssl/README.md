@@ -1,6 +1,128 @@
-# @clir/openssl
+<p align="center">
+  <a href="https://www.npmjs.com/package/@clir/openssl">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/clir-openssl.png" alt="@clir/openssl" width="400" />
+  </a>
+</p>
 
-Wrapper de la CLI de OpenSSL para operaciones con certificados digitales. Proporciona una interfaz fluida (builder pattern) para construir y ejecutar comandos `x509` y `pkcs8`.
+<h3 align="center">Wrapper de OpenSSL CLI para certificados digitales del SAT</h3>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@clir/openssl">
+    <img src="https://img.shields.io/npm/v/@clir/openssl?style=flat-square&color=cb3837&label=npm" alt="npm version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@clir/openssl">
+    <img src="https://img.shields.io/npm/dm/@clir/openssl?style=flat-square&color=cb3837&label=downloads" alt="npm downloads" />
+  </a>
+  <a href="https://github.com/MisaelMa/node-cfdi/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="license" />
+  </a>
+  <img src="https://img.shields.io/badge/node-%3E%3D22-brightgreen?style=flat-square&logo=node.js&logoColor=white" alt="node" />
+  <img src="https://img.shields.io/badge/TypeScript-strict-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="typescript" />
+</p>
+
+<p align="center">
+  <a href="https://cfdi.recreando.dev">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/cfdi-documentacion.png" alt="Documentacion" width="300" />
+  </a>
+</p>
+
+---
+
+## Ecosistema CFDI
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/cfdi-ecosystem.png" alt="CFDI Ecosystem" width="600" />
+</p>
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xml">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xml.png" alt="@cfdi/xml" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/complementos">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-complementos.png" alt="@cfdi/complementos" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xsd">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xsd.png" alt="@cfdi/xsd" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/csd">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-csd.png" alt="@cfdi/csd" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/csf">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-csf.png" alt="@cfdi/csf" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/catalogos">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-catalogos.png" alt="@cfdi/catalogos" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/transform">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-transform.png" alt="@cfdi/transform" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/elements">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-elements.png" alt="@cfdi/elements" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/types">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-types.png" alt="@cfdi/types" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/expresiones">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-expresiones.png" alt="@cfdi/expresiones" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xml2json">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-2json.png" alt="@cfdi/xml2json" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/rfc">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-rfc.png" alt="@cfdi/rfc" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/utils">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-utils.png" alt="@cfdi/utils" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@clir/openssl">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/clir-openssl.png" alt="@clir/openssl" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@saxon-he/cli">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/saxon-he-cli.png" alt="@saxon-he/cli" width="100%" />
+      </a>
+    </td>
+  </tr>
+</table>
+
+---
 
 ## Instalacion
 
@@ -8,98 +130,31 @@ Wrapper de la CLI de OpenSSL para operaciones con certificados digitales. Propor
 npm install @clir/openssl
 ```
 
-## Uso
+---
 
-### x509 - Operaciones con certificados
+## Soporte
 
-```typescript
-import { x509 } from '@clir/openssl';
+<p>
+  <a href="https://github.com/MisaelMa/node-cfdi/issues">
+    <img src="https://img.shields.io/badge/GitHub-Issues-181717?style=for-the-badge&logo=github" alt="issues" />
+  </a>
+  <a href="https://github.com/MisaelMa/node-cfdi/discussions">
+    <img src="https://img.shields.io/badge/GitHub-Discussions-181717?style=for-the-badge&logo=github" alt="discussions" />
+  </a>
+  <a href="https://www.npmjs.com/package/@clir/openssl">
+    <img src="https://img.shields.io/badge/npm-@clir/openssl-cb3837?style=for-the-badge&logo=npm" alt="npm" />
+  </a>
+</p>
 
-// Convertir certificado DER a PEM
-const pem = x509.inform('DER').in('certificado.cer').outform('PEM').run();
-
-// Obtener informacion del certificado
-const texto = x509.inform('DER').in('certificado.cer').noout().text().run();
-
-// Obtener llave publica
-const pubkey = x509.inform('DER').in('certificado.cer').noout().pubkey().run();
-
-// Obtener numero de serie
-const serial = x509.inform('DER').in('certificado.cer').noout().serial().run();
-
-// Obtener huella digital
-const fingerprint = x509.inform('DER').in('certificado.cer').noout().fingerprint().run();
-
-// Verificar si expira en N segundos
-const check = x509.inform('DER').in('certificado.cer').noout().checkend(86400).run();
-
-// Obtener solo el comando como string (sin ejecutar)
-const cmd = x509.inform('DER').in('certificado.cer').noout().text().cli();
-```
-
-### pkcs8 - Operaciones con llaves privadas
-
-```typescript
-import { pkcs8 } from '@clir/openssl';
-
-// Convertir llave privada DER a PEM con contrasena
-const pem = pkcs8
-  .inform('DER')
-  .in('llave.key')
-  .outform('PEM')
-  .passin('pass:contrasena123')
-  .run();
-
-// Convertir a formato tradicional sin cifrado
-const trad = pkcs8.topk8().traditional().nocrypt().run();
-
-// Obtener el comando sin ejecutar
-const cmd = pkcs8.inform('DER').in('llave.key').cli();
-```
-
-## API
-
-### `x509`
-
-Instancia con interfaz fluida para comandos OpenSSL x509.
-
-| Metodo | Descripcion |
-|--------|-------------|
-| `inform(format)` | Formato de entrada: `'DER'`, `'PEM'` |
-| `in(file)` | Archivo de entrada |
-| `outform(format)` | Formato de salida: `'DER'`, `'PEM'` |
-| `noout()` | No imprimir el certificado |
-| `text()` | Imprimir certificado en texto legible |
-| `pubkey()` | Extraer llave publica |
-| `serial()` | Obtener numero de serie |
-| `fingerprint()` | Obtener huella digital |
-| `checkend(seconds)` | Verificar expiracion |
-| `subject()` | Obtener subject del certificado |
-| `issuer()` | Obtener issuer del certificado |
-| `startdate()` | Fecha de inicio de validez |
-| `enddate()` | Fecha de fin de validez |
-| `run()` | Ejecutar el comando y retornar resultado |
-| `cli()` | Retornar el comando como string sin ejecutar |
-
-### `pkcs8`
-
-Instancia con interfaz fluida para comandos OpenSSL pkcs8.
-
-| Metodo | Descripcion |
-|--------|-------------|
-| `inform(format)` | Formato de entrada |
-| `in(file)` | Archivo de entrada |
-| `outform(format)` | Formato de salida |
-| `passin(pass)` | Contrasena de entrada (ej: `'pass:123'`) |
-| `topk8()` | Convertir a formato PKCS#8 |
-| `traditional()` | Usar formato tradicional |
-| `nocrypt()` | Sin cifrado |
-| `run()` | Ejecutar el comando y retornar resultado |
-| `cli()` | Retornar el comando como string sin ejecutar |
+---
 
 ## Autor
 
-**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+<p align="center">
+  <a href="https://github.com/MisaelMa">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/author.png" alt="Amir Misael Marin Coh" width="100%" />
+  </a>
+</p>
 
 ## Licencia
 

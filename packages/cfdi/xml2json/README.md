@@ -1,6 +1,128 @@
-# @cfdi/2json
+<p align="center">
+  <a href="https://www.npmjs.com/package/@cfdi/2json">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-2json.png" alt="@cfdi/2json" width="400" />
+  </a>
+</p>
 
-Conversion de XML de CFDI a JSON. Acepta una ruta de archivo o un string de XML y retorna un objeto JSON estructurado.
+<h3 align="center">Conversion de XML CFDI a JSON para Node.js</h3>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@cfdi/2json">
+    <img src="https://img.shields.io/npm/v/@cfdi/2json?style=flat-square&color=cb3837&label=npm" alt="npm version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@cfdi/2json">
+    <img src="https://img.shields.io/npm/dm/@cfdi/2json?style=flat-square&color=cb3837&label=downloads" alt="npm downloads" />
+  </a>
+  <a href="https://github.com/MisaelMa/node-cfdi/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="license" />
+  </a>
+  <img src="https://img.shields.io/badge/node-%3E%3D22-brightgreen?style=flat-square&logo=node.js&logoColor=white" alt="node" />
+  <img src="https://img.shields.io/badge/TypeScript-strict-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="typescript" />
+</p>
+
+<p align="center">
+  <a href="https://cfdi.recreando.dev">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/cfdi-documentacion.png" alt="Documentacion" width="300" />
+  </a>
+</p>
+
+---
+
+## Ecosistema CFDI
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/cfdi-ecosystem.png" alt="CFDI Ecosystem" width="600" />
+</p>
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xml">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xml.png" alt="@cfdi/xml" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/complementos">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-complementos.png" alt="@cfdi/complementos" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xsd">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xsd.png" alt="@cfdi/xsd" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/csd">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-csd.png" alt="@cfdi/csd" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/csf">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-csf.png" alt="@cfdi/csf" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/catalogos">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-catalogos.png" alt="@cfdi/catalogos" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/transform">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-transform.png" alt="@cfdi/transform" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/elements">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-elements.png" alt="@cfdi/elements" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/types">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-types.png" alt="@cfdi/types" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/expresiones">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-expresiones.png" alt="@cfdi/expresiones" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xml2json">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-2json.png" alt="@cfdi/xml2json" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/rfc">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-rfc.png" alt="@cfdi/rfc" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/utils">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-utils.png" alt="@cfdi/utils" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@clir/openssl">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/clir-openssl.png" alt="@clir/openssl" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@saxon-he/cli">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/saxon-he-cli.png" alt="@saxon-he/cli" width="100%" />
+      </a>
+    </td>
+  </tr>
+</table>
+
+---
 
 ## Instalacion
 
@@ -8,42 +130,31 @@ Conversion de XML de CFDI a JSON. Acepta una ruta de archivo o un string de XML 
 npm install @cfdi/2json
 ```
 
-## Uso
+---
 
-```typescript
-import { XmlToJson } from '@cfdi/2json';
+## Soporte
 
-// Desde archivo
-const json = XmlToJson('/ruta/al/cfdi.xml');
+<p>
+  <a href="https://github.com/MisaelMa/node-cfdi/issues">
+    <img src="https://img.shields.io/badge/GitHub-Issues-181717?style=for-the-badge&logo=github" alt="issues" />
+  </a>
+  <a href="https://github.com/MisaelMa/node-cfdi/discussions">
+    <img src="https://img.shields.io/badge/GitHub-Discussions-181717?style=for-the-badge&logo=github" alt="discussions" />
+  </a>
+  <a href="https://www.npmjs.com/package/@cfdi/2json">
+    <img src="https://img.shields.io/badge/npm-@cfdi/2json-cb3837?style=for-the-badge&logo=npm" alt="npm" />
+  </a>
+</p>
 
-// Desde string XML
-const xml = '<cfdi:Comprobante xmlns:cfdi="..." Version="4.0">...</cfdi:Comprobante>';
-const json2 = XmlToJson(xml);
-
-// Mantener namespaces originales (por defecto se eliminan)
-const jsonOriginal = XmlToJson('/ruta/al/cfdi.xml', { original: true });
-// Con namespaces: { 'cfdi:Comprobante': { ... } }
-// Sin namespaces (default): { Comprobante: { ... } }
-
-// Modo compact
-const jsonCompact = XmlToJson('/ruta/al/cfdi.xml', { compact: true });
-```
-
-## API
-
-### `XmlToJson(xmlPath, config?)`
-
-| Parametro | Tipo | Descripcion |
-|-----------|------|-------------|
-| `xmlPath` | `string` | Ruta a un archivo XML o string con contenido XML |
-| `config.original` | `boolean` | Si es `true`, mantiene los prefijos de namespace. Por defecto `false` |
-| `config.compact` | `boolean` | Si es `true`, usa formato compacto. Por defecto `false` |
-
-**Retorna:** Objeto JSON con la estructura del CFDI. Los namespaces como `cfdi:` se eliminan por defecto para facilitar el acceso a los nodos.
+---
 
 ## Autor
 
-**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+<p align="center">
+  <a href="https://github.com/MisaelMa">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/author.png" alt="Amir Misael Marin Coh" width="100%" />
+  </a>
+</p>
 
 ## Licencia
 

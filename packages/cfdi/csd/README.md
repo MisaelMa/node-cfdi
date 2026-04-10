@@ -1,6 +1,128 @@
-# @cfdi/csd
+<p align="center">
+  <a href="https://www.npmjs.com/package/@cfdi/csd">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-csd.png" alt="@cfdi/csd" width="400" />
+  </a>
+</p>
 
-Manejo de Certificados de Sello Digital (CSD) del SAT. Permite leer archivos `.cer` y `.key`, extraer informacion del certificado y firmar cadenas originales.
+<h3 align="center">Certificados de Sello Digital (CSD) - lectura de archivos .cer y .key para CFDI</h3>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@cfdi/csd">
+    <img src="https://img.shields.io/npm/v/@cfdi/csd?style=flat-square&color=cb3837&label=npm" alt="npm version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@cfdi/csd">
+    <img src="https://img.shields.io/npm/dm/@cfdi/csd?style=flat-square&color=cb3837&label=downloads" alt="npm downloads" />
+  </a>
+  <a href="https://github.com/MisaelMa/node-cfdi/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="license" />
+  </a>
+  <img src="https://img.shields.io/badge/node-%3E%3D22-brightgreen?style=flat-square&logo=node.js&logoColor=white" alt="node" />
+  <img src="https://img.shields.io/badge/TypeScript-strict-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="typescript" />
+</p>
+
+<p align="center">
+  <a href="https://cfdi.recreando.dev">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/cfdi-documentacion.png" alt="Documentacion" width="300" />
+  </a>
+</p>
+
+---
+
+## Ecosistema CFDI
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/cfdi-ecosystem.png" alt="CFDI Ecosystem" width="600" />
+</p>
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xml">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xml.png" alt="@cfdi/xml" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/complementos">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-complementos.png" alt="@cfdi/complementos" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xsd">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xsd.png" alt="@cfdi/xsd" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/csd">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-csd.png" alt="@cfdi/csd" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/csf">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-csf.png" alt="@cfdi/csf" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/catalogos">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-catalogos.png" alt="@cfdi/catalogos" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/transform">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-transform.png" alt="@cfdi/transform" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/elements">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-elements.png" alt="@cfdi/elements" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/types">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-types.png" alt="@cfdi/types" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/expresiones">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-expresiones.png" alt="@cfdi/expresiones" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xml2json">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-2json.png" alt="@cfdi/xml2json" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/rfc">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-rfc.png" alt="@cfdi/rfc" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/utils">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-utils.png" alt="@cfdi/utils" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@clir/openssl">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/clir-openssl.png" alt="@clir/openssl" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@saxon-he/cli">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/saxon-he-cli.png" alt="@saxon-he/cli" width="100%" />
+      </a>
+    </td>
+  </tr>
+</table>
+
+---
 
 ## Instalacion
 
@@ -8,80 +130,31 @@ Manejo de Certificados de Sello Digital (CSD) del SAT. Permite leer archivos `.c
 npm install @cfdi/csd
 ```
 
-## Uso
+---
 
-### Certificado (.cer)
+## Soporte
 
-```typescript
-import { cer } from '@cfdi/csd';
+<p>
+  <a href="https://github.com/MisaelMa/node-cfdi/issues">
+    <img src="https://img.shields.io/badge/GitHub-Issues-181717?style=for-the-badge&logo=github" alt="issues" />
+  </a>
+  <a href="https://github.com/MisaelMa/node-cfdi/discussions">
+    <img src="https://img.shields.io/badge/GitHub-Discussions-181717?style=for-the-badge&logo=github" alt="discussions" />
+  </a>
+  <a href="https://www.npmjs.com/package/@cfdi/csd">
+    <img src="https://img.shields.io/badge/npm-@cfdi/csd-cb3837?style=for-the-badge&logo=npm" alt="npm" />
+  </a>
+</p>
 
-// Cargar archivo de certificado
-cer.setFile('/ruta/al/certificado.cer');
-
-// Obtener PEM
-const pem = cer.getPem();
-const pemSinHeaders = cer.getPem({ begin: true }); // Sin BEGIN/END
-
-// Informacion del certificado
-const noCertificado = cer.getNoCer();    // Numero de certificado
-const serial = cer.serial();              // Numero de serie hex
-const fechas = cer.date();                // { startDate, endDate }
-const vigencia = cer.validity();          // { notBefore, notAfter }
-const sujeto = cer.subject();             // Datos del titular
-const emisor = cer.issuer();              // Datos del emisor
-const llave = cer.pubkey();               // Llave publica PEM
-const huella = cer.fingerPrint();         // Huella digital
-
-// Verificar si el certificado expira en N segundos
-const expira = cer.checkend(86400); // Verificar si expira en 24 horas
-```
-
-### Llave privada (.key)
-
-```typescript
-import { key } from '@cfdi/csd';
-
-// Cargar archivo de llave con contrasena
-key.setFile('/ruta/a/llave.key', 'contrasena123');
-
-// Obtener PEM
-const pem = key.getPem();
-
-// Firmar cadena original
-const firma = key.signatureHexForge('cadena original');    // Firma con node-forge
-const firma2 = key.signatureHexCripto('cadena original');  // Firma con crypto nativo
-```
-
-## API
-
-### Modulo `cer`
-
-| Funcion | Descripcion |
-|---------|-------------|
-| `setFile(path)` | Carga un archivo .cer o .pem |
-| `getPem(options?)` | Retorna el certificado en formato PEM |
-| `getNoCer()` | Retorna el numero de certificado |
-| `serial()` | Retorna el numero de serie hexadecimal |
-| `date(format?)` | Retorna fechas de inicio y fin de vigencia |
-| `validity()` | Retorna `{ notBefore, notAfter }` como objetos Date |
-| `checkend(seconds)` | Verifica si el certificado expira en N segundos |
-| `subject()` | Retorna los datos del titular del certificado |
-| `issuer()` | Retorna los datos del emisor del certificado |
-| `pubkey(options?)` | Retorna la llave publica en formato PEM |
-| `fingerPrint()` | Retorna la huella digital del certificado |
-
-### Modulo `key`
-
-| Funcion | Descripcion |
-|---------|-------------|
-| `setFile(path, password?)` | Carga un archivo .key con contrasena |
-| `getPem(options?)` | Retorna la llave privada en formato PEM |
-| `signatureHexForge(message)` | Firma SHA256 usando node-forge, retorna base64 |
-| `signatureHexCripto(message)` | Firma SHA256 usando crypto nativo, retorna base64 |
+---
 
 ## Autor
 
-**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+<p align="center">
+  <a href="https://github.com/MisaelMa">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/author.png" alt="Amir Misael Marin Coh" width="100%" />
+  </a>
+</p>
 
 ## Licencia
 

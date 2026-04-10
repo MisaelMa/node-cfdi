@@ -1,6 +1,128 @@
-# @saxon-he/cli
+<p align="center">
+  <a href="https://www.npmjs.com/package/@saxon-he/cli">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/saxon-he-cli.png" alt="@saxon-he/cli" width="400" />
+  </a>
+</p>
 
-Wrapper de Saxon-HE para ejecutar transformaciones XSLT y consultas XPath desde Node.js. Proporciona una API fluida (builder pattern) que construye y ejecuta comandos Saxon-HE.
+<h3 align="center">Wrapper de Saxon-HE para transformaciones XSLT en Node.js</h3>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@saxon-he/cli">
+    <img src="https://img.shields.io/npm/v/@saxon-he/cli?style=flat-square&color=cb3837&label=npm" alt="npm version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@saxon-he/cli">
+    <img src="https://img.shields.io/npm/dm/@saxon-he/cli?style=flat-square&color=cb3837&label=downloads" alt="npm downloads" />
+  </a>
+  <a href="https://github.com/MisaelMa/node-cfdi/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="license" />
+  </a>
+  <img src="https://img.shields.io/badge/node-%3E%3D22-brightgreen?style=flat-square&logo=node.js&logoColor=white" alt="node" />
+  <img src="https://img.shields.io/badge/TypeScript-strict-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="typescript" />
+</p>
+
+<p align="center">
+  <a href="https://cfdi.recreando.dev">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/cfdi-documentacion.png" alt="Documentacion" width="300" />
+  </a>
+</p>
+
+---
+
+## Ecosistema CFDI
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/cfdi-ecosystem.png" alt="CFDI Ecosystem" width="600" />
+</p>
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xml">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xml.png" alt="@cfdi/xml" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/complementos">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-complementos.png" alt="@cfdi/complementos" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xsd">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xsd.png" alt="@cfdi/xsd" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/csd">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-csd.png" alt="@cfdi/csd" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/csf">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-csf.png" alt="@cfdi/csf" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/catalogos">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-catalogos.png" alt="@cfdi/catalogos" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/transform">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-transform.png" alt="@cfdi/transform" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/elements">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-elements.png" alt="@cfdi/elements" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/types">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-types.png" alt="@cfdi/types" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/expresiones">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-expresiones.png" alt="@cfdi/expresiones" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xml2json">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-2json.png" alt="@cfdi/xml2json" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/rfc">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-rfc.png" alt="@cfdi/rfc" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/utils">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-utils.png" alt="@cfdi/utils" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@clir/openssl">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/clir-openssl.png" alt="@clir/openssl" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@saxon-he/cli">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/saxon-he-cli.png" alt="@saxon-he/cli" width="100%" />
+      </a>
+    </td>
+  </tr>
+</table>
+
+---
 
 ## Instalacion
 
@@ -8,113 +130,31 @@ Wrapper de Saxon-HE para ejecutar transformaciones XSLT y consultas XPath desde 
 npm install @saxon-he/cli
 ```
 
-Requiere tener el binario de Saxon-HE instalado en el sistema.
+---
 
-## Uso
+## Soporte
 
-### Transformacion XSLT
+<p>
+  <a href="https://github.com/MisaelMa/node-cfdi/issues">
+    <img src="https://img.shields.io/badge/GitHub-Issues-181717?style=for-the-badge&logo=github" alt="issues" />
+  </a>
+  <a href="https://github.com/MisaelMa/node-cfdi/discussions">
+    <img src="https://img.shields.io/badge/GitHub-Discussions-181717?style=for-the-badge&logo=github" alt="discussions" />
+  </a>
+  <a href="https://www.npmjs.com/package/@saxon-he/cli">
+    <img src="https://img.shields.io/badge/npm-@saxon-he/cli-cb3837?style=for-the-badge&logo=npm" alt="npm" />
+  </a>
+</p>
 
-```typescript
-import { Transform } from '@saxon-he/cli';
-
-const transform = new Transform({ binary: '/ruta/saxon-he' });
-
-const resultado = transform
-  .s('/ruta/archivo.xml')       // Archivo XML de entrada
-  .xsl('/ruta/estilos.xslt')   // Hoja de estilos XSLT
-  .warnings('silent')           // Silenciar advertencias
-  .run();                       // Ejecutar y obtener resultado
-
-console.log(resultado);
-```
-
-### Transformacion con salida a archivo
-
-```typescript
-const transform = new Transform({ binary: '/ruta/saxon-he' });
-
-transform
-  .s('/ruta/entrada.xml')
-  .xsl('/ruta/transformacion.xslt')
-  .o('/ruta/salida.html')      // Archivo de salida
-  .run();
-```
-
-### Consulta XQuery
-
-```typescript
-import { Query } from '@saxon-he/cli';
-
-const query = new Query({ binary: '/ruta/saxon-he' });
-
-const resultado = query
-  .s('/ruta/archivo.xml')
-  .qs('//elemento/@atributo')   // Consulta XQuery inline
-  .run();
-```
-
-### Consulta desde archivo
-
-```typescript
-const query = new Query({ binary: '/ruta/saxon-he' });
-
-const resultado = query
-  .s('/ruta/datos.xml')
-  .q('/ruta/consulta.xq')       // Archivo de consulta XQuery
-  .projection('on')
-  .run();
-```
-
-## API
-
-### Clase `Transform`
-
-Metodos principales para transformaciones XSLT:
-
-| Metodo | Descripcion |
-|--------|-------------|
-| `s(filename)` | Archivo XML de entrada |
-| `xsl(filename)` | Hoja de estilos XSLT |
-| `o(filename)` | Archivo de salida |
-| `im(modename)` | Modo inicial de la transformacion |
-| `it(template)` | Template inicial |
-| `warnings(level)` | Nivel de advertencias: `'silent'`, `'recover'`, `'fatal'` |
-| `a(option)` | Activar/desactivar resolvedores: `'on'`, `'off'` |
-| `run()` | Ejecutar el comando y retornar el resultado como string |
-
-### Clase `Query`
-
-Metodos principales para consultas XQuery/XPath:
-
-| Metodo | Descripcion |
-|--------|-------------|
-| `s(filename)` | Archivo XML de entrada |
-| `q(queryfile)` | Archivo de consulta XQuery |
-| `qs(querystring)` | Consulta XQuery inline |
-| `backup(option)` | Activar/desactivar backup: `'on'`, `'off'` |
-| `projection(option)` | Activar/desactivar proyeccion: `'on'`, `'off'` |
-| `stream(option)` | Activar/desactivar streaming: `'on'`, `'off'` |
-| `run()` | Ejecutar el comando y retornar el resultado como string |
-
-### Metodos compartidos (Transform y Query)
-
-Ambas clases heredan de `CliShare` y comparten estos metodos:
-
-| Metodo | Descripcion |
-|--------|-------------|
-| `o(filename)` | Archivo de salida |
-| `s(filename)` | Archivo XML de entrada |
-| `val(validation)` | Validacion: `'strict'`, `'lax'` |
-| `dtd(option)` | Procesamiento DTD |
-| `expand(option)` | Expansion de atributos |
-| `xsd(file)` | Archivo de esquema XSD |
-| `strip(option)` | Eliminacion de espacios en blanco |
-| `catalog(filenames)` | Catalogos XML |
-| `run()` | Ejecutar el comando |
+---
 
 ## Autor
 
-**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+<p align="center">
+  <a href="https://github.com/MisaelMa">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/author.png" alt="Amir Misael Marin Coh" width="100%" />
+  </a>
+</p>
 
 ## Licencia
 

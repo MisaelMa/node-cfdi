@@ -310,18 +310,6 @@ const cfdiSaxon = new CFDI({
 
 ---
 
-## Compatibilidad
-
-| Version CFDI | Soportado |
-| ------------ | --------- |
-| 4.0          | Si        |
-| 3.3          | Si        |
-| 3.2          | Si        |
-
-**Complementos soportados:** Pagos 2.0, Nomina 1.2, Comercio Exterior 2.0, Carta Porte 3.1, Impuestos Locales, INE, Donatarias, Vehiculo Usado, entre otros.
-
----
-
 ## API
 
 | Metodo                       | Descripcion                                           |
@@ -375,7 +363,7 @@ interface Config {
 
 <p align="center">
   <a href="https://github.com/MisaelMa">
-    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/author.png" alt="Amir Misael Marin Coh" width="450" />
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/author.png" alt="Amir Misael Marin Coh" width="100%" />
   </a>
 </p>
 
