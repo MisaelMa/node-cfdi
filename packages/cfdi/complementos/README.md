@@ -1,6 +1,128 @@
-# @cfdi/complementos
+<p align="center">
+  <a href="https://www.npmjs.com/package/@cfdi/complementos">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-complementos.png" alt="@cfdi/complementos" width="400" />
+  </a>
+</p>
 
-Complementos fiscales para CFDI 3.3 y 4.0. Proporciona las clases necesarias para agregar complementos al comprobante fiscal conforme a las especificaciones del SAT.
+<h3 align="center">Complementos fiscales del SAT para CFDI 4.0: pagos, nomina, comercio exterior, carta porte</h3>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@cfdi/complementos">
+    <img src="https://img.shields.io/npm/v/@cfdi/complementos?style=flat-square&color=cb3837&label=npm" alt="npm version" />
+  </a>
+  <a href="https://www.npmjs.com/package/@cfdi/complementos">
+    <img src="https://img.shields.io/npm/dm/@cfdi/complementos?style=flat-square&color=cb3837&label=downloads" alt="npm downloads" />
+  </a>
+  <a href="https://github.com/MisaelMa/node-cfdi/blob/main/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="license" />
+  </a>
+  <img src="https://img.shields.io/badge/node-%3E%3D22-brightgreen?style=flat-square&logo=node.js&logoColor=white" alt="node" />
+  <img src="https://img.shields.io/badge/TypeScript-strict-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="typescript" />
+</p>
+
+<p align="center">
+  <a href="https://cfdi.recreando.dev">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/cfdi-documentacion.png" alt="Documentacion" width="300" />
+  </a>
+</p>
+
+---
+
+## Ecosistema CFDI
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/cfdi-ecosystem.png" alt="CFDI Ecosystem" width="600" />
+</p>
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xml">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xml.png" alt="@cfdi/xml" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/complementos">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-complementos.png" alt="@cfdi/complementos" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xsd">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xsd.png" alt="@cfdi/xsd" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/csd">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-csd.png" alt="@cfdi/csd" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/csf">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-csf.png" alt="@cfdi/csf" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/catalogos">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-catalogos.png" alt="@cfdi/catalogos" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/transform">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-transform.png" alt="@cfdi/transform" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/elements">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-elements.png" alt="@cfdi/elements" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/types">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-types.png" alt="@cfdi/types" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/expresiones">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-expresiones.png" alt="@cfdi/expresiones" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/xml2json">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-2json.png" alt="@cfdi/xml2json" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/rfc">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-rfc.png" alt="@cfdi/rfc" width="100%" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@cfdi/utils">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-utils.png" alt="@cfdi/utils" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@clir/openssl">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/clir-openssl.png" alt="@clir/openssl" width="100%" />
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <a href="https://www.npmjs.com/package/@saxon-he/cli">
+        <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/saxon-he-cli.png" alt="@saxon-he/cli" width="100%" />
+      </a>
+    </td>
+  </tr>
+</table>
+
+---
 
 ## Instalacion
 
@@ -8,115 +130,31 @@ Complementos fiscales para CFDI 3.3 y 4.0. Proporciona las clases necesarias par
 npm install @cfdi/complementos
 ```
 
-## Uso
+---
 
-### Complemento de Pagos 2.0
+## Soporte
 
-```typescript
-import { Pagos20, Pago20, Pago20Relacionado, Pago20Impuestos } from '@cfdi/complementos';
+<p>
+  <a href="https://github.com/MisaelMa/node-cfdi/issues">
+    <img src="https://img.shields.io/badge/GitHub-Issues-181717?style=for-the-badge&logo=github" alt="issues" />
+  </a>
+  <a href="https://github.com/MisaelMa/node-cfdi/discussions">
+    <img src="https://img.shields.io/badge/GitHub-Discussions-181717?style=for-the-badge&logo=github" alt="discussions" />
+  </a>
+  <a href="https://www.npmjs.com/package/@cfdi/complementos">
+    <img src="https://img.shields.io/badge/npm-@cfdi/complementos-cb3837?style=for-the-badge&logo=npm" alt="npm" />
+  </a>
+</p>
 
-const pagos = new Pagos20();
-const pago = new Pago20({
-  FechaPago: '2024-01-15T12:00:00',
-  FormaDePagoP: '01',
-  MonedaP: 'MXN',
-  Monto: '1000.00',
-});
-
-const relacionado = new Pago20Relacionado({
-  IdDocumento: 'UUID-DEL-CFDI',
-  MonedaDR: 'MXN',
-  NumParcialidad: '1',
-  ImpSaldoAnt: '1000.00',
-  ImpPagado: '1000.00',
-  ImpSaldoInsoluto: '0.00',
-});
-
-const complemento = pagos.getComplement();
-```
-
-### Complemento Carta Porte 2.0
-
-```typescript
-import { CartaPorte20 } from '@cfdi/complementos';
-
-const cartaPorte = new CartaPorte20({
-  TranspInternac: 'No',
-  TotalDistRec: '100.00',
-});
-
-const complemento = cartaPorte.getComplement();
-```
-
-### Timbre Fiscal Digital (TFD)
-
-```typescript
-import { Tfd } from '@cfdi/complementos';
-
-const tfd = new Tfd({
-  Version: '1.1',
-  UUID: 'DC2ED983-D108-402E-A2FD-C08EDDA23C47',
-  FechaTimbrado: '2024-01-15T18:05:05',
-  SelloCFD: '...',
-  SelloSAT: '...',
-  NoCertificadoSAT: '30001000000400002495',
-});
-```
-
-### Clase base Complemento
-
-Todos los complementos extienden de la clase abstracta `Complemento<T>`, que provee el metodo `getComplement()` para obtener la estructura XML del complemento.
-
-```typescript
-import { Complemento } from '@cfdi/complementos';
-
-// getComplement() retorna:
-// {
-//   complement: T,           // Datos del complemento
-//   key: string,             // Clave del nodo XML
-//   schemaLocation: string[],// URLs del esquema XSD
-//   xmlns: string,           // Namespace XML
-//   xmlnskey: string,        // Prefijo del namespace
-// }
-```
-
-## API
-
-### Complementos CFDI 4.0
-
-| Clase | Descripcion |
-|-------|-------------|
-| `Pagos20` / `Pago20` | Recepcion de pagos 2.0 |
-| `CartaPorte20` | Carta porte 2.0 |
-| `Aerolineas` | Aerolineas |
-| `Ine` | Instituto Nacional Electoral |
-| `Iedu` | Instituciones educativas |
-
-### Complementos CFDI 3.3
-
-| Clase | Descripcion |
-|-------|-------------|
-| `Tfd` | Timbre fiscal digital |
-| `Cce11` | Comercio exterior 1.1 |
-| `Nomina12` | Nomina 1.2 |
-| `Divisas` | Divisas |
-| `Donat` | Donatarias |
-| `LeyendaFisc` | Leyendas fiscales |
-| `VehiculoUsado` | Vehiculo usado |
-| `Destruccion` | Certificado de destruccion |
-| `ObrasArte` | Obras de arte |
-| `ServicioParcial` | Servicios parciales de construccion |
-| `Implocal` | Impuestos locales |
-| `Hidrocarburos` | Gastos e ingresos de hidrocarburos |
-| `Detallista` | Detallista |
-| `Spei` | SPEI |
-| `ValesDeDespensa` | Vales de despensa |
-| `ConsumoDeCombustibles11` | Consumo de combustibles 1.1 |
-| `VentaVehiculos` | Venta de vehiculos |
+---
 
 ## Autor
 
-**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+<p align="center">
+  <a href="https://github.com/MisaelMa">
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/author.png" alt="Amir Misael Marin Coh" width="100%" />
+  </a>
+</p>
 
 ## Licencia
 
