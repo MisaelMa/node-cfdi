@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/@cfdi/xml">
-    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xml.png" alt="@cfdi/xml" width="200" />
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/packages/cfdi-xml.png" alt="@cfdi/xml" width="400" />
   </a>
 </p>
 
@@ -164,19 +164,23 @@ cfdi.comprobante({
   Total: '1160.00',
 });
 
-cfdi.emisor(new Emisor({
-  Rfc: 'AAA010101AAA',
-  Nombre: 'Empresa SA de CV',
-  RegimenFiscal: '601',
-}));
+cfdi.emisor(
+  new Emisor({
+    Rfc: 'AAA010101AAA',
+    Nombre: 'Empresa SA de CV',
+    RegimenFiscal: '601',
+  })
+);
 
-cfdi.receptor(new Receptor({
-  Rfc: 'BBB020202BBB',
-  Nombre: 'Cliente SA de CV',
-  UsoCFDI: 'G03',
-  DomicilioFiscalReceptor: '64000',
-  RegimenFiscalReceptor: '601',
-}));
+cfdi.receptor(
+  new Receptor({
+    Rfc: 'BBB020202BBB',
+    Nombre: 'Cliente SA de CV',
+    UsoCFDI: 'G03',
+    DomicilioFiscalReceptor: '64000',
+    RegimenFiscalReceptor: '601',
+  })
+);
 
 const concepto = new Concepto({
   ClaveProdServ: '01010101',
@@ -343,7 +347,7 @@ const cfdiSaxon = new CFDI({
 interface Config {
   debug?: boolean;
   compact?: boolean;
-  xslt?: { path: string };   // Ruta al archivo XSLT (requerido para sellar)
+  xslt?: { path: string }; // Ruta al archivo XSLT (requerido para sellar)
   saxon?: { binary: string }; // Si se omite, usa @cfdi/transform
   schema?: { path: string };
 }
@@ -371,7 +375,7 @@ interface Config {
 
 <p align="center">
   <a href="https://github.com/MisaelMa">
-    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/author.png" alt="Amir Misael Marin Coh" width="300" />
+    <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/author.png" alt="Amir Misael Marin Coh" width="450" />
   </a>
 </p>
 
