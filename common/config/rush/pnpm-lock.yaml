@@ -810,6 +810,9 @@ importers:
       '@cfdi/csd':
         specifier: workspace:*
         version: link:../csd
+      '@cfdi/transform':
+        specifier: workspace:*
+        version: link:../transform
       '@cfdi/xsd':
         specifier: workspace:*
         version: link:../xsd

@@ -49,6 +49,10 @@ console.log(txt);
 | `TipoTercero` | enum | e.g. `ProveedorNacional` (`04`), `ProveedorExtranjero` (`05`), `ProveedorGlobal` (`15`). |
 | `TipoOperacion` | enum | e.g. honorarios, arrendamiento, otros con/sin IVA codes. |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](../../../LICENSE).

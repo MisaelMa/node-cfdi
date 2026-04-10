@@ -97,6 +97,10 @@ Instancia con interfaz fluida para comandos OpenSSL pkcs8.
 | `run()` | Ejecutar el comando y retornar resultado |
 | `cli()` | Retornar el comando como string sin ejecutar |
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

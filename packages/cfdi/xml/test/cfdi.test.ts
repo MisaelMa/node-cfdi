@@ -8,7 +8,7 @@ import { cer, key } from '@cfdi/csd';
 import { FileSystem } from '../src/utils/FileSystem';
 import { Logger } from '../src/utils/Logger';
 
-vi.mock('@saxon-he/cli', () => ({
+vi.mock('@cfdi/transform', () => ({
   Transform: vi.fn().mockImplementation(() => ({
     s: vi.fn().mockReturnThis(),
     xsl: vi.fn().mockReturnThis(),

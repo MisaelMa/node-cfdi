@@ -80,7 +80,7 @@
     },
     {
       "name": "@cfdi/transform",
-      "allowedCategories": [ "private" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/types",

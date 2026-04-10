@@ -34,6 +34,10 @@ const historico = await client.obtenerTipoCambio(Moneda.USD, '2024-01-15');
 | `Moneda` | enum | `USD`, `EUR`, `GBP`, `JPY`, `CAD`. |
 | `SERIE_BANXICO` | const | `ReadonlyMap<Moneda, string>` of default series ids. |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](../../../LICENSE).

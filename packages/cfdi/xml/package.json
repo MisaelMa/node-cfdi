@@ -44,6 +44,7 @@
     "@cfdi/csd": "workspace:*",
     "@cfdi/xsd": "workspace:*",
     "@cfdi/complementos": "workspace:*",
+    "@cfdi/transform": "workspace:*",
     "@saxon-he/cli": "workspace:*",
     "xml-js": "^1.6.11"
   },

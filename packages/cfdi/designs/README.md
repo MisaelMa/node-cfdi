@@ -110,6 +110,10 @@ Clase base para crear disenos personalizados. Define los metodos abstractos que 
 
 `logo()`, `folio()`, `datosEmisor()`, `receptor()`, `impuestos()`, `totalEnLetras()`, `certificadoEmisor()`, `folioFiscal()`, `qr()`, `detalles()`, `formaPago()`, `metodoPago()`, `moneda()`, `tipoComprobante()`, entre otros.
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

@@ -49,6 +49,10 @@ const cadena = await transform.run();
 
 La transformacion recorre la estructura del comprobante en el siguiente orden: atributos, InformacionGlobal, CfdiRelacionados, Emisor, Receptor, Conceptos, Impuestos y Complemento. Omite automaticamente namespaces, esquemas y el sello digital.
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

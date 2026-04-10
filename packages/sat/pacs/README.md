@@ -50,6 +50,10 @@ const estatus = await pac.consultarEstatus(timbrado.uuid);
 | `ConsultaEstatusResult` | interface | `uuid`, `estatus`, optional `xml`. |
 | `PacProviderType` | enum | Identifiers (`Finkok`, `SW`, …) for the ecosystem. |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](../../../LICENSE).

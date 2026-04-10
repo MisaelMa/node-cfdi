@@ -79,6 +79,10 @@ const firma2 = key.signatureHexCripto('cadena original');  // Firma con crypto n
 | `signatureHexForge(message)` | Firma SHA256 usando node-forge, retorna base64 |
 | `signatureHexCripto(message)` | Firma SHA256 usando crypto nativo, retorna base64 |
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

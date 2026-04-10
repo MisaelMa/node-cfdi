@@ -4,7 +4,8 @@ import { cer, key } from '@cfdi/csd';
 import { Comprobante } from './elements/Comprobante';
 import { FileSystem } from './utils/FileSystem';
 import { Config, SaxonHe, XsltSheet } from './types/types';
-import { Transform } from '@saxon-he/cli';
+import { Transform as CfdiTransform } from '@cfdi/transform';
+import { Transform as SaxonTransform } from '@saxon-he/cli';
 import { XmlCdfi } from './types/xmlCdfi.interface';
 import xmlJS from 'xml-js';
 import { CFDIError } from './common/error';
@@ -125,12 +126,23 @@ export class CFDI extends Comprobante {
 
       fs.writeFileSync(fullPath, result, 'utf8');
       
-      const transform = new Transform(this.saxon)
-      const cadena = transform
-        .s(fullPath)
-        .xsl(String(this.xslt.path))
-        .warnings('silent')
-        .run();
+      let cadena: string;
+
+      if (this.saxon) {
+        const transform = new SaxonTransform(this.saxon);
+        cadena = transform
+          .s(fullPath)
+          .xsl(String(this.xslt.path))
+          .warnings('silent')
+          .run();
+      } else {
+        const transform = new CfdiTransform();
+        cadena = transform
+          .s(fullPath)
+          .xsl(String(this.xslt.path))
+          .warnings('silent')
+          .run();
+      }
       
       if (this.debug) {
         console.log('xslt =>', this.xslt);

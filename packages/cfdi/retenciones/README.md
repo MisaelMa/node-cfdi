@@ -76,6 +76,10 @@ The builder does not sign the document; add **Certificado**, **Sello**, and rela
 | `TotalesRetencion` | interface | Operation and retention totals |
 | `ComplementoRetencion` | interface | `innerXml` string + optional `meta` |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](https://opensource.org/licenses/MIT).

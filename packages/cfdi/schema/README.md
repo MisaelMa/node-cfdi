@@ -289,7 +289,10 @@ Al contribuir, asegúrate de seguir los principios de clean code implementados:
 4. Mantener compatibilidad hacia atrás
 5. Añadir tests para nueva funcionalidad
 
-## 📝 Changelog
+## Autor
 
-- **v2.0.0**: Refactoring completo con clean code
-- **v1.x.x**: Versión legacy (compatibilidad mantenida)
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
+## Licencia
+
+[MIT](../../LICENSE)

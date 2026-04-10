@@ -112,6 +112,10 @@ Ambas clases heredan de `CliShare` y comparten estos metodos:
 | `catalog(filenames)` | Catalogos XML |
 | `run()` | Ejecutar el comando |
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

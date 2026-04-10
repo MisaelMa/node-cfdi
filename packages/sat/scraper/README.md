@@ -56,6 +56,10 @@ await portal.logout(sesion);
 | `CfdiConsultaResult` | interface | One row of parsed CFDI metadata from the portal. |
 | `ScraperConfig` | interface | Optional `timeout`, `userAgent`, `baseUrl`. |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](../../../LICENSE).

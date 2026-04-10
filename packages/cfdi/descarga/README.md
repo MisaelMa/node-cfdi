@@ -84,6 +84,10 @@ import {
 | `signSoapBody` | function | Sign SOAP body content |
 | `buildSecurityHeader` | function | Build WS-Security header fragment |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](https://opensource.org/licenses/MIT).

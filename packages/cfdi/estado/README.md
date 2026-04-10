@@ -59,6 +59,10 @@ const parsed = parseSoapResponse(responseBodyXml);
 | `WEBSERVICE_URL` | const | SAT WCF endpoint URL |
 | `SOAP_ACTION` | const | SOAPAction header value for Consulta |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](https://opensource.org/licenses/MIT).

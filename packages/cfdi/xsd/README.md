@@ -57,6 +57,10 @@ Clase singleton que gestiona los esquemas de validacion.
 
 Los archivos de esquema deben estar en formato JSON generados a partir de los XSD oficiales del SAT.
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

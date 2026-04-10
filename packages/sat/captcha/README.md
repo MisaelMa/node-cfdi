@@ -51,6 +51,10 @@ const { text } = await solver.solve({ imageBase64: '...' });
 | `CaptchaResult` | interface | `text`, optional `taskId`. |
 | `CaptchaSolver` | interface | `solve(challenge)`; optional `report(taskId, correct)`. |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](../../../LICENSE).

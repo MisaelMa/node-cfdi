@@ -54,6 +54,10 @@ xml = removeNonSatNamespaces(xml);
 | `removeNonSatSchemaLocations` | function | Prune non-SAT pairs from `xsi:schemaLocation` |
 | `collapseWhitespace` | function | Normalize whitespace between tags |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](https://opensource.org/licenses/MIT).

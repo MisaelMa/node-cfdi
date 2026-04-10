@@ -114,6 +114,10 @@ import { Complemento } from '@cfdi/complementos';
 | `ConsumoDeCombustibles11` | Consumo de combustibles 1.1 |
 | `VentaVehiculos` | Venta de vehiculos |
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

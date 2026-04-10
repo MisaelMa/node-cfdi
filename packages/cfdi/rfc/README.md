@@ -40,6 +40,10 @@ const prohibido = rfc.hasForbiddenWords('BUEI850101AB1'); // true
 
 Sin dependencias externas.
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

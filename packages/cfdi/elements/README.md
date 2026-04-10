@@ -77,6 +77,10 @@ import { CartaPorte31, VehiculoUsado } from '@cfdi/elements';
 | `prefix()` | `string` | Prefijo del namespace (ej. `cfdi`) |
 | `name()` | `string` | Nombre del elemento sin prefijo (ej. `Concepto`) |
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

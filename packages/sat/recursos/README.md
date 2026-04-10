@@ -36,6 +36,10 @@ console.log(result.unused, result.added); // diff vs previous complementos
 | `SatVersion` | type | `'3.3' \| '4.0'`. |
 | `DownloadResult` | interface | Paths to schema, XSLT, optional imports, complement list, diff metadata. |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](../../../LICENSE).

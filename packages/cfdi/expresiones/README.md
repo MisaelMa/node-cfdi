@@ -54,6 +54,10 @@ console.log(cadena);
 
 La expresion generada contiene los valores del comprobante en orden: atributos, emisor, receptor, conceptos, impuestos y complemento. Se omiten automaticamente los namespaces, esquemas, certificado y sello.
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

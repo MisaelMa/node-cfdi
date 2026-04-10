@@ -56,6 +56,10 @@ isPath('<xml>contenido</xml>'); // false
 | `File` | clase | Utilidades de lectura de archivos |
 | `isPath(input)` | funcion | Detecta si un string es ruta o contenido |
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

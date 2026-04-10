@@ -51,6 +51,10 @@ import crypto from 'crypto';
 | `sha256Digest` | function | SHA-256 digest in base64. |
 | `signRsaSha256` | function | RSA-SHA256 signature in base64 using a Node `KeyObject`. |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](../../../LICENSE).

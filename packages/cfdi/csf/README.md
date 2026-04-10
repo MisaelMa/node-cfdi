@@ -52,6 +52,10 @@ const datosCrudos = await csf('/ruta/a/constancia.pdf', true);
 
 **Retorna:** Un objeto con los campos del contribuyente (RFC, CURP, nombre, domicilio, regimen, etc.) o un array de strings si `onlyData` es `true`.
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

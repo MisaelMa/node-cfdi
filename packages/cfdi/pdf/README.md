@@ -58,6 +58,10 @@ const opcionesCompletas: OptionsPdf = {
 | `width` | `number \| string` | Ancho del logo |
 | `height` | `number \| string` | Alto del logo |
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

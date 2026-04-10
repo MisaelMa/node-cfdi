@@ -74,6 +74,10 @@ gob.savePDF({
 
 **Nota:** Las consultas al servicio de gobierno (`gob`) requieren resolver un captcha mediante el servicio 2captcha.
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

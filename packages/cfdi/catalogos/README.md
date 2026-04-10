@@ -51,6 +51,10 @@ console.log(FormaPagoList);
 | `ExportacionEnum` | enum | NoAplica, Definitiva, Temporal |
 | `ExportacionType` | type | Tipo union de claves de exportacion |
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

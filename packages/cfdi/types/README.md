@@ -110,6 +110,10 @@ InvoiceType.PAGO;       // 'P'
 | `XsltSheet` | Ruta a la hoja de transformacion XSLT |
 | `Schema` | Ruta al esquema XSD |
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

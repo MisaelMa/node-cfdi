@@ -16,6 +16,10 @@ Abre http://localhost:3000 en tu navegador.
 pnpm build
 ```
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

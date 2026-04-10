@@ -83,6 +83,10 @@ const polizasXml = buildPolizasXml(
 | `CuentaAuxiliar` / `TransaccionAuxiliar` | interface | Auxiliary account and movements. |
 | `VersionContabilidad` | enum | `V1_1`, `V1_3`. |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](../../../LICENSE).

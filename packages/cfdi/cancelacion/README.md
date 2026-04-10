@@ -79,6 +79,10 @@ import {
 | `buildConsultaPendientesRequest` | function | Build SOAP for ConsultaPendientes |
 | `parsePendientesResponse` | function | Parse pending cancellations list |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](https://opensource.org/licenses/MIT).

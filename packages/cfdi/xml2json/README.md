@@ -41,6 +41,10 @@ const jsonCompact = XmlToJson('/ruta/al/cfdi.xml', { compact: true });
 
 **Retorna:** Objeto JSON con la estructura del CFDI. Los namespaces como `cfdi:` se eliminan por defecto para facilitar el acceso a los nodos.
 
+## Autor
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## Licencia
 
 [MIT](../../LICENSE)

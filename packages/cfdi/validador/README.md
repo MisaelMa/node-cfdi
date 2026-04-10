@@ -64,6 +64,10 @@ import {
 | `timbreRules` | const | Timbre FDI rules |
 | `selloRules` | const | CFD seal rules |
 
+## Author
+
+**Amir Misael Marin Coh** — [@MisaelMa](https://github.com/MisaelMa)
+
 ## License
 
 This package is released under the [MIT License](https://opensource.org/licenses/MIT).
