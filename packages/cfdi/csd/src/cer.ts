@@ -1,3 +1,4 @@
+/** @deprecated Use Certificate class instead */
 import console from 'console';
 import moment from 'moment';
 import pkg from 'node-forge';
