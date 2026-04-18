@@ -1,13 +1,31 @@
-# contacto
-
 # Contacto
 
-Si necesita ayuda o tiene alguna pregunta sobre la biblioteca `@cfdi/xml`, hay varias formas en las que puede ponerse en contacto con nosotros:
+¿Tienes dudas, encontraste un bug o quieres proponer una mejora al ecosistema `@cfdi/*`? Estos son los canales disponibles para contactarnos.
 
-- [ ] Puede enviar un correo electrónico directamente a nuestra dirección de correo electrónico que se encuentra en nuestro perfil de GitHub. Estaremos encantados de ayudarle y responder a cualquier pregunta que tenga lo antes posible.  
-[amisael.amir.misael@gmail.com](mailto:amisael.amir.misael@gmail.com) 
-- [ ] También puede abrir un "issue" o problema en nuestro repositorio de GitHub y detallar su pregunta o problema. Haremos todo lo posible para responder a su consulta lo antes posible.
-- [ ] Si prefiere una respuesta más rápida y directa, también puede contactarnos por teléfono en el número que aparece en nuestro perfil de GitHub. Estaremos encantados de ayudarlo a resolver su pregunta o problema lo antes posible.  
-9841203483
+## Canales directos
 
-Tenga en cuenta que estamos aquí para ayudarlo y queremos asegurarnos de que tenga una experiencia positiva y exitosa con nuestra biblioteca. No dude en ponerse en contacto con nosotros en cualquier momento si necesita ayuda o tiene alguna duda sobre la biblioteca `@cfdi/xml`  o ecosistema.  ¡Gracias por su interés y esperamos tener noticias suyas pronto!
+| Canal | Para qué usarlo | Link |
+|-------|-----------------|------|
+| 📧 Correo | Consultas privadas, patrocinios, soporte personalizado | [amisael.amir.misael@gmail.com](mailto:amisael.amir.misael@gmail.com) |
+| 📱 WhatsApp | Respuesta rápida, urgencias | [+52 984 120 3483](https://wa.me/529841203483) |
+| 🌐 Formulario | Contacto general desde el sitio | [cfdi.recreando.dev/contacto](https://cfdi.recreando.dev/contacto) |
+
+## GitHub
+
+Para temas públicos (bugs, dudas técnicas, propuestas de features) prefiere GitHub — la respuesta beneficia a toda la comunidad y queda documentada.
+
+- 🐛 **Issues**: [github.com/MisaelMa/node-cfdi/issues](https://github.com/MisaelMa/node-cfdi/issues) — reporta bugs o solicita features.
+- 💬 **Discussions**: [github.com/MisaelMa/node-cfdi/discussions](https://github.com/MisaelMa/node-cfdi/discussions) — preguntas abiertas, casos de uso, ideas.
+
+## ¿Qué canal elegir?
+
+- **Bug o error técnico** → abre un issue en GitHub con pasos para reproducir.
+- **Duda de uso o arquitectura** → Discussions en GitHub.
+- **Donación, patrocinio o colaboración comercial** → correo o WhatsApp.
+- **Datos bancarios para SPEI** → correo o WhatsApp (ver [donaciones](./donaciones.md)).
+
+## Tiempos de respuesta
+
+Este es un proyecto open source mantenido en tiempo libre. Haré lo posible por responder en **24–72 horas** en días hábiles. Los issues con reproducción clara y los PRs reciben prioridad.
+
+¡Gracias por usar `@cfdi/*`! 🇲🇽

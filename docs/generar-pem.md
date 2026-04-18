@@ -1,49 +1,39 @@
-# CSD
+# Generar archivos `.pem`
 
-# Generar archivos .pem
+## Que son los certificados
 
-Lo primero que se necesita es tener instalada la librería OpenSSL (programa dedicado a la generación y tratado de claves, certificados y keyStore) para poder utilizar los comandos que nos ayudarán a crear las llaves de nuestros sellos digitales.
+Para emitir un CFDI necesitas un **Certificado de Sello Digital (CSD)** emitido por el SAT. El CSD esta compuesto por dos archivos:
 
-Linux
+- **`.cer`**: certificado publico en formato DER. Contiene la llave publica, el RFC del contribuyente, el numero de certificado y la vigencia.
+- **`.key`**: llave privada en formato DER (PKCS#8) cifrada con una contrasena que tu definiste al tramitarlo.
 
-```bash
-sudo apt-get install openssl
-```
+## Donde se obtienen
 
+- **CSD**: se genera desde el portal del SAT con la aplicacion **Certifica** ([https://portalsat.plataforma.sat.gob.mx/certifica/](https://portalsat.plataforma.sat.gob.mx/certifica/)) y se tramita en **Certisat Web** con tu e.firma. Es el certificado que debes usar para firmar CFDI.
+- **e.firma (FIEL)**: se obtiene en oficinas del SAT con cita. Sirve para tramites y para autenticarse contra los webservices del SAT (descarga masiva, etc.), **no para sellar CFDI**.
 
+## Para que necesitamos los `.pem`
 
-```bash
-yum install openssl
-```
+El SAT entrega `.cer` y `.key` en formato binario DER. El formato `.pem` es la misma informacion pero codificada en base64 con cabeceras de texto (`-----BEGIN ... -----`).
 
-  
-Mac
+Aunque el paquete **acepta directamente `.cer` y `.key`** (los convierte en memoria), recomendamos generar los `.pem` una sola vez y trabajar con ellos porque:
 
-```bash
-sudo port install openssl
-```
+- Son texto plano, faciles de inspeccionar, diffear y versionar en bovedas seguras (Vault, AWS Secrets Manager, etc.).
+- Evitas manejar la contrasena del `.key` en cada firma: el `.pem` puede persistirse ya descifrado.
+- Es el formato estandar que esperan la mayoria de librerias criptograficas.
 
+## Requisitos
 
+Necesitas tener instalado **OpenSSL**. Consulta [requisitos.md](./requisitos.md) para las instrucciones de instalacion por sistema operativo.
 
-```bash
-brew install openssl@1.1
-```
+## Comandos
 
-Windows  
-Descargar libreria: [http://slproweb.com/products/Win32OpenSSL.html](http://slproweb.com/products/Win32OpenSSL.html)
-
-Deberán descargar la versión según su sistema operativo, e instalar
-
-
+En Windows usa `openssl.exe` en lugar de `openssl`.
 
 ```bash
-#si es Windows usar openssl.exe  
-openssl pkcs8 -inform DER -in nombrearchivo.key -out nombrearchivo.key.pem -passin pass:contraseña
-```
+# .key (DER cifrado) → .pem
+openssl pkcs8 -inform DER -in nombrearchivo.key -out nombrearchivo.key.pem -passin pass:contrasena
 
-
-
-```bash
-#si es Windows usar openssl.exe  
+# .cer (DER) → .pem
 openssl x509 -inform DER -outform PEM -in ruta/nombreArchivo.cer -pubkey -out ruta/nombreArchivo.cer.pem
 ```

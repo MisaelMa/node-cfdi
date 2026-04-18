@@ -1,40 +1,43 @@
-# complementos soportados
+# Complementos
 
 # Complementos
 
-Estaremos liberando más completos estas semanas y si requiere uno en especial y no está en lista puede contactarnos y acelerar el proceso de liberación.- [ ] ~~Timbre fiscal digital (TFD).~~
-- [ ] Estado de cuenta de combustibles de monederos electrónicos.
-- [ ] Donatarias.
-- [ ] Compra venta de divisas.
-- [ ] Otros derechos e impuestos.
-- [ ] Leyendas fiscales.
-- [ ] Persona física integrante de coordinado.
-- [ ] Turista pasajero extranjero.
-- [ ] Spei de tercero a tercero.
-- [ ] Sector de ventas al detalle (Detallista).
-- [ ] CFDI Registro fiscal.
-- [ ] Recibo de pago de nómina.
-- [x] Pago 2.0.
-- [x] Carta Porte 2.0
-- [ ] Vales de despensa.
-- [ ] Consumo de combustibles.  versión 1.1 
-- [x] Aerolíneas.
-- [ ] Notarios Públicos.
-- [ ] Vehículo usado.
-- [ ] Servicios parciales de construcción.
-- [ ] Renovación y sustitución de vehículos.
-- [ ] Certificado de destrucción
-- [ ] Obras de arte plásticas y antigüedades
-- [x] INE 1.1
-- [ ] Comercio Exterior  versión 1.1 
-- [ ] Recepción de pagos
-- [ ] Hidrocarburos
-- [ ] IngresosHidrocarburos
-- [ ] GastosHidrocarburos10  
+```bash
+npm i @cfdi/complementos --save
+```
 
-# Complementos de Concepto
+## Complementos disponibles
 
-- [x] Instituciones educativas privadas.
-- [ ] Venta de vehículos.
-- [ ] Terceros.
-- [ ] Acreditamiento del IEPS
+| Complemento | Clase | Documentacion |
+|-------------|-------|---------------|
+| Pagos 2.0 | `Pagos20`, `Pago20`, `Pago20Relacionado`, `Pago20ImpuestosP` | [pagos-2.0](pagos-2.0) |
+| Carta Porte 2.0 | `CartaPorte20`, `CtaPrt20Ubicacion`, `CtaPrt20Mercancias`, `CtaPrt20FiguraTransporte` | [carta-porte-2.0](carta-porte-2.0) |
+| INE 1.1 | `Ine` | [ine-1.1](ine-1.1) |
+| Aerolineas | `Aerolineas` | - |
+| IEDU | `Iedu` | [conceptos](../conceptos#iedu) |
+
+## Uso general
+
+Todos los complementos se importan desde `@cfdi/complementos` y se agregan al CFDI con el metodo `complemento()`:
+
+```typescript
+import { CFDI } from '@cfdi/xml';
+import { Pagos20 } from '@cfdi/complementos';
+
+const cfdi = new CFDI({ /* config */ });
+// ... emisor, receptor, conceptos ...
+
+const pago20 = new Pagos20();
+// ... configurar complemento ...
+
+cfdi.complemento(pago20);
+```
+
+Para complementos de concepto (como IEDU), se usa `concepto.complemento()`:
+
+```typescript
+import { Iedu } from '@cfdi/complementos';
+
+const iedu = new Iedu({ /* attrs */ });
+concepto.complemento(iedu);
+```
