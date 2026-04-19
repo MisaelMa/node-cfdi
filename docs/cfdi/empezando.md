@@ -2,59 +2,79 @@
 
 # Recreando + CFDI
 
-Este paquete genera el xml del cfdi, la contribucion fue con platicas para mejoras y exposicion de  funciones internas, gracias a esto se planteo realizar mas paquetes para ayudar a las integraciones de factura de terceros.  
-  
-Por lo cual se crearon lo siguientes paquetes, algunos estan en proceso de desarollo para  llegar a ser estables.- [x] [`@cfdi/xml`](https://www.npmjs.com/package/@cfdi/xml)
-- [x] `@cfdi/xsd`
-- [x] `@cfdi/schema`
-- [x] [`@cfdi/complementos`](https://www.npmjs.com/package/@cfdi/complementos)
-- [x] [`@cfdi/catalogos`](https://)
-- [x] [`@cfdi/csd`](https://www.npmjs.com/package/@cfdi/csd)
-- [x] `@cfdi/csf`
-- [x] [`@cfdi/utils`](https://)
-- [x] `@cfdi/2json`
-- [ ] `@cfdi/transform`
-- [x] `@cfdi/types`
-- [x] `@cfdi/elements`
-- [ ] @cfdi/expresiones
-14. @cfdi/pdf
-15. @cfdi/curp
-16. @cfdi/rfc
+Este paquete genera el xml del CFDI a partir de clases TypeScript, lo que facilita la creacion de XML y sellarlo sin problemas de compatibilidad.
 
-Los cambios que se realizaron al paquete fueron muy pocos y no se realizaran muchos cambios al codigo que ya  tenia de [`@signati/core`](https://www.npmjs.com/package/@signati/core).  
-El Nombre del paquete principal cambio mas al contexto de que se trabaja pasando de [`@signati/core`](https://www.npmjs.com/package/@signati/core) a [`@cfdi/xml`](https://www.npmjs.com/package/@cfdi/xml).```bash
-npm i @cfdi/xml --save
+## Paquetes
+
+Se crearon los siguientes paquetes para cubrir todo el ecosistema de facturacion electronica:
+
+- [x] [`@cfdi/xml`](https://www.npmjs.com/package/@cfdi/xml) - Generacion y sellado de XML CFDI 4.0
+- [x] [`@cfdi/complementos`](https://www.npmjs.com/package/@cfdi/complementos) - Complementos fiscales (Pagos 2.0, Carta Porte 2.0, INE, etc.)
+- [x] [`@cfdi/catalogos`](https://www.npmjs.com/package/@cfdi/catalogos) - Catalogos del SAT (enums y tipos)
+- [x] [`@cfdi/csd`](https://www.npmjs.com/package/@cfdi/csd) - Certificados de Sello Digital (Certificate, PrivateKey, Credential)
+- [x] [`@cfdi/types`](https://www.npmjs.com/package/@cfdi/types) - Interfaces TypeScript para CFDI
+- [x] [`@cfdi/xsd`](https://www.npmjs.com/package/@cfdi/xsd) - Validacion XSD con JSON Schema
+- [x] `@cfdi/schema` - Procesamiento de esquemas
+- [x] `@cfdi/elements` - Elementos estructurales del comprobante
+- [x] `@cfdi/transform` - Transformacion XSLT y cadena original (reemplaza Saxon)
+- [x] `@cfdi/xml2json` - Conversion XML a JSON
+- [x] [`@cfdi/utils`](https://www.npmjs.com/package/@cfdi/utils) - Utilidades (numeros a letras, logos)
+- [x] `@cfdi/csf` - Lectura de Constancia de Situacion Fiscal (PDF)
+- [x] `@cfdi/rfc` - Validacion y generacion de RFC
+- [x] `@cfdi/expresiones` - Expresiones impresas
+- [x] `@cfdi/pdf` - Generacion PDF
+- [x] `@cfdi/curp` - Validacion y consulta de CURP
+
+## Instalacion
+
+```bash
+npm i @cfdi/xml --save
 ```
 
-otro de los cambios que si afectan si esta usando TypeScript es el renombreado de la interface `Comprobante` a `CFDIAttributes`  
-![](https://ik.imagekit.io/gky5zgkgy/article/amir_afBB7bJgCZ)
+Si vas a ocupar complementos:
 
-## Soporte a extension **`.pem`**
+```bash
+npm i @cfdi/complementos --save
+```
 
-otras de la novedades que se encuentra es la integracion del paquete [`@cfdi/csd`](https://www.npmjs.com/package/@cfdi/csd). que nos permite la obtencion de datos de los certitificados de sellos digital (**`CSD`**), con esta adiccion a la lista ya se puede ocupar las extenciones `pem`  
-para poder generar los sellos del xml o obtecion del numero del certificado.  
+## Soporte de archivos
+
+El paquete `@cfdi/csd` soporta tanto archivos binarios del SAT como `.pem`:
+
 ```typescript
-const key = `/home/dev/certificados/LAN7008173R5.key`;  
+// Archivos binarios del SAT
+const key = `/home/dev/certificados/LAN7008173R5.key`;
 const cer = `/home/dev/certificados/LAN7008173R5.cer`;
 ```
 
-o```typescript
-const key = `/home/dev/certificados/LAN7008173R5.pem`;  
-const cer = `/home/dev/certificados/LAN7008173R5.pem`;
+```typescript
+// Archivos PEM
+const key = `/home/dev/certificados/LAN7008173R5.key.pem`;
+const cer = `/home/dev/certificados/LAN7008173R5.cer.pem`;
 ```
 
 ## Cadena Original 4.0
 
-El ultimo cambio echo fue el siguiente. link del archivo [cadenaoriginal.xslt](https://github.com/MisaelMa/cfdi/releases/download/4.0.2/4.0.zip)```typescript
-import path from 'path';  
-const files_path = path.resolve(__dirname, '..', '..', '..', '..', 'files');  
-const xslt_path = files_path + '/4.0/cadenaoriginal.xslt';  
-  
-//@cfdi/xml  
-const cfd = new CFDI(comprobanteAttribute, {  
-      debug: false,  
-      xslt: {   
-          path: xslt_path   
-     },  
+El paquete `@cfdi/transform` reemplaza la dependencia de Saxon-HE para generar la cadena original. Ya no es necesario instalar Java ni Saxon.
+
+```typescript
+import { CFDI } from '@cfdi/xml';
+
+const xslt_path = '/home/dev/files/4.0/cadenaoriginal.xslt';
+
+const cfd = new CFDI({
+  debug: false,
+  xslt: {
+    path: xslt_path,
+  },
+});
+```
+
+Si aun deseas usar Saxon-HE (opcional), puedes pasarlo en la configuracion:
+
+```typescript
+const cfd = new CFDI({
+  xslt: { path: xslt_path },
+  saxon: { binary: '/usr/local/bin/transform' },
 });
 ```

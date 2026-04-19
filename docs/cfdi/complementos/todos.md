@@ -1,105 +1,69 @@
-# Complementos
+# Complementos soportados
 
 # Complementos
 
+## Complementos de comprobante
 
+- [x] Pago 2.0
+- [x] Carta Porte 2.0
+- [x] Aerolineas
+- [x] INE 1.1
+- [ ] ~~Timbre fiscal digital (TFD)~~
+- [ ] Estado de cuenta de combustibles de monederos electronicos
+- [ ] Donatarias
+- [ ] Compra venta de divisas
+- [ ] Otros derechos e impuestos
+- [ ] Leyendas fiscales
+- [ ] Persona fisica integrante de coordinado
+- [ ] Turista pasajero extranjero
+- [ ] Spei de tercero a tercero
+- [ ] Sector de ventas al detalle (Detallista)
+- [ ] CFDI Registro fiscal
+- [ ] Recibo de pago de nomina
+- [ ] Vales de despensa
+- [ ] Consumo de combustibles version 1.1
+- [ ] Notarios Publicos
+- [ ] Vehiculo usado
+- [ ] Servicios parciales de construccion
+- [ ] Renovacion y sustitucion de vehiculos
+- [ ] Certificado de destruccion
+- [ ] Obras de arte plasticas y antiguedades
+- [ ] Comercio Exterior version 1.1
+- [ ] Hidrocarburos
+- [ ] IngresosHidrocarburos
+- [ ] GastosHidrocarburos10
 
-```bash
-npm i @cfdi/complementos --save
-```
+## Complementos de Concepto
 
+- [x] Instituciones educativas privadas (IEDU)
+- [ ] Venta de vehiculos
+- [ ] Terceros
+- [ ] Acreditamiento del IEPS
 
-
-## INE 
+## Aerolineas
 
 ```typescript
-  
-import {Destruccion} from '@cfdi/complementos'  
-const destruccion = new Destruccion({ Version: '1.0', NumFolDesVeh: '0221', Serie: '012' });  
-destruccion.InformacionAduanera({ Aduana: 'ADUANA', Fecha: '129283', NumPedImp: 'ASAS' });  
-destruccion.VehiculoDestruido({  
-      Año: '2019',  
-      Marca: 'Nissan',  
-      Modelo: 'ASAD',  
-      TipooClase: 'ASDSA',  
-      NumFolTarjCir: 'ASSA',  
-      NumPlacas: 'QRR0',  
-});  
-this.cfd.complemento(destruccion)  
-        
+import { Aerolineas } from '@cfdi/complementos';
+
+const aerolineas = new Aerolineas({
+    Version: '1.0',
+    TUA: '50.00',
+});
+
+aerolineas.OtrosCargos({ TotalCargos: '150.00' });
+aerolineas.Cargo({ CodigoCargo: 'YR', Importe: '100.00' });
+aerolineas.Cargo({ CodigoCargo: 'XY', Importe: '50.00' });
+
+cfdi.complemento(aerolineas);
 ```
-
-
 
 ```xml
-  
-<?xml version="1.0" encoding="UTF-8"?>  
-  
-<cfdi:Complemento>  
- <destruccion:certificadodedestruccion Version="1.0" NumFolDesVeh="0221" Serie="012">  
-  <destruccion:InformacionAduanera Aduana="ADUANA" Fecha="129283" NumPedImp="ASAS"/>  
-  <destruccion:VehiculoDestruido Año="2019" Marca="Nissan" Modelo="ASAD" TipooClase="ASDSA" NumFolTarjCir="ASSA" NumPlacas="QRR0"/>  
- </destruccion:certificadodedestruccion>  
-</cfdi:Complemento
-```
-
-## PAGO10(Deprecated)
-
-En la version `CFDI 4.0` se ocupa el [pago 2.0](https://cfdi.recreando.dev/es/complemento/pago-2-0)
-
-```javascript
-import {Pago10} from '@cfdi/complementos'  
-const pago = new Pago10({  
-      Version: '1.0',  
-    });  
-    const docRela = new Pago10Relacionado();  
-    docRela.relacion({  
-      IdDocumento: 'hasd',  
-      MonedaDR: 'MMX',  
-      MetodoDePagoDR: 'PUE',  
-    });  
-    docRela.relacion({  
-      IdDocumento: 'hasd',  
-      MonedaDR: 'MMX',  
-      MetodoDePagoDR: 'PUE',  
-    });  
-    const impuesto = new Pago10Impuestos({  
-      TotalImpuestosRetenidos: '12',  
-      TotalImpuestosTrasladados: '234z ',  
-    });  
-    impuesto.traslados({  
-      Importe: '100',  
-      Impuesto: '1201',  
-      TasaOCuota: '123',  
-      TipoFactor: '%',  
-    });  
-    impuesto.retenciones({ Importe: '10', Impuesto: '10' });  
-    const impuesto2 = new Pago10Impuestos({  
-      TotalImpuestosRetenidos: '12',  
-      TotalImpuestosTrasladados: '234z ',  
-    });  
-    impuesto2.traslados({  
-      Importe: '100',  
-      Impuesto: '1201',  
-      TasaOCuota: '123',  
-      TipoFactor: '%',  
-    });  
-    impuesto2.retenciones({ Importe: '10', Impuesto: '10' });  
-    pago.pago({  
-      data: {  
-        FechaPago: '2019-11-27T00:00:00',  
-        FormaDePagoP: '03',  
-        MonedaP: 'MXN',  
-        Monto: '5220.00',  
-        NumOperacion: '1',  
-        RfcEmisorCtaOrd: 'SEQ920520ME3',  
-        NomBancoOrdExt: 'BBVA Bancomer',  
-        RfcEmisorCtaBen: 'WSI1503194J6',  
-        CtaBeneficiario: '0101255614',  
-      },  
-      relacionado: docRela.getRelations(),  
-      impuestos: [impuesto.getImpuesto(), impuesto2.getImpuesto()],  
-    });  
-  
-    this.cfd.complemento(pago);
+<cfdi:Complemento>
+  <aerolineas:Aerolineas Version="1.0" TUA="50.00">
+    <aerolineas:OtrosCargos TotalCargos="150.00">
+      <aerolineas:Cargo CodigoCargo="YR" Importe="100.00"/>
+      <aerolineas:Cargo CodigoCargo="XY" Importe="50.00"/>
+    </aerolineas:OtrosCargos>
+  </aerolineas:Aerolineas>
+</cfdi:Complemento>
 ```

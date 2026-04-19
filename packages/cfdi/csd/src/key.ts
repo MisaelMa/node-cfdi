@@ -1,3 +1,4 @@
+/** @deprecated Use PrivateKey class instead */
 import * as crypto from 'crypto';
 
 import { pkcs8 } from '@clir/openssl';

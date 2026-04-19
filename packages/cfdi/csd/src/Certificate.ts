@@ -226,6 +226,11 @@ export class Certificate {
     return crypto.createHash('sha256').update(derBuf).digest('hex').toUpperCase();
   }
 
+  /** Retorna el contenido base64 del certificado (sin headers PEM ni whitespace) */
+  toBase64(): string {
+    return this._pem.replace(/(-+[^-]+-+)/g, '').replace(/\s+/g, '');
+  }
+
   /** Llave publica en formato PEM */
   publicKey(): string {
     return pki.publicKeyToPem(this._forgeCert.publicKey as pkg.pki.rsa.PublicKey);
