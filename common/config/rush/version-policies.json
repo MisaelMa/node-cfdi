@@ -2,13 +2,13 @@
   {
     "policyName": "xml",
     "definitionName": "lockStepVersion",
-    "version": "4.0.18-dev.6",
+    "version": "4.0.18-dev.7",
     "nextBump": "patch"
   },
   {
     "policyName": "complementos",
     "definitionName": "lockStepVersion",
-    "version": "4.0.17-dev.6",
+    "version": "4.0.17-dev.7",
     "nextBump": "patch"
   },
   {
@@ -20,7 +20,7 @@
   {
     "policyName": "csd",
     "definitionName": "lockStepVersion",
-    "version": "4.0.16-dev.6",
+    "version": "4.0.16-dev.7",
     "nextBump": "patch"
   },
   {
