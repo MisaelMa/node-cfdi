@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/csd",
-  "version": "4.0.16-dev.7",
+  "version": "4.0.16-alpha.7",
   "description": "Certificados de Sello Digital (CSD) - lectura de archivos .cer y .key para CFDI",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {

@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/xsd",
-  "version": "4.0.17-dev.6",
+  "version": "4.0.17-alpha.6",
   "description": "Validacion de CFDI contra esquemas XSD oficiales del SAT",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {

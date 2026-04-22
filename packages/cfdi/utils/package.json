@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/utils",
-  "version": "4.0.17-dev.5",
+  "version": "4.0.17-alpha.5",
   "description": "Utilidades para CFDI: conversion de numeros a letras, formateo de montos",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {
