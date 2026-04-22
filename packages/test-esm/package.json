@@ -1,0 +1,28 @@
+{
+  "name": "test-esm",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "update-versions": "node update-versions.mjs"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "@cfdi/xml": "4.0.18-dev.3",
+    "@cfdi/complementos": "4.0.17-dev.3",
+    "@cfdi/xsd": "4.0.17-dev.3",
+    "@cfdi/csd": "4.0.16-dev.3",
+    "@cfdi/csf": "4.0.16-dev.3",
+    "@cfdi/catalogos": "4.0.16-dev.3",
+    "@cfdi/utils": "4.0.17-dev.2",
+    "@cfdi/rfc": "0.0.10",
+    "@clir/openssl": "0.0.17-dev.2",
+    "@saxon-he/cli": "12.5.2-dev.2",
+    "@cfdi/types": "4.0.14-dev.2",
+    "@cfdi/transform": "4.0.14-dev.2",
+    "@cfdi/2json": "4.0.14-dev.2",
+    "@cfdi/expresiones": "4.0.14-dev.2",
+    "@cfdi/elements": "4.0.14-dev.2"
+  }
+}

@@ -1,10 +1,11 @@
 import fs from 'fs';
-import { cer, key } from '@cfdi/csd';
+import { Certificate, PrivateKey } from '@cfdi/csd';
 
 import { Comprobante } from './elements/Comprobante';
 import { FileSystem } from './utils/FileSystem';
 import { Config, SaxonHe, XsltSheet } from './types/types';
-import { Transform } from '@saxon-he/cli';
+import { Transform as CfdiTransform } from '@cfdi/transform';
+import { Transform as SaxonTransform } from '@saxon-he/cli';
 import { XmlCdfi } from './types/xmlCdfi.interface';
 import xmlJS from 'xml-js';
 import { CFDIError } from './common/error';
@@ -41,10 +42,9 @@ export class CFDI extends Comprobante {
    */
   public certificar(cerpath: string): CFDI {
     try {
-      cer.setFile(cerpath);
-
-      this.setNoCertificado(cer.getNoCer());
-      this.setCertificado(cer.getPem({ begin: true }));
+      const cert = Certificate.fromFileSync(cerpath);
+      this.setNoCertificado(cert.noCertificado());
+      this.setCertificado(cert.toBase64());
       return this;
     } catch (e) {
       const error = CFDIError({
@@ -125,12 +125,23 @@ export class CFDI extends Comprobante {
 
       fs.writeFileSync(fullPath, result, 'utf8');
       
-      const transform = new Transform(this.saxon)
-      const cadena = transform
-        .s(fullPath)
-        .xsl(String(this.xslt.path))
-        .warnings('silent')
-        .run();
+      let cadena: string;
+
+      if (this.saxon) {
+        const transform = new SaxonTransform(this.saxon);
+        cadena = transform
+          .s(fullPath)
+          .xsl(String(this.xslt.path))
+          .warnings('silent')
+          .run();
+      } else {
+        const transform = new CfdiTransform();
+        cadena = transform
+          .s(fullPath)
+          .xsl(String(this.xslt.path))
+          .warnings('silent')
+          .run();
+      }
       
       if (this.debug) {
         console.log('xslt =>', this.xslt);
@@ -165,13 +176,8 @@ export class CFDI extends Comprobante {
     password: string
   ): string {
     try {
-      // const key = pem.toString('utf8');
-      // openssl dgst -sha256 -sign account.key -out signature.sha256 signature.b64
-      key.setFile(keyfile, password);
-      const sello = key.signatureHexForge(cadenaOriginal);
-      return sello;
-      //await sign.update(cadenaOriginal);
-      // resolve(sign.sign(keyPem.privateKeyPem, 'base64'));
+      const pk = PrivateKey.fromFileSync(keyfile, password);
+      return pk.sign(cadenaOriginal);
     } catch (e) {
       throw CFDIError({
         e,

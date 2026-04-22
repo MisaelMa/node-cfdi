@@ -7,10 +7,6 @@
     "build": ""
   },
   "dependencies": {
-    "@rushstack/heft": "^0.68.6",
-    "@rushstack/heft-jest-plugin": "^0.12.18",
-    "eslint": "^8.57.0",
-    "jest-environment-node": "^29.5.0",
     "typescript": "^5.6.3",
     "tsconfig-paths": "^4.0.0"
   }

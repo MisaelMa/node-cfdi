@@ -1,0 +1,105 @@
+{
+  "$id": "comprobante.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "This JSON Schema file was generated from comprobante on Tue Dec 26 2023 18:31:04 GMT-0500 (Eastern Standard Time).  For more information please see http://www.xsd2jsonschema.org",
+  "description": "Atributo requerido para incorporar el código postal del lugar de expedición del comprobante (domicilio de la matriz o de la sucursal).",
+  "required": [
+    "Version",
+    "Fecha",
+    "Sello",
+    "NoCertificado",
+    "Certificado",
+    "SubTotal",
+    "Moneda",
+    "Total",
+    "TipoDeComprobante",
+    "Exportacion",
+    "LugarExpedicion"
+  ],
+  "properties": {
+    "Version": {
+      "description": "Atributo requerido con valor prefijado a 4.0 que indica la versión del estándar bajo el que se encuentra expresado el comprobante.",
+      "type": "string"
+    },
+    "Serie": {
+      "description": "Atributo opcional para precisar la serie para control interno del contribuyente. Este atributo acepta una cadena de caracteres.",
+      "maxLength": 25,
+      "minLength": 1,
+      "pattern": "[^|]{1,25}",
+      "type": "string"
+    },
+    "Folio": {
+      "description": "Atributo opcional para control interno del contribuyente que expresa el folio del comprobante, acepta una cadena de caracteres.",
+      "maxLength": 40,
+      "minLength": 1,
+      "pattern": "[^|]{1,40}",
+      "type": "string"
+    },
+    "Fecha": {
+      "$ref": "tipoDatos.json#/definitions/t_FechaH"
+    },
+    "Sello": {
+      "description": "Atributo requerido para contener el sello digital del comprobante fiscal, al que hacen referencia las reglas de resolución miscelánea vigente. El sello debe ser expresado como una cadena de texto en formato Base 64.",
+      "type": "string"
+    },
+    "FormaPago": {
+      "$ref": "catalogos.json#/definitions/c_FormaPago"
+    },
+    "NoCertificado": {
+      "description": "Atributo requerido para expresar el número de serie del certificado de sello digital que ampara al comprobante, de acuerdo con el acuse correspondiente a 20 posiciones otorgado por el sistema del SAT.",
+      "maxLength": 20,
+      "minLength": 20,
+      "pattern": "[0-9]{20}",
+      "type": "string"
+    },
+    "Certificado": {
+      "description": "Atributo requerido que sirve para incorporar el certificado de sello digital que ampara al comprobante, como texto en formato base 64.",
+      "type": "string"
+    },
+    "CondicionesDePago": {
+      "description": "Atributo condicional para expresar las condiciones comerciales aplicables para el pago del comprobante fiscal digital por Internet. Este atributo puede ser condicionado mediante atributos o complementos.",
+      "maxLength": 1000,
+      "minLength": 1,
+      "pattern": "[^|]{1,1000}",
+      "type": "string"
+    },
+    "SubTotal": {
+      "$ref": "tipoDatos.json#/definitions/t_Importe"
+    },
+    "Descuento": {
+      "$ref": "tipoDatos.json#/definitions/t_Importe"
+    },
+    "Moneda": {
+      "$ref": "catalogos.json#/definitions/c_Moneda"
+    },
+    "TipoCambio": {
+      "description": "Atributo condicional para representar el tipo de cambio FIX conforme con la moneda usada. Es requerido cuando la clave de moneda es distinta de MXN y de XXX. El valor debe reflejar el número de pesos mexicanos que equivalen a una unidad de la divisa señalada en el atributo moneda. Si el valor está fuera del porcentaje aplicable a la moneda tomado del catálogo c_Moneda, el emisor debe obtener del PAC que vaya a timbrar el CFDI, de manera no automática, una clave de confirmación para ratificar que el valor es correcto e integrar dicha clave en el atributo Confirmacion.",
+      "minimum": 0.000001,
+      "type": "number"
+    },
+    "Total": {
+      "$ref": "tipoDatos.json#/definitions/t_Importe"
+    },
+    "TipoDeComprobante": {
+      "$ref": "catalogos.json#/definitions/c_TipoDeComprobante"
+    },
+    "Exportacion": {
+      "$ref": "catalogos.json#/definitions/c_Exportacion"
+    },
+    "MetodoPago": {
+      "$ref": "catalogos.json#/definitions/c_MetodoPago"
+    },
+    "LugarExpedicion": {
+      "$ref": "catalogos.json#/definitions/c_CodigoPostal"
+    },
+    "Confirmacion": {
+      "description": "Atributo condicional para registrar la clave de confirmación que entregue el PAC para expedir el comprobante con importes grandes, con un tipo de cambio fuera del rango establecido o con ambos casos. Es requerido cuando se registra un tipo de cambio o un total fuera del rango establecido.",
+      "maxLength": 5,
+      "minLength": 5,
+      "pattern": "[0-9a-zA-Z]{5}",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "definitions": {}
+}

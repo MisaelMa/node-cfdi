@@ -1,0 +1,14 @@
+{
+  "$id": "comprobante_CfdiRelacionados.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "This JSON Schema file was generated from comprobante_CfdiRelacionados on Tue Dec 26 2023 18:31:04 GMT-0500 (Eastern Standard Time).  For more information please see http://www.xsd2jsonschema.org",
+  "description": "Atributo requerido para indicar la clave de la relación que existe entre éste que se está generando y el o los CFDI previos.",
+  "required": ["TipoRelacion"],
+  "properties": {
+    "TipoRelacion": {
+      "$ref": "catalogos.json#/definitions/c_TipoRelacion"
+    }
+  },
+  "type": "object",
+  "definitions": {}
+}

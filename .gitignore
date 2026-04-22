@@ -33,7 +33,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-packages/cfdi/schema/
+# packages/cfdi/schema
+# packages/cfdi/designs
 # Optional npm cache directory
 .npm
 
@@ -63,6 +64,10 @@ common/deploy/
 common/temp/
 common/autoinstallers/*/.npmrc
 **/.rush/temp/
+
+# Build output
+**/dist/
+**/src/**/*.d.ts
 
 # Heft
 .heft

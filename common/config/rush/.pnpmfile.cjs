@@ -27,12 +27,25 @@ module.exports = {
  * The return value is the updated object.
  */
 function readPackage(packageJson, context) {
+  const overrides = {
+    'minimatch': '>=9.0.5',
+    'picomatch': '>=4.0.2',
+    'rollup': '>=4.30.1',
+    'serialize-javascript': '>=6.0.2',
+    'flatted': '>=3.3.3',
+    'brace-expansion': '>=2.0.1',
+    'yaml': '>=2.7.1',
+    'immutable': '>=5.1.2',
+  };
 
-  // // The karma types have a missing dependency on typings from the log4js package.
-  // if (packageJson.name === '@types/karma') {
-  //  context.log('Fixed up dependencies for @types/karma');
-  //  packageJson.dependencies['log4js'] = '0.6.38';
-  // }
+  for (const [pkg, version] of Object.entries(overrides)) {
+    if (packageJson.dependencies && packageJson.dependencies[pkg]) {
+      packageJson.dependencies[pkg] = version;
+    }
+    if (packageJson.devDependencies && packageJson.devDependencies[pkg]) {
+      packageJson.devDependencies[pkg] = version;
+    }
+  }
 
   return packageJson;
 }

@@ -9,7 +9,9 @@ export class ExeptionCSD extends Error {
    * string
    * @param {...any} params
    */
-  constructor(foo = 'bar', ...params) {
+  public foo: string;
+  public date: Date;
+  constructor(foo = 'bar', ...params: any[]) {
     // Pasa los argumentos restantes (incluidos los específicos del proveedor) al constructor padre
     super(...params);
 

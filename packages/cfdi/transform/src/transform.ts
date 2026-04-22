@@ -1,73 +1,34 @@
-import { XmlToJson } from '@cfdi/2json';
+import fs from 'fs';
+import { parseXslt } from './xslt-parser';
+import { generateCadenaOriginal } from './cadena-engine';
+import type { TemplateRegistry } from './types';
+
 export default class Transform {
-  xml: any = {};
-  xslPath = '';
-  fullPath = '';
-  
-  s(archivo: string) {
-    this.xml =  XmlToJson(archivo, { original: true });
-    console.log(JSON.stringify(this.xml['cfdi:Comprobante']['cfdi:Impuestos'], null, 2));
+  private xmlContent: string = '';
+  private registry: TemplateRegistry | null = null;
+
+  s(archivo: string): this {
+    this.xmlContent = fs.readFileSync(archivo, 'utf-8');
     return this;
   }
 
-  async run() {
-    const rear = await this.obtenerValores(this.xml['cfdi:Comprobante']);
-    const clean = rear.filter((e) => Boolean(e));
-    return `||${clean.join('|')}||`;
-  }
-
-  json(xslPath: string) {
-    this.xslPath = xslPath;
+  xsl(xslPath: string): this {
+    this.registry = parseXslt(xslPath);
     return this;
   }
 
-  warnings(type: string = 'silent') {
+  json(xslPath: string): this {
+    return this.xsl(xslPath);
+  }
+
+  warnings(_type: string = 'silent'): this {
     return this;
   }
 
-  private obtenerValores(obj: any, options: any = { tagKey: 'comprobante' }) {
-    const { tagKey = 'comprobante', ignore = false } = options;
-    let valores: (string | number)[] = [];
-    const omitKeys = [
-      'xmlns:cfdi',
-      'xmlns:xsi',
-      'xsi:schemaLocation',
-      'Certificado',
-      'xmlns:destruccion',
-      'xmlns:iedu',
-      'xmlns:pago10',
-      'xmlns:vehiculousado',
-    ];
-    const miObjeto = {
-      comprobante: [
-        '_attributes',
-        'cfdi:InformacionGlobal',
-        'cfdi:CfdiRelacionados',
-        'cfdi:Emisor',
-        'cfdi:Receptor',
-        'cfdi:Conceptos',
-        'cfdi:Impuestos',
-        'cfdi:Complemento',
-      ],
-      concepto: [],
-    };
-
-    const ingnore: string[] = ['Sello'];
-    // @ts-ignore
-    const clavesOrdenadas = ignore ? Object.keys(obj) : miObjeto[tagKey];
-    for (let key of clavesOrdenadas) {
-
-      if (!omitKeys.includes(key)) {
-        if (typeof obj[key] === 'object') {
-          valores = valores.concat(this.obtenerValores(obj[key], { ignore: true }));
-        } else {
-          if (!ingnore.includes(key)) {
-            valores.push(obj[key]);
-          }
-        }
-      }
+  run(): string {
+    if (!this.registry) {
+      throw new Error('XSLT not loaded. Call xsl() or json() first.');
     }
-
-    return valores;
+    return generateCadenaOriginal(this.xmlContent, this.registry);
   }
 }

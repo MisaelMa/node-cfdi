@@ -32,7 +32,12 @@ module.exports = {
             'types',
             'elements',
             'expresiones',
-            '2json'
+            '2json',
+            'sat',
+            'estado',
+            'descarga',
+            'validador',
+            'cleaner'
           ]
       ],
       'type-enum': [

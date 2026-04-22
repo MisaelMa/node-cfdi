@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante>
+  <cfdi:Emisor Rfc="EKU9003173C9" Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="603" />
+  <cfdi:Receptor Rfc="CACX7605101P8" Nombre="XOCHILT CASAS CHAVEZ" DomicilioFiscalReceptor="36257" RegimenFiscalReceptor="612" UsoCFDI="G03" />
+
+</cfdi:Comprobante>

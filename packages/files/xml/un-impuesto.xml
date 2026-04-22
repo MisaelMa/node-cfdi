@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante >
+  <cfdi:Impuestos TotalImpuestosTrasladados="31.72">
+    <cfdi:Traslados>
+      <cfdi:Traslado Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="31.72"/>
+    </cfdi:Traslados>
+    <cfdi:Retenciones>
+      <cfdi:Retencion Impuesto="004" Importe="2.00" />
+    </cfdi:Retenciones>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

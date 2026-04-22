@@ -4,24 +4,71 @@ on:
     types: [closed]
     branches:
       - main
+      - next
+      - beta
+      - alpha
+      - dev
+
+permissions:
+  id-token: write
+  contents: write
+
 jobs:
-  build:
+  publish:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - uses: nelonoel/branch-name@v1.0.1
-      - name: Cdfi
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: CFDI dependencies
         uses: ./.github/actions/cfdi
         with:
           token: ${{ secrets.PAT_TOKEN }}
 
-      - name: Publish
+      - name: Setup Node.js for Trusted Publishing
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Determine branch
+        id: branch
         run: |
-          echo "amir"
-          rush publish -p -b main --include-all --set-access-level=public
-          git commit -a -m 'npm(publish): new releases' || echo "No changes to commit"
-          git push
+          BRANCH="${{ github.base_ref }}"
+          echo "name=$BRANCH" >> $GITHUB_OUTPUT
+          if [ "$BRANCH" = "main" ]; then
+            echo "is_main=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_main=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build
+        run: rush build
+
+      - name: Publish (main)
+        if: steps.branch.outputs.is_main == 'true'
+        run: rush publish -p -b main --include-all --set-access-level=public
+
+      - name: Publish (prerelease)
+        if: steps.branch.outputs.is_main == 'false'
+        run: rush publish --publish --tag ${{ steps.branch.outputs.name }} --include-all --set-access-level=public --apply
+
+      - name: Commit version bumps
+        run: |
+          BRANCH="${{ steps.branch.outputs.name }}"
+          git add -A
+          if [ "$BRANCH" = "main" ]; then
+            git commit -m "chore: release $(date +%Y-%m-%d)" || echo "No changes to commit"
+          else
+            git commit -m "chore: prerelease $BRANCH $(date +%Y-%m-%d)" || echo "No changes to commit"
+          fi
+          git push origin $BRANCH
+
+      - name: Create GitHub Releases
+        run: node common/scripts/github-release.js
         env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}

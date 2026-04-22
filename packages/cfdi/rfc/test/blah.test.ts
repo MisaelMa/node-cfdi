@@ -1,7 +1,9 @@
-import { describe, expect, it, test } from 'vitest';
+// Archivo legado reemplazado por rfc.test.ts, value/Rfc.test.ts y RfcFaker.test.ts
+import { describe, it } from 'vitest';
 
-describe('blah', () => {
-  it('works', () => {
-    expect(2).toEqual(2);
+describe('legado', () => {
+  it('migrado a archivos de test dedicados', () => {
+    // Tests movidos a test/rfc.test.ts, test/value/Rfc.test.ts y test/RfcFaker.test.ts
   });
 });
+

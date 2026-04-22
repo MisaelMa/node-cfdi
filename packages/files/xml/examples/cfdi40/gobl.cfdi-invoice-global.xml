@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd" Version="4.0" TipoDeComprobante="I" Serie="GLOBAL" Folio="0001" Fecha="2025-04-01T12:00:00" LugarExpedicion="26015" SubTotal="30.00" Descuento="1.00" Total="33.64" Moneda="MXN" Exportacion="01" MetodoPago="PUE" FormaPago="01" Sello="" NoCertificado="00000000000000000000" Certificado="">
+  <cfdi:InformacionGlobal Periodicidad="04" Meses="03" Año="2025"></cfdi:InformacionGlobal>
+  <cfdi:Emisor Rfc="EKU9003173C9" Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="601"></cfdi:Emisor>
+  <cfdi:Receptor Rfc="XAXX010101000" Nombre="PÚBLICO EN GENERAL" DomicilioFiscalReceptor="26015" RegimenFiscalReceptor="616" UsoCFDI="S01"></cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="01010101" NoIdentificacion="SALE1" Cantidad="1" ClaveUnidad="ZZ" Descripcion="Sale 1" ValorUnitario="10.00" Importe="10.00" Descuento="1.00" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="9.0000" Importe="1.4400" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="01010101" NoIdentificacion="SALE2" Cantidad="1" ClaveUnidad="ZZ" Descripcion="Sale 2" ValorUnitario="20.00" Importe="20.00" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="20.0000" Importe="3.2000" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="4.64">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="29.00" Importe="4.64" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

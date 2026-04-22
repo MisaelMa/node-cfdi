@@ -4,16 +4,23 @@ import { Options } from '../src/types/types';
 import xmlJS from 'xml-js';
 import fs from 'fs';
 import path from 'path';
-import { cer, key } from '@cfdi/csd';
 import { FileSystem } from '../src/utils/FileSystem';
-import { Logger } from '../src/utils/Logger';
+
+vi.mock('@cfdi/transform', () => ({
+  Transform: vi.fn().mockImplementation(() => ({
+    s: vi.fn().mockReturnThis(),
+    xsl: vi.fn().mockReturnThis(),
+    warnings: vi.fn().mockReturnThis(),
+    run: vi.fn().mockReturnValue('CADENA_ORIGINAL'),
+  })),
+}));
 
 vi.mock('@saxon-he/cli', () => ({
   Transform: vi.fn().mockImplementation(() => ({
     s: vi.fn().mockReturnThis(),
     xsl: vi.fn().mockReturnThis(),
     warnings: vi.fn().mockReturnThis(),
-    run: vi.fn().mockReturnValue('CADENA_ORIGINAL'),
+    run: vi.fn().mockReturnValue('CADENA_ORIGINAL_SAXON'),
   })),
 }));
 
@@ -27,7 +34,9 @@ vi.mock('../src/utils/FileSystem', () => ({
 const files = path.resolve(__dirname, '..', '..', '..', 'files');
 
 const key_path = `${files}/certificados/LAN7008173R5.key`;
+const key_pem_path = `${files}/certificados/LAN7008173R5.key.pem`;
 const cer_path = `${files}/certificados/LAN7008173R5.cer`;
+const cer_pem_path = `${files}/certificados/LAN7008173R5.cer.pem`;
 const xslt_path = `${files}/4.0/cadenaoriginal.xslt`;
 
 describe('CFDI', () => {
@@ -39,15 +48,9 @@ describe('CFDI', () => {
   });
 
   it('debería certificar el CFDI', () => {
-    const validateSpy = vi.spyOn(cer, 'setFile');
-
     const cfdi = new CFDI();
     cfdi.certificar(cer_path);
 
-    expect(validateSpy).toHaveBeenCalledWith(cer_path);
-    validateSpy.mockRestore();
-    validateSpy.mockReset();
-    validateSpy.mockClear();
     const cfdiJson = cfdi.getJsonCdfi();
     expect(cfdiJson['cfdi:Comprobante']._attributes.NoCertificado).toBe(
       '20001000000300022815'
@@ -58,10 +61,9 @@ describe('CFDI', () => {
   });
 
   it('debería retornar un error al certificar el CFDI', () => {
-    cer.setFile('error.cer');
     const cfdi = new CFDI();
     cfdi.setDebug(true);
-    expect(() => cfdi.certificar('path/to/cer')).toThrow();
+    expect(() => cfdi.certificar('path/to/nonexistent.cer')).toThrow();
   });
 
   it('debería generar la cadena original', async () => {
@@ -115,18 +117,48 @@ describe('CFDI', () => {
   it('debería retornar un error al generar el sello', async () => {
     const cfdi = new CFDI();
 
-    //const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     const cadenaOriginal = 'CADENA_ORIGINAL';
     expect(() =>
       cfdi.generarSello(cadenaOriginal, 'error.key', '123456a')
-    ).toThrow('openssl pkcs8');
+    ).toThrow();
+  });
 
-    /*   expect(consoleSpy).toBeCalledWith({
-      error: expect.any(Error),
-      method: 'getSello',
-    }); */
+  describe('generarCadenaOriginal - branches', () => {
+    it('debería lanzar error sin xslt configurado', () => {
+      const cfdi = new CFDI();
+      expect(() => cfdi.generarCadenaOriginal()).toThrow(
+        'Extensible Stylesheet Language Transformation'
+      );
+    });
 
-    //consoleSpy.mockRestore();
+    it('debería usar CfdiTransform cuando no hay saxon', () => {
+      const spyWrite = vi.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
+      const spyUnlink = vi.spyOn(fs, 'unlinkSync').mockImplementation(() => {});
+
+      const cfdi = new CFDI({ xslt: { path: xslt_path } });
+      const cadena = cfdi.generarCadenaOriginal();
+      expect(cadena).toBe('CADENA_ORIGINAL');
+      expect(spyWrite).toHaveBeenCalled();
+      expect(spyUnlink).toHaveBeenCalled();
+
+      spyWrite.mockRestore();
+      spyUnlink.mockRestore();
+    });
+
+    it('debería usar SaxonTransform cuando se configura saxon', () => {
+      const spyWrite = vi.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
+      const spyUnlink = vi.spyOn(fs, 'unlinkSync').mockImplementation(() => {});
+
+      const cfdi = new CFDI({
+        xslt: { path: xslt_path },
+        saxon: { binary: '/usr/local/bin/transform' },
+      });
+      const cadena = cfdi.generarCadenaOriginal();
+      expect(cadena).toBe('CADENA_ORIGINAL_SAXON');
+
+      spyWrite.mockRestore();
+      spyUnlink.mockRestore();
+    });
   });
 
   it('debería sellar el CFDI', async () => {
@@ -209,5 +241,89 @@ describe('CFDI', () => {
     const cfdi = new CFDI();
     cfdi.setDebug(true);
     expect(cfdi.isBebug).toBe(true);
+  });
+
+  describe('soporte multi-formato certificar()', () => {
+    it('debería certificar con .cer (DER binario)', () => {
+      const cfdi = new CFDI();
+      cfdi.certificar(cer_path);
+      const json = cfdi.getJsonCdfi();
+      expect(json['cfdi:Comprobante']._attributes.NoCertificado).toBe(
+        '20001000000300022815'
+      );
+      expect(json['cfdi:Comprobante']._attributes.Certificado).toContain(
+        'MIIFxTCCA62gAwIBAgIUMjAwMDEwMDAwMDAzMDAwMjI4MTUw'
+      );
+    });
+
+    it('debería certificar con .cer.pem', () => {
+      const cfdi = new CFDI();
+      cfdi.certificar(cer_pem_path);
+      const json = cfdi.getJsonCdfi();
+      expect(json['cfdi:Comprobante']._attributes.NoCertificado).toBe(
+        '20001000000300022815'
+      );
+      expect(json['cfdi:Comprobante']._attributes.Certificado).toContain(
+        'MIIFxTCCA62gAwIBAgIUMjAwMDEwMDAwMDAzMDAwMjI4MTUw'
+      );
+    });
+
+    it('debería obtener el mismo NoCertificado y Certificado con .cer y .pem', () => {
+      const cfdiCer = new CFDI();
+      cfdiCer.certificar(cer_path);
+      const jsonCer = cfdiCer.getJsonCdfi();
+
+      const cfdiPem = new CFDI();
+      cfdiPem.certificar(cer_pem_path);
+      const jsonPem = cfdiPem.getJsonCdfi();
+
+      expect(jsonCer['cfdi:Comprobante']._attributes.NoCertificado).toBe(
+        jsonPem['cfdi:Comprobante']._attributes.NoCertificado
+      );
+      expect(jsonCer['cfdi:Comprobante']._attributes.Certificado).toBe(
+        jsonPem['cfdi:Comprobante']._attributes.Certificado
+      );
+    });
+  });
+
+  describe('soporte multi-formato generarSello()', () => {
+    const cadena = 'CADENA_ORIGINAL_TEST';
+
+    it('debería generar sello con .key (DER cifrado)', () => {
+      const cfdi = new CFDI();
+      const sello = cfdi.generarSello(cadena, key_path, '12345678a');
+      expect(sello).toBeDefined();
+      expect(typeof sello).toBe('string');
+      expect(sello.length).toBeGreaterThan(10);
+    });
+
+    it('debería generar sello con .key.pem', () => {
+      const cfdi = new CFDI();
+      const sello = cfdi.generarSello(cadena, key_pem_path, '12345678a');
+      expect(sello).toBeDefined();
+      expect(typeof sello).toBe('string');
+      expect(sello.length).toBeGreaterThan(10);
+    });
+
+    it('debería generar el mismo sello con .key y .key.pem', () => {
+      const cfdi = new CFDI();
+      const selloKey = cfdi.generarSello(cadena, key_path, '12345678a');
+      const selloPem = cfdi.generarSello(cadena, key_pem_path, '12345678a');
+      expect(selloKey).toBe(selloPem);
+    });
+
+    it('debería fallar con contraseña incorrecta en .key', () => {
+      const cfdi = new CFDI();
+      expect(() =>
+        cfdi.generarSello(cadena, key_path, 'wrong_password')
+      ).toThrow();
+    });
+
+    it('debería generar sellos diferentes para cadenas diferentes', () => {
+      const cfdi = new CFDI();
+      const sello1 = cfdi.generarSello('cadena_1', key_path, '12345678a');
+      const sello2 = cfdi.generarSello('cadena_2', key_path, '12345678a');
+      expect(sello1).not.toBe(sello2);
+    });
   });
 });

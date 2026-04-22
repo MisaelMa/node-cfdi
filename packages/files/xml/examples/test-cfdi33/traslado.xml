@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" Version="3.3" TipoDeComprobante="T" Serie="T" Folio="300" Fecha="2019-05-01T08:00:00" LugarExpedicion="06600" SubTotal="0" Total="0" Moneda="XXX" Sello="" NoCertificado="" Certificado="">
+  <cfdi:Emisor Rfc="POT9207213D6" Nombre="PROMOTORA OTIR SA DE CV" RegimenFiscal="601"/>
+  <cfdi:Receptor Rfc="DIM8701081LA" Nombre="DAY INTERNATIONAL DE MEXICO SA DE CV" UsoCFDI="P01"/>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="31181701" Cantidad="100" ClaveUnidad="KGM" Unidad="Kilogramo" Descripcion="Material de construccion" ValorUnitario="0" Importe="0"/>
+  </cfdi:Conceptos>
+</cfdi:Comprobante>

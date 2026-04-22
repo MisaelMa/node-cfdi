@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante>
+    <cfdi:Conceptos>
+        <cfdi:Concepto ClaveProdServ="86121500" Cantidad="1" ClaveUnidad="E48" Unidad="Pieza" Descripcion="Mensualidad - diciembre" ValorUnitario="5000" Importe="5000" Descuento="0">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="1" Impuesto="002" TipoFactor="Exento" />
+                </cfdi:Traslados>
+            </cfdi:Impuestos>
+            <cfdi:ComplementoConcepto>
+                <iedu:instEducativas xmlns:iedu="http://www.sat.gob.mx/iedu" rfcPago="CACX7605101P8" autRVOE="118141" nivelEducativo="Primaria" CURP="XEXX010101HNEXXXA4" nombreAlumno="RUBINHO LOPEZ ADILENE" version="1.0" />
+            </cfdi:ComplementoConcepto>
+        </cfdi:Concepto>
+    </cfdi:Conceptos>
+</cfdi:Comprobante>

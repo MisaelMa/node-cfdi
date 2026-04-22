@@ -1,0 +1,14 @@
+{
+  "extends": "./node_modules/@recreando/typescript-settings/profiles/default/tsconfig-base.json",
+  "compilerOptions": {
+    "lib": ["dom", "esnext"],
+    "types": [ "node" ],
+    "importHelpers": true,
+    // output .d.ts declaration files for consumers
+    "declaration": true,
+    // output .js.map sourcemap files for consumers
+    "sourceMap": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+  }
+}

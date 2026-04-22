@@ -1,0 +1,16 @@
+{
+  "$id": "comprobante_Impuestos.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "This JSON Schema file was generated from comprobante_Impuestos on Tue Dec 26 2023 18:31:04 GMT-0500 (Eastern Standard Time).  For more information please see http://www.xsd2jsonschema.org",
+  "description": "Atributo condicional para expresar el total de los impuestos trasladados que se desprenden de los conceptos expresados en el comprobante fiscal digital por Internet. No se permiten valores negativos. Es requerido cuando en los conceptos se registren impuestos trasladados.",
+  "properties": {
+    "TotalImpuestosRetenidos": {
+      "$ref": "tipoDatos.json#/definitions/t_Importe"
+    },
+    "TotalImpuestosTrasladados": {
+      "$ref": "tipoDatos.json#/definitions/t_Importe"
+    }
+  },
+  "type": "object",
+  "definitions": {}
+}
