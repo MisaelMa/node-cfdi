@@ -1,5 +1,5 @@
 
-async function execa(command, params) {
+async function execaDefault(command, params) {
   const { spawn } = require('child_process');
   const child = spawn(command, params);
 
@@ -192,7 +192,7 @@ async function getCommitsPR(url) {
   }
 
 }
-module.exports = async ({ github, context, core }) => {
+module.exports = async ({ github, context, core, execa = execaDefault }) => {
   // For pull_request events, use the target branch (base_ref), not the PR ref
   const branch = context.payload.pull_request
     ? context.payload.pull_request.base.ref
@@ -201,7 +201,11 @@ module.exports = async ({ github, context, core }) => {
   console.log("branch:", branch);
   console.log("eventName:", context.eventName);
 
-  const branchs =  ['next','beta', 'alpha','dev']
+  const branchs =  ['next','beta','dev']
+  // Mapeo rama git -> tag de prerelease en npm.
+  // La rama `dev` publica con tag `alpha` para que SemVer permita
+  // la promoción a `beta` (alpha < beta alfabéticamente).
+  const branchToTag = { dev: 'alpha', beta: 'beta', next: 'next' };
   const eventName = context.eventName
   let commits = context.payload.commits || [];
 
@@ -233,7 +237,7 @@ module.exports = async ({ github, context, core }) => {
       comands.push('--override-bump');
       comands.push('prerelease');
       comands.push('--override-prerelease-id');
-      comands.push(branch);
+      comands.push(branchToTag[branch] || branch);
     }
     console.log(comands);
     const data = await execa('rush', comands);
