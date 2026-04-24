@@ -40,8 +40,9 @@ import {ServicioParcial} from '../../complements/servicioparcial';
 import {XmlVehiculousado} from '../Complements/vehiculousado/vehiculousado.com';
 import {VehiculoUsado} from '../../complements/vehiculousado';
 import {XmlIeeh} from '../Complements/hidrocarburos/ieeh/ieeh.com';
-import {Gceh, Ieeh} from '../../complements/hidrocarburos';
+import {Gceh, HidroYPetro, Ieeh} from '../../complements/hidrocarburos';
 import {XmlGceh} from '../Complements/hidrocarburos/gceh/gceh.com';
+import {XmlHidroYPetro} from '../Complements/hidrocarburos/hidroypetro/hidroypetro.com';
 import {XmlImplocal} from '../Complements/implocal/implocal.com';
 import {Implocal} from '../../complements/implocal';
 import {XmlPfic} from '../Complements/pfic/pfic.com';
@@ -114,6 +115,8 @@ export interface XmlComplements extends anyKey {
 
 export interface XmlComplementsConcepts extends anyKey {
     'iedu:instEducativas'?: XmlIedu;
+    // https://www.sat.gob.mx/consulta/05122/complemento-hidrocarburos-y-petroliferos
+    'hidrocarburospetroliferos:HidroYPetro'?: XmlHidroYPetro;
     'ventavehiculos:VentaVehiculos'?: any;
     // https://github.com/facturacionmoderna/Comprobantes/blob/master/complementos/CFDI/venta_vehiculos/venta_vehiculos.xml
     'terceros:PorCuentadeTerceros'?: any; // https://github.com/facturacionmoderna/Comprobantes/blob/master/complementos/CFDI/terceros/terceros.xml
@@ -173,7 +176,8 @@ export declare type ComplementTypeXml =
     | XmlPfic
     | XmlTfd
     | XmlCartaPorte
-export declare type ComlementTypeConcept = Iedu;
+    | XmlHidroYPetro
+export declare type ComlementTypeConcept = Iedu | HidroYPetro;
 
 export interface ComplementsReturn extends ComplementProperties {
     complement: ComplementTypeXml;
