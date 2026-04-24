@@ -38,6 +38,7 @@
 	<xsl:include href="./complementos/consumodeCombustibles11.xslt"/>
 	<xsl:include href="./complementos/GastosHidrocarburos10.xslt"/>
 	<xsl:include href="./complementos/IngresosHidrocarburos.xslt"/>
+	<xsl:include href="./complementos/hidrocarburospetroliferos.xslt"/>
 	<xsl:include href="./complementos/CartaPorte20.xslt"/>
 	<xsl:include href="./complementos/Pagos20.xslt"/>
 	<xsl:include href="./complementos/CartaPorte30.xslt"/>
