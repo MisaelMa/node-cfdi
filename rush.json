@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-  "rushVersion": "5.140.1",
-  "pnpmVersion": "9.9.0",
+  "rushVersion": "5.169.2",
+  "pnpmVersion": "9.15.0",
   "pnpmOptions": {
     "strictPeerDependencies": false,
     "useWorkspaces": true
   },
   "projectFolderMaxDepth": 3,
-  "nodeSupportedVersionRange": ">=16.14.2",
+  "nodeSupportedVersionRange": ">=22.0.0",
   "approvedPackagesPolicy": {
     "reviewCategories": [
       "production",
@@ -120,7 +120,6 @@
     {
       "packageName": "@cfdi/pdf",
       "projectFolder": "packages/cfdi/pdf",
-      "versionPolicyName": "pdf",
       "reviewCategory": "libraries",
       "shouldPublish": false,
       "tags": [
@@ -135,11 +134,10 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@cfdi/curp",
-      "projectFolder": "packages/cfdi/curp",
-      "versionPolicyName": "curp",
+      "packageName": "@renapo/curp",
+      "projectFolder": "packages/renapo/curp",
       "reviewCategory": "libraries",
-      "shouldPublish": true,
+      "shouldPublish": false,
       "tags": [
         "beta"
       ]
@@ -183,6 +181,30 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@cfdi/estado",
+      "projectFolder": "packages/cfdi/estado",
+      "reviewCategory": "libraries",
+      "shouldPublish": false,
+      "tags": [
+        "beta"
+      ]
+    },
+    {
+      "packageName": "@cfdi/descarga",
+      "projectFolder": "packages/cfdi/descarga",
+      "reviewCategory": "libraries",
+      "shouldPublish": false,
+      "tags": [
+        "beta"
+      ]
+    },
+    {
+      "packageName": "@sat/recursos",
+      "projectFolder": "packages/sat/recursos",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
       "packageName": "@cfdi/2json",
       "projectFolder": "packages/cfdi/xml2json",
       "versionPolicyName": "2json",
@@ -202,6 +224,97 @@
       "versionPolicyName": "elements",
       "reviewCategory": "libraries",
       "shouldPublish": true
+    },
+    {
+      "packageName": "@cfdi/designs",
+      "projectFolder": "packages/cfdi/designs",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "@sat/auth",
+      "projectFolder": "packages/sat/auth",
+      "reviewCategory": "libraries",
+      "shouldPublish": false,
+      "tags": [
+        "beta"
+      ]
+    },
+    {
+      "packageName": "@cfdi/validador",
+      "projectFolder": "packages/cfdi/validador",
+      "reviewCategory": "libraries",
+      "shouldPublish": false,
+      "tags": [
+        "beta"
+      ]
+    },
+    {
+      "packageName": "@cfdi/cleaner",
+      "projectFolder": "packages/cfdi/cleaner",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "@cfdi/cancelacion",
+      "projectFolder": "packages/cfdi/cancelacion",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "@cfdi/retenciones",
+      "projectFolder": "packages/cfdi/retenciones",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "@sat/scraper",
+      "projectFolder": "packages/sat/scraper",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "@sat/opinion",
+      "projectFolder": "packages/sat/opinion",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "@sat/contabilidad",
+      "projectFolder": "packages/sat/contabilidad",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "@sat/captcha",
+      "projectFolder": "packages/sat/captcha",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "@sat/pacs",
+      "projectFolder": "packages/sat/pacs",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "@sat/banxico",
+      "projectFolder": "packages/sat/banxico",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "@sat/diot",
+      "projectFolder": "packages/sat/diot",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "server",
+      "projectFolder": "packages/server",
+      "reviewCategory": "private",
+      "shouldPublish": false,
+      "skipRushCheck": true
     }
   ]
 }

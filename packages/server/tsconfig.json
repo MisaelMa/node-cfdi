@@ -1,0 +1,97 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@cfdi/utils": [
+        "./node_modules/@cfdi/utils/src"
+      ],
+      "@cfdi/utils/*": [
+        "./node_modules/@cfdi/utils/src/*"
+      ],
+      "@cfdi/2json/*": [
+        "./node_modules/@cfdi/2json/src/*"
+      ],
+      "@cfdi/schema": [
+        "./node_modules/@cfdi/schema/src"
+      ],
+      "@cfdi/schema/*": [
+        "./node_modules/@cfdi/schema/src/*"
+      ],
+      "@cfdi/xml": [
+        "./node_modules/@cfdi/xml/src"
+      ],
+      "@cfdi/xml/*": [
+        "./node_modules/@cfdi/xml/src/*"
+      ],
+      "@cfdi/csd": [
+        "./node_modules/@cfdi/csd/src"
+      ],
+      "@cfdi/csd/*": [
+        "./node_modules/@cfdi/csd/src/*"
+      ],
+      "@cfdi/xsd": [
+        "./node_modules/@cfdi/xsd/src"
+      ],
+      "@cfdi/xsd/*": [
+        "./node_modules/@cfdi/xsd/src/*"
+      ],
+      "@cfdi/transform": [
+        "./node_modules/@cfdi/transform/src"
+      ],
+      "@cfdi/transform/*": [
+        "./node_modules/@cfdi/transform/src/*"
+      ],
+      "@cfdi/complementos": [
+        "./node_modules/@cfdi/complementos/src"
+      ],
+      "@cfdi/complementos/*": [
+        "./node_modules/@cfdi/complementos/src/*"
+      ],
+      "@saxon-he/cli": [
+        "./node_modules/@saxon-he/cli/src"
+      ],
+      "@saxon-he/cli/*": [
+        "./node_modules/@saxon-he/cli/src/*"
+      ],
+      "@clir/openssl": [
+        "./node_modules/@clir/openssl/src"
+      ],
+      "@clir/openssl/*": [
+        "./node_modules/@clir/openssl/src/*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

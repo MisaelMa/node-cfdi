@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd" Version="3.3" TipoDeComprobante="I" Serie="F" Folio="4521" Fecha="2019-08-01T12:00:00" LugarExpedicion="06600" SubTotal="25000.00" Total="26333.33" Moneda="MXN" MetodoPago="PPD" FormaPago="99" Sello="" NoCertificado="" Certificado="">
+  <cfdi:Emisor Rfc="CACX7605101P8" Nombre="XOCHILT CASAS CHAVEZ" RegimenFiscal="612"/>
+  <cfdi:Receptor Rfc="POT9207213D6" Nombre="PROMOTORA OTIR SA DE CV" UsoCFDI="G03"/>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="80101500" Cantidad="1" ClaveUnidad="E48" Unidad="Unidad de servicio" Descripcion="Honorarios profesionales por consultoria" ValorUnitario="25000.00" Importe="25000.00">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="25000.00" Importe="4000.00" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"/>
+        </cfdi:Traslados>
+        <cfdi:Retenciones>
+          <cfdi:Retencion Base="25000.00" Importe="2500.00" Impuesto="001" TasaOCuota="0.100000" TipoFactor="Tasa"/>
+          <cfdi:Retencion Base="25000.00" Importe="166.67" Impuesto="002" TasaOCuota="0.006667" TipoFactor="Tasa"/>
+        </cfdi:Retenciones>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="4000.00" TotalImpuestosRetenidos="2666.67">
+    <cfdi:Retenciones>
+      <cfdi:Retencion Importe="2500.00" Impuesto="001"/>
+      <cfdi:Retencion Importe="166.67" Impuesto="002"/>
+    </cfdi:Retenciones>
+    <cfdi:Traslados>
+      <cfdi:Traslado Importe="4000.00" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

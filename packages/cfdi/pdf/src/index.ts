@@ -1,2 +1,2 @@
 export * from './types/index';
-export * from "./templates"
+export const PDF_VERSION = '1.0';

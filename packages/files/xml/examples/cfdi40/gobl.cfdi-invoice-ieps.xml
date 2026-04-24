@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd" Version="4.0" TipoDeComprobante="I" Serie="TEST" Folio="00001" Fecha="2023-07-10T12:00:00" LugarExpedicion="26015" SubTotal="64.00" Total="93.84" Moneda="MXN" Exportacion="01" MetodoPago="PPD" FormaPago="99" CondicionesDePago="Condiciones de pago" Sello="" NoCertificado="00000000000000000000" Certificado="">
+  <cfdi:Emisor Rfc="EKU9003173C9" Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="601"></cfdi:Emisor>
+  <cfdi:Receptor Rfc="URE180429TM6" Nombre="UNIVERSIDAD ROBOTICA ESPAÑOLA" DomicilioFiscalReceptor="86991" RegimenFiscalReceptor="601" UsoCFDI="G01"></cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="90101500" Cantidad="1" ClaveUnidad="ZZ" Descripcion="Redbull with lots of sugar" ValorUnitario="30.00" Importe="30.00" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="37.9000" Importe="6.0640" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+          <cfdi:Traslado Base="30.00" Importe="7.50" Impuesto="003" TasaOCuota="0.250000" TipoFactor="Tasa"></cfdi:Traslado>
+          <cfdi:Traslado Base="0.400" Importe="0.40" Impuesto="003" TasaOCuota="1.000000" TipoFactor="Cuota"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="90101500" Cantidad="1" ClaveUnidad="ZZ" Descripcion="Redbull boost with lots more sugar" ValorUnitario="34.00" Importe="34.00" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="43.0000" Importe="6.8800" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+          <cfdi:Traslado Base="34.00" Importe="8.50" Impuesto="003" TasaOCuota="0.250000" TipoFactor="Tasa"></cfdi:Traslado>
+          <cfdi:Traslado Base="0.500" Importe="0.50" Impuesto="003" TasaOCuota="1.000000" TipoFactor="Cuota"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="29.84">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="80.90" Importe="12.94" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+      <cfdi:Traslado Base="64.00" Importe="16.00" Impuesto="003" TasaOCuota="0.250000" TipoFactor="Tasa"></cfdi:Traslado>
+      <cfdi:Traslado Base="0.90" Importe="0.90" Impuesto="003" TasaOCuota="1.000000" TipoFactor="Cuota"></cfdi:Traslado>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

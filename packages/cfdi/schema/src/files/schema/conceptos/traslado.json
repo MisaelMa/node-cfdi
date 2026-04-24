@@ -1,0 +1,34 @@
+{
+  "$id": "comprobante_Conceptos_Concepto_Impuestos_Traslados_Traslado.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "This JSON Schema file was generated from comprobante_Conceptos_Concepto_Impuestos_Traslados_Traslado on Tue Dec 26 2023 18:31:04 GMT-0500 (Eastern Standard Time).  For more information please see http://www.xsd2jsonschema.org",
+  "description": "Atributo condicional para señalar el importe del impuesto trasladado que aplica al concepto. No se permiten valores negativos. Es requerido cuando TipoFactor sea Tasa o Cuota.",
+  "required": [
+    "Base",
+    "Impuesto",
+    "TipoFactor"
+  ],
+  "properties": {
+    "Base": {
+      "description": "Atributo requerido para señalar la base para el cálculo del impuesto, la determinación de la base se realiza de acuerdo con las disposiciones fiscales vigentes. No se permiten valores negativos.",
+      "minimum": 0.000001,
+      "type": "number"
+    },
+    "Impuesto": {
+      "$ref": "catalogos.json#/definitions/c_Impuesto"
+    },
+    "TipoFactor": {
+      "$ref": "catalogos.json#/definitions/c_TipoFactor"
+    },
+    "TasaOCuota": {
+      "description": "Atributo condicional para señalar el valor de la tasa o cuota del impuesto que se traslada para el presente concepto. Es requerido cuando el atributo TipoFactor tenga una clave que corresponda a Tasa o Cuota.",
+      "minimum": 0,
+      "type": "number"
+    },
+    "Importe": {
+      "$ref": "tipoDatos.json#/definitions/t_Importe"
+    }
+  },
+  "type": "object",
+  "definitions": {}
+}

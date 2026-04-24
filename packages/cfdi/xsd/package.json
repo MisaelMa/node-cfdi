@@ -1,10 +1,15 @@
 {
   "name": "@cfdi/xsd",
-  "version": "4.0.16",
+  "version": "4.0.17-beta.0",
+  "description": "Validacion de CFDI contra esquemas XSD oficiales del SAT",
+  "homepage": "https://cfdi.recreando.dev",
+  "bugs": {
+    "url": "https://github.com/MisaelMa/node-cfdi/issues"
+  },
   "license": "MIT",
-  "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
-  "module": "./dist/xsd.esm.production.min.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "source": "./src/index.ts",
   "release": {
     "branches": [
@@ -17,25 +22,14 @@
     "dist"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=22"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build --env production --minify && rimraf ./dist/index.js ./dist/xsd.cjs.development.* && npm run cp",
-    "cp": "cp ./config/index.js ./dist",
+    "build": "vite build --config node_modules/@recreando/vite/vite.config.lib.mts",
     "test": "vitest",
     "test:ci": "vitest run",
-    "test:coverage": "vitest --coverage run",
-    "test:ui": "vitest --ui",
-    "lint": "tsdx lint",
-    "prepare": "npm run build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -43,58 +37,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MisaelMa/recreando"
+    "url": "git+https://github.com/MisaelMa/node-cfdi.git"
   },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-  "author": {
-    "name": "Amir Misael Marin Coh, Signati",
-    "email": "amisael.amir.misae@gmail.com, signatidev@gmail.com,",
-    "url": ""
-  },
-  "size-limit": [
-    {
-      "path": "dist/xsd.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/xsd.esm.js",
-      "limit": "10 KB"
-    }
+  "keywords": [
+    "cfdi", "sat", "xsd", "validacion", "esquema", "schema", "xml",
+    "factura electronica", "mexico", "cfdi 4.0", "node", "typescript"
   ],
+  "author": {
+    "name": "Amir Misael Marin Coh",
+    "email": "amisael.amir.misael@gmail.com",
+    "url": "https://recreando.dev"
+  },
   "dependencies": {
     "xml-js": "^1.6.11",
-    "xslt-processor": "^0.11.7",
-    "ajv": "^8.12.0",
-    "xslt": "^0.9.1"
+    "ajv": "^8.12.0"
   },
   "devDependencies": {
-    "rimraf": "^6.0.1",
     "@recreando/eslint-settings": "workspace:*",
-    "@recreando/jest": "workspace:*",
     "@recreando/vite": "workspace:*",
+    "vite": "^7.0.0",
     "@recreando/typescript-settings": "workspace:*",
-    "@rushstack/eslint-config": "^4.0.2",
-    "@rushstack/heft": "^0.68.6",
-    "@size-limit/preset-small-lib": "^7.0.8",
-    "@testing-library/dom": "^8.19.0",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@types/deep-freeze": "^0.1.2",
-    "@types/jest": "^27.5.0",
-    "@types/node": "^18.11.3",
-    "@types/testing-library__jest-dom": "^5.9.1",
-    "chalk": "^4.0.0",
-    "chokidar": "^3.5.2",
+    "@types/node": "^22",
     "eslint": "^8.57.0",
-    "husky": "^8.0.1",
-    "jest": "^28.1.2",
-    "size-limit": "^7.0.8",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.4.0",
     "typescript": "^5.6.3",
     "vitest": "2.1.3",
     "vite-tsconfig-paths": "~4.2.1",

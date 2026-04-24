@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd" Version="4.0" TipoDeComprobante="I" Serie="XAMA620210DQ5" Folio="000037" Fecha="2025-10-24T11:38:18" LugarExpedicion="01219" SubTotal="4353.45" Descuento="435.35" Total="4545.00" Moneda="MXN" Exportacion="01" MetodoPago="PUE" FormaPago="01" Sello="" NoCertificado="00000000000000000000" Certificado="">
+  <cfdi:Emisor Rfc="XAMA620210DQ5" Nombre="ALBA XKARAJAM MENDEZ" RegimenFiscal="612"></cfdi:Emisor>
+  <cfdi:Receptor Rfc="XAXX010101000" Nombre="PÚBLICO EN GENERAL" DomicilioFiscalReceptor="01219" RegimenFiscalReceptor="616" UsoCFDI="S01"></cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="84141602" Cantidad="1" ClaveUnidad="ZZ" Descripcion="Item with discount #1" ValorUnitario="3482.7586" Importe="3482.7586" Descuento="348.2760" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="3134.4827" Importe="501.5172" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="84141602" Cantidad="1" ClaveUnidad="ZZ" Descripcion="Item with discount #2" ValorUnitario="870.6897" Importe="870.6897" Descuento="87.0690" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="783.6207" Importe="125.3793" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="626.90">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="3918.10" Importe="626.90" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"></cfdi:Traslado>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

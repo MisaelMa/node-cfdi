@@ -1,0 +1,8 @@
+src
+tsconfig.json
+tslint.json
+.prettierrc
+test
+resources
+jest.config.js
+.eslintrc.js

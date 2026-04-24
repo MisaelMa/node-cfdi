@@ -6,39 +6,53 @@ inputs:
     description: 'token of github'
     required: true
 
+outputs:
+  scopes:
+    description: 'JSON array of publishable scopes'
+    value: ${{ steps.script.outputs.scopes }}
+  branch:
+    description: 'Target branch name'
+    value: ${{ steps.script.outputs.branch }}
+
 runs:
   using: 'composite'
   steps:
-    - name: Schema
-      uses: actions/checkout@v4
-      with:
-        repository: MisaelMa/cfdi-schema
-        branch: main
-        path: packages/cfdi/schema
-        token: ${{ inputs.token }}
+    # - name: Schema
+    #   uses: actions/checkout@v4
+    #   with:
+    #     repository: MisaelMa/cfdi-schema
+    #     branch: main
+    #     path: packages/cfdi/schema
+    #     token: ${{ inputs.token }}
+    # - name: Desings
+    #   uses: actions/checkout@v4
+    #   with:
+    #     repository: MisaelMa/designs
+    #     branch: main
+    #     path: packages/cfdi/designs
+    #     token: ${{ inputs.token }}
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '22'
 
     - name: Rush CLI
       shell: bash
-      run: | 
-        npm install -g @microsoft/rush@5.140.1
+      run: |
+        npm install -g @microsoft/rush@5.169.2
         rush update
 
-    - name: Rush Update
+    - name: GitHub User
       shell: bash
       run: |
         git config user.name MisaelMa
         git config user.email amisael.amir.misael@gmail.com
-       
+
         ls -la
-    #- name: execa
-    #  shell: bash
-    #  run: npm install execa
+
     - name: Script
+      id: script
       uses: actions/github-script@v7
       with:
         debug: true

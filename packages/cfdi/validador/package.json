@@ -1,0 +1,48 @@
+{
+  "name": "@cfdi/validador",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "source": "src/index.ts",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "vite build --config node_modules/@recreando/vite/vite.config.lib.mts",
+    "test": "vitest",
+    "test:ci": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MisaelMa/node-cfdi.git"
+  },
+  "author": {
+    "name": "Amir Misael Marin Coh, Signati",
+    "email": "amisael.amir.misae@gmail.com, signatidev@gmail.com,",
+    "url": ""
+  },
+  "dependencies": {
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "@recreando/eslint-settings": "workspace:*",
+    "@recreando/vite": "workspace:*",
+    "vite": "^7.0.0",
+    "@recreando/typescript-settings": "workspace:*",
+    "@types/node": "^22",
+    "eslint": "^8.57.0",
+    "typescript": "^5.6.3",
+    "vitest": "2.1.3",
+    "vite-tsconfig-paths": "~4.2.1",
+    "@vitest/coverage-v8": "2.1.3",
+    "@vitest/ui": "2.1.3"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@renapo/curp",
+      "comment": "aclarse a los servicios de renapo",
+      "type": "none"
+    }
+  ],
+  "packageName": "@renapo/curp"
+}

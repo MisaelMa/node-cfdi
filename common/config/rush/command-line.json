@@ -12,6 +12,16 @@
     },
     {
       "commandKind": "bulk",
+      "name": "sat:download",
+      "summary": "Descarga recursos del SAT (XSD, XSLT, complementos)",
+      "enableParallelism": false,
+      "ignoreMissingScript": true,
+      "safeForSimultaneousRushProcesses": false,
+      "ignoreDependencyOrder": true,
+      "allowWarningsInSuccessfulBuild": true
+    },
+    {
+      "commandKind": "bulk",
       "name": "test:ci",
       "summary": "Test all packages in CI mode",
       "enableParallelism": true,

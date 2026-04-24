@@ -1,0 +1,18 @@
+{
+  "$id": "comprobante_CfdiRelacionados_CfdiRelacionado.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "This JSON Schema file was generated from comprobante_CfdiRelacionados_CfdiRelacionado on Tue Dec 26 2023 18:31:04 GMT-0500 (Eastern Standard Time).  For more information please see http://www.xsd2jsonschema.org",
+  "description": "Schema tag attributes: xmlns:cfdi='http://www.sat.gob.mx/cfd/4' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:catCFDI='http://www.sat.gob.mx/sitio_internet/cfd/catalogos' xmlns:tdCFDI='http://www.sat.gob.mx/sitio_internet/cfd/tipoDatos/tdCFDI' targetNamespace='http://www.sat.gob.mx/cfd/4' elementFormDefault='qualified' attributeFormDefault='unqualified'",
+  "required": ["UUID"],
+  "properties": {
+    "UUID": {
+      "description": "Atributo requerido para registrar el folio fiscal (UUID) de un CFDI relacionado con el presente comprobante, por ejemplo: Si el CFDI relacionado es un comprobante de traslado que sirve para registrar el movimiento de la mercancía. Si este comprobante se usa como nota de crédito o nota de débito del comprobante relacionado. Si este comprobante es una devolución sobre el comprobante relacionado. Si éste sustituye a una factura cancelada.",
+      "maxLength": 36,
+      "minLength": 36,
+      "pattern": "[a-f0-9A-F]{8}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{4}-[a-f0-9A-F]{12}",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "definitions": {}
+}

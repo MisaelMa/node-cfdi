@@ -28,31 +28,39 @@
     },
     {
       "name": "@cfdi/2json",
+      "allowedCategories": [ "libraries", "private" ]
+    },
+    {
+      "name": "@cfdi/cancelacion",
       "allowedCategories": [ "libraries" ]
     },
     {
       "name": "@cfdi/catalogos",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/complementos",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/csd",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/csf",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
-      "name": "@cfdi/curp",
-      "allowedCategories": [ "libraries" ]
+      "name": "@cfdi/designs",
+      "allowedCategories": [ "private" ]
     },
     {
       "name": "@cfdi/elements",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
+    },
+    {
+      "name": "@cfdi/expresiones",
+      "allowedCategories": [ "private" ]
     },
     {
       "name": "@cfdi/openssl",
@@ -60,31 +68,43 @@
     },
     {
       "name": "@cfdi/pdf",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
+    },
+    {
+      "name": "@cfdi/rfc",
+      "allowedCategories": [ "private" ]
     },
     {
       "name": "@cfdi/schema",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
+    },
+    {
+      "name": "@cfdi/transform",
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/types",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/utils",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@cfdi/xml",
-      "allowedCategories": [ "libraries", "production" ]
+      "allowedCategories": [ "libraries", "private", "production" ]
+    },
+    {
+      "name": "@cfdi/xml2json",
+      "allowedCategories": [ "libraries" ]
     },
     {
       "name": "@cfdi/xsd",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@clir/openssl",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@emotion/cache",
@@ -101,6 +121,10 @@
     {
       "name": "@emotion/styled",
       "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@eslint/eslintrc",
+      "allowedCategories": [ "private" ]
     },
     {
       "name": "@esm2cjs/execa",
@@ -152,11 +176,11 @@
     },
     {
       "name": "@nestjs/cli",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@nestjs/common",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@nestjs/config",
@@ -164,7 +188,7 @@
     },
     {
       "name": "@nestjs/core",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@nestjs/jwt",
@@ -176,7 +200,7 @@
     },
     {
       "name": "@nestjs/platform-express",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@nestjs/schedule",
@@ -184,7 +208,7 @@
     },
     {
       "name": "@nestjs/schematics",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@nestjs/swagger",
@@ -192,7 +216,7 @@
     },
     {
       "name": "@nestjs/testing",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@nestjs/typeorm",
@@ -231,6 +255,18 @@
       "allowedCategories": [ "libraries" ]
     },
     {
+      "name": "@renapo/curp",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@rollup/plugin-terser",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@rollup/plugin-url",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "@rushstack/eslint-config",
       "allowedCategories": [ "libraries", "private", "production" ]
     },
@@ -243,8 +279,32 @@
       "allowedCategories": [ "libraries", "production" ]
     },
     {
-      "name": "@saxon-he/cli",
+      "name": "@sat/auth",
       "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/captcha",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/contabilidad",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/opinion",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/recursos",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@sat/scraper",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@saxon-he/cli",
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@size-limit/preset-small-lib",
@@ -256,7 +316,7 @@
     },
     {
       "name": "@swc/core",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@swc/helpers",
@@ -269,6 +329,10 @@
     {
       "name": "@swc/register",
       "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "@tailwindcss/postcss",
+      "allowedCategories": [ "private" ]
     },
     {
       "name": "@testing-library/dom",
@@ -288,11 +352,11 @@
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@typescript-eslint/parser",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@vitest/coverage-v8",
@@ -340,11 +404,11 @@
     },
     {
       "name": "class-transformer",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "class-validator",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "cookie",
@@ -380,11 +444,11 @@
     },
     {
       "name": "eslint-config-next",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "eslint-config-prettier",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "eslint-import-resolver-typescript",
@@ -412,7 +476,7 @@
     },
     {
       "name": "eslint-plugin-prettier",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "eslint-plugin-react",
@@ -528,7 +592,7 @@
     },
     {
       "name": "next",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "next-redux-wrapper",
@@ -576,7 +640,7 @@
     },
     {
       "name": "pdfmake",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "pg",
@@ -584,7 +648,7 @@
     },
     {
       "name": "prettier",
-      "allowedCategories": [ "libraries", "production" ]
+      "allowedCategories": [ "libraries", "private", "production" ]
     },
     {
       "name": "puppeteer",
@@ -604,11 +668,11 @@
     },
     {
       "name": "react",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "react-dom",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "react-is",
@@ -632,7 +696,7 @@
     },
     {
       "name": "reflect-metadata",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "rimraf",
@@ -648,7 +712,7 @@
     },
     {
       "name": "rxjs",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "save-file",
@@ -664,7 +728,7 @@
     },
     {
       "name": "source-map-support",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "styled-components",
@@ -692,23 +756,27 @@
     },
     {
       "name": "supertest",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
+    },
+    {
+      "name": "tailwindcss",
+      "allowedCategories": [ "private" ]
     },
     {
       "name": "ts-jest",
-      "allowedCategories": [ "libraries", "production" ]
+      "allowedCategories": [ "libraries", "private", "production" ]
     },
     {
       "name": "ts-loader",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "ts-node",
-      "allowedCategories": [ "libraries", "production" ]
+      "allowedCategories": [ "libraries", "private", "production" ]
     },
     {
       "name": "tsconfig-paths",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "tsconfig-paths-webpack-plugin",
@@ -731,6 +799,10 @@
       "allowedCategories": [ "libraries", "production" ]
     },
     {
+      "name": "tsx",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "typeorm",
       "allowedCategories": [ "libraries" ]
     },
@@ -748,11 +820,15 @@
     },
     {
       "name": "vite",
+      "allowedCategories": [ "libraries", "private" ]
+    },
+    {
+      "name": "vite-plugin-dts",
       "allowedCategories": [ "libraries" ]
     },
     {
       "name": "vite-plugin-node",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "vite-tsconfig-paths",

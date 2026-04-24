@@ -1,5 +1,5 @@
 
-async function execa(command, params) {
+async function execaDefault(command, params) {
   const { spawn } = require('child_process');
   const child = spawn(command, params);
 
@@ -92,13 +92,64 @@ function getDependences(scope) {
     },
     '2json': {
       '2json': true
+    },
+    designs: {
+      designs: true
+    },
+    sat: {
+      sat: true
+    },
+    estado: {
+      estado: true
+    },
+    validador: {
+      validador: true
+    },
+    cleaner: {
+      cleaner: true
+    },
+    auth: {
+      auth: true
+    },
+    descarga: {
+      descarga: true
+    },
+    cancelacion: {
+      cancelacion: true
+    },
+    recursos: {
+      recursos: true
+    },
+    scraper: {
+      scraper: true
+    },
+    opinion: {
+      opinion: true
+    },
+    contabilidad: {
+      contabilidad: true
+    },
+    captcha: {
+      captcha: true
+    },
+    retenciones: {
+      retenciones: true
+    },
+    pacs: {
+      pacs: true
+    },
+    banxico: {
+      banxico: true
+    },
+    diot: {
+      diot: true
     }
   };
   return dependencies[scope] || {};
 }
 
 function getScopes(commits = []) {
-  const list = ['catalogs','csd','csf','curp','pdf','rfc','utils','xml','complementos','openssl','saxon','xsd']
+  const list = ['catalogs','csd','csf','curp','pdf','rfc','utils','xml','complementos','openssl','saxon','xsd','2json','designs','sat','estado','validador','cleaner','auth','transform','expresiones','elements','types','descarga','cancelacion','recursos','scraper','opinion','contabilidad','captcha','retenciones','pacs','banxico','diot']
   const onlys = {
     'only-complementos': 'complementos'
   }
@@ -141,16 +192,34 @@ async function getCommitsPR(url) {
   }
 
 }
-module.exports = async ({ github, context, core }) => {
-  const branch = context.ref.split('/').slice(2).join('/')
+module.exports = async ({ github, context, core, execa = execaDefault }) => {
+  // For pull_request events, use the target branch (base_ref), not the PR ref
+  const branch = context.payload.pull_request
+    ? context.payload.pull_request.base.ref
+    : context.ref.split('/').slice(2).join('/');
 
-  const branchs =  ['next','beta', 'alpha','dev']
+  console.log("branch:", branch);
+  console.log("eventName:", context.eventName);
+
+  const branchs =  ['next','beta','dev']
+  // Mapeo rama git -> tag de prerelease en npm.
+  // La rama `dev` publica con tag `alpha` para que SemVer permita
+  // la promoción a `beta` (alpha < beta alfabéticamente).
+  const branchToTag = { dev: 'alpha', beta: 'beta', next: 'next' };
   const eventName = context.eventName
   let commits = context.payload.commits || [];
 
   if(eventName==='pull_request'){
-    const commits_url = context.payload.pull_request.commits_url
-    const commits_local = await getCommitsPR(commits_url)
+    const { owner, repo } = context.repo;
+    const pull_number = context.payload.pull_request.number;
+    console.log(`Fetching commits for PR #${pull_number}...`);
+    const { data: commits_local } = await github.rest.pulls.listCommits({
+      owner,
+      repo,
+      pull_number,
+      per_page: 100,
+    });
+    console.log(`Found ${commits_local.length} commits in PR`);
     commits = commits_local.map(({commit})=>commit)
   }
   const scopes =  getScopes(commits);
@@ -168,7 +237,7 @@ module.exports = async ({ github, context, core }) => {
       comands.push('--override-bump');
       comands.push('prerelease');
       comands.push('--override-prerelease-id');
-      comands.push(branch);
+      comands.push(branchToTag[branch] || branch);
     }
     console.log(comands);
     const data = await execa('rush', comands);
