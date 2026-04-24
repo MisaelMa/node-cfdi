@@ -84,10 +84,7 @@
       "projectFolder": "packages/cfdi/xsd",
       "versionPolicyName": "xsd",
       "reviewCategory": "libraries",
-      "shouldPublish": true,
-      "tags": [
-        "beta"
-      ]
+      "shouldPublish": true
     },
     {
       "packageName": "@cfdi/schema",
@@ -147,10 +144,7 @@
       "projectFolder": "packages/cfdi/rfc",
       "versionPolicyName": "rfc",
       "reviewCategory": "libraries",
-      "shouldPublish": true,
-      "tags": [
-        "beta"
-      ]
+      "shouldPublish": true
     },
     {
       "packageName": "@clir/openssl",
