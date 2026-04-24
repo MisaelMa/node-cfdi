@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/elements",
-  "version": "4.0.14-beta.0",
+  "version": "4.0.14",
   "description": "Elementos estructurales del comprobante CFDI 4.0: emisor, receptor, conceptos",
   "bugs": {
     "url": "https://github.com/MisaelMa/node-cfdi/issues"

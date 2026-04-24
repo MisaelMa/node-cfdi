@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/complementos",
-  "version": "4.0.17-beta.1",
+  "version": "4.0.17",
   "description": "Complementos fiscales del SAT para CFDI 4.0: pagos, nomina, comercio exterior, carta porte",
   "bugs": {
     "url": "https://github.com/MisaelMa/node-cfdi/issues"

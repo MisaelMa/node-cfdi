@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/2json",
-  "version": "4.0.14-beta.0",
+  "version": "4.0.14",
   "description": "Conversion de XML CFDI a JSON para Node.js",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {
