@@ -1410,6 +1410,12 @@ importers:
       '@cfdi/catalogos':
         specifier: workspace:*
         version: link:../cfdi/catalogos
+      '@cfdi/complementos':
+        specifier: workspace:*
+        version: link:../cfdi/complementos
+      '@cfdi/csd':
+        specifier: workspace:*
+        version: link:../cfdi/csd
       '@cfdi/designs':
         specifier: workspace:*
         version: link:../cfdi/designs
@@ -1419,9 +1425,24 @@ importers:
       '@cfdi/schema':
         specifier: workspace:*
         version: link:../cfdi/schema
+      '@cfdi/transform':
+        specifier: workspace:*
+        version: link:../cfdi/transform
       '@cfdi/utils':
         specifier: workspace:*
         version: link:../cfdi/utils
+      '@cfdi/xml':
+        specifier: workspace:*
+        version: link:../cfdi/xml
+      '@cfdi/xsd':
+        specifier: workspace:*
+        version: link:../cfdi/xsd
+      '@clir/openssl':
+        specifier: workspace:*
+        version: link:../clir/openssl
+      '@saxon-he/cli':
+        specifier: workspace:*
+        version: link:../clir/saxon-he
       next:
         specifier: 15.2.3
         version: 15.2.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
