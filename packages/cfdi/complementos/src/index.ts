@@ -13,6 +13,7 @@ export * from './4.0/divisas';
 export * from './4.0/donat';
 export * from './4.0/ecc12';
 export * from './4.0/gceh';
+export * from './4.0/hidrocarburospetroliferos';
 export * from './4.0/iedu';
 export * from './4.0/ieeh';
 export * from './4.0/implocal';

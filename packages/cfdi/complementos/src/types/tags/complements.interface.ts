@@ -15,6 +15,7 @@ import { XmlDivisas } from '../../4.0/divisas/type/divisas.xslt';
 import { XmlDonat } from '../../4.0/donat/type/donat.xslt';
 import { XmlEcc12 } from '../../4.0/ecc12/type/ecc12.xslt';
 import { XmlGceh } from '../../4.0/gceh/type/gceh.xslt';
+import { XmlHidrocarburosPetroliferos } from '../../4.0/hidrocarburospetroliferos/type/hidrocarburospetroliferos.xslt';
 import { XmlIedu } from '../../4.0/iedu/type/iedu.xslt';
 import { XmlIeeh } from '../../4.0/ieeh/type/ieeh.xslt';
 import { XmlImplocal } from '../../4.0/implocal/type/implocal.xslt';
@@ -48,6 +49,7 @@ import { Divisas } from '../../4.0/divisas/Divisas';
 import { Donat } from '../../4.0/donat/Donat';
 import { Ecc12 } from '../../4.0/ecc12/Ecc12';
 import { Gceh } from '../../4.0/gceh/Gceh';
+import { HidrocarburosPetroliferos } from '../../4.0/hidrocarburospetroliferos/HidrocarburosPetroliferos';
 import { Iedu } from '../../4.0/iedu/Iedu';
 import { Ieeh } from '../../4.0/ieeh/Ieeh';
 import { Implocal } from '../../4.0/implocal/Implocal';
@@ -105,6 +107,7 @@ export interface XmlComplements extends AnyKey {
 }
 
 export interface XmlComplementsConcepts extends AnyKey {
+  'hidrocarburospetroliferos:HidroYPetro'?: XmlHidrocarburosPetroliferos;
   'iedu:instEducativas'?: XmlIedu;
   'ventavehiculos:VentaVehiculos'?: XmlVentaVehiculos;
 }
@@ -173,7 +176,7 @@ export declare type ComplementTypeXml<T> =
   | XmlVentaVehiculos
   | T;
 
-export declare type ComlementTypeConcept = Iedu | VentaVehiculos;
+export declare type ComlementTypeConcept = Iedu | HidrocarburosPetroliferos | VentaVehiculos;
 
 export interface ComplementsReturn<T = any> extends ComplementProperties {
   complement: ComplementTypeXml<T>;
@@ -220,6 +223,7 @@ export interface XmlComplementsAttributes extends AnyKey {
   'xmlns:valesdedespensa'?: string;
   'xmlns:vehiculousado'?: string;
   /* Concept complements */
+  'xmlns:hidrocarburospetroliferos'?: string;
   'xmlns:iedu'?: string;
   'xmlns:ventavehiculos'?: string;
 }
@@ -257,6 +261,7 @@ export interface XmlnsComplementsLinks extends AnyKey {
   valesdedespensa?: string;
   vehiculousado?: string;
   /* Concept complements */
+  hidrocarburospetroliferos?: string;
   iedu?: string;
   ventavehiculos?: string;
 }
