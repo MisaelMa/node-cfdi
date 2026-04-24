@@ -1,7 +1,7 @@
 {
   "name": "@signati/core",
-  "version": "4.0.4",
-  "description": "Crea el XML, Firmar Y Sella comprobantes fiscales digitales en Mexico (CFDI)",
+  "version": "4.0.5",
+  "description": "DEPRECATED - migra a @cfdi/xml. Crea el XML, Firmar Y Sella comprobantes fiscales digitales en Mexico (CFDI)",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {

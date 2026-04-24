@@ -66,6 +66,7 @@ export interface XmlComprobanteAttributes extends Comprobante, anyKey {
     'xmlns:gceh'?: string; // http://www.sat.gob.mx/GastosHidrocarburos10
     /*########XmlComplementsConcepts#########3*/
     'xmlns:iedu'?: string; // http://www.sat.gob.mx/iedu
+    'xmlns:hidrocarburospetroliferos'?: string; // http://www.sat.gob.mx/hidrocarburospetroliferos
     'xmlns:ventavehiculos'?: string; // http://www.sat.gob.mx/ventavehiculos
     'xmlns:terceros'?: string; // http://www.sat.gob.mx/terceros
     'xmlns:aieps'?: string; // http://www.sat.gob.mx/acreditamiento
