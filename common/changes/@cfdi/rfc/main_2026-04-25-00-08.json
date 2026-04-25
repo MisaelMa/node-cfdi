@@ -1,0 +1,12 @@
+{
+  "changes": [
+    {
+      "changeType": 0,
+      "newVersion": "0.0.11",
+      "packageName": "@cfdi/rfc",
+      "comment": ""
+    }
+  ],
+  "packageName": "@cfdi/rfc",
+  "email": "amisael.amir.misael@gmail.com"
+}

@@ -2,6 +2,12 @@
   "name": "@saxon-he/cli",
   "entries": [
     {
+      "version": "12.5.2",
+      "tag": "@saxon-he/cli_v12.5.2",
+      "date": "Sat, 25 Apr 2026 00:08:12 GMT",
+      "comments": {}
+    },
+    {
       "version": "12.5.1",
       "tag": "@saxon-he/cli_v12.5.1",
       "date": "Fri, 08 Nov 2024 02:42:08 GMT",

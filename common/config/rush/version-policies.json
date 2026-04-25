@@ -2,13 +2,13 @@
   {
     "policyName": "xml",
     "definitionName": "lockStepVersion",
-    "version": "4.0.18-beta.2",
+    "version": "4.0.18",
     "nextBump": "patch"
   },
   {
     "policyName": "complementos",
     "definitionName": "lockStepVersion",
-    "version": "4.0.17",
+    "version": "4.0.18",
     "nextBump": "patch"
   },
   {
@@ -20,7 +20,7 @@
   {
     "policyName": "csd",
     "definitionName": "lockStepVersion",
-    "version": "4.0.16",
+    "version": "4.0.17",
     "nextBump": "patch"
   },
   {
@@ -32,37 +32,37 @@
   {
     "policyName": "rfc",
     "definitionName": "lockStepVersion",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "nextBump": "patch"
   },
   {
     "policyName": "utils",
     "definitionName": "lockStepVersion",
-    "version": "4.0.17-beta.0",
+    "version": "4.0.17",
     "nextBump": "patch"
   },
   {
     "policyName": "openssl",
     "definitionName": "lockStepVersion",
-    "version": "0.0.17-beta.0",
+    "version": "0.0.17",
     "nextBump": "patch"
   },
   {
     "policyName": "saxon",
     "definitionName": "lockStepVersion",
-    "version": "12.5.2-beta.0",
+    "version": "12.5.2",
     "nextBump": "patch"
   },
   {
     "policyName": "xsd",
     "definitionName": "lockStepVersion",
-    "version": "4.0.17",
+    "version": "4.0.18",
     "nextBump": "patch"
   },
   {
     "policyName": "transform",
     "definitionName": "lockStepVersion",
-    "version": "4.0.14-beta.0",
+    "version": "4.0.14",
     "nextBump": "patch"
   },
   {
@@ -74,7 +74,7 @@
   {
     "policyName": "types",
     "definitionName": "lockStepVersion",
-    "version": "4.0.14-beta.0",
+    "version": "4.0.14",
     "nextBump": "patch"
   },
   {

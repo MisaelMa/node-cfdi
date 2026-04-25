@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/types",
-  "version": "4.0.14-beta.0",
+  "version": "4.0.14",
   "description": "Interfaces y tipos TypeScript para CFDI 4.0 del SAT",
   "bugs": {
     "url": "https://github.com/MisaelMa/node-cfdi/issues"

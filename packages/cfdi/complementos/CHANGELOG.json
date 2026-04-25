@@ -2,6 +2,12 @@
   "name": "@cfdi/complementos",
   "entries": [
     {
+      "version": "4.0.18",
+      "tag": "@cfdi/complementos_v4.0.18",
+      "date": "Sat, 25 Apr 2026 00:08:06 GMT",
+      "comments": {}
+    },
+    {
       "version": "4.0.16",
       "tag": "@cfdi/complementos_v4.0.16",
       "date": "Mon, 11 Nov 2024 18:22:40 GMT",

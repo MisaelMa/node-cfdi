@@ -1,6 +1,6 @@
 {
   "name": "@clir/openssl",
-  "version": "0.0.17-beta.0",
+  "version": "0.0.17",
   "description": "Wrapper de OpenSSL CLI para certificados digitales del SAT",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {

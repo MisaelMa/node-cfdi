@@ -1,6 +1,11 @@
-# Change Log - @cfdi/xml
+# Change Log - @cfdi/types
 
-This log was last generated on Mon, 08 May 2023 23:09:27 GMT and should not be manually modified.
+This log was last generated on Sat, 25 Apr 2026 00:08:04 GMT and should not be manually modified.
+
+## 4.0.14
+Sat, 25 Apr 2026 00:08:04 GMT
+
+_Version update only_
 
 ## 4.0.13
 Mon, 08 May 2023 23:09:27 GMT

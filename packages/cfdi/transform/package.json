@@ -1,6 +1,6 @@
 {
   "name": "@cfdi/transform",
-  "version": "4.0.14-beta.0",
+  "version": "4.0.14",
   "description": "Transformacion XSLT para generacion de cadena original de CFDI",
   "homepage": "https://cfdi.recreando.dev",
   "bugs": {
