@@ -32,8 +32,8 @@
   {
     "policyName": "rfc",
     "definitionName": "lockStepVersion",
-    "version": "0.0.10-beta.0",
-    "nextBump": "prerelease"
+    "version": "0.0.10",
+    "nextBump": "patch"
   },
   {
     "policyName": "utils",
@@ -56,7 +56,7 @@
   {
     "policyName": "xsd",
     "definitionName": "lockStepVersion",
-    "version": "4.0.17-beta.0",
+    "version": "4.0.17",
     "nextBump": "patch"
   },
   {
