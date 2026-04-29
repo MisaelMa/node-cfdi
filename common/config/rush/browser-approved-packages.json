@@ -296,7 +296,7 @@
     },
     {
       "name": "@sat/recursos",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "@sat/scraper",
@@ -425,6 +425,10 @@
     {
       "name": "curp",
       "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "e.firma",
+      "allowedCategories": [ "private" ]
     },
     {
       "name": "eslint",
@@ -576,14 +580,6 @@
     },
     {
       "name": "material-ui-popup-state",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "moment",
-      "allowedCategories": [ "libraries" ]
-    },
-    {
-      "name": "moment-timezone",
       "allowedCategories": [ "libraries" ]
     },
     {
@@ -800,7 +796,7 @@
     },
     {
       "name": "tsx",
-      "allowedCategories": [ "libraries" ]
+      "allowedCategories": [ "libraries", "private" ]
     },
     {
       "name": "typeorm",
@@ -841,6 +837,10 @@
     {
       "name": "webpack",
       "allowedCategories": [ "libraries" ]
+    },
+    {
+      "name": "xlsx",
+      "allowedCategories": [ "private" ]
     },
     {
       "name": "xml-js",
