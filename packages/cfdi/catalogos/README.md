@@ -132,6 +132,14 @@ npm install @cfdi/catalogos
 
 ---
 
+## Mantenimiento
+
+> Los archivos en [`src/`](src/) son **auto-generados** por [@cfdi/catalogos-codegen](../catalogos-codegen) a partir de `catCFDI.xsd` y `catCFDI.xlsx` oficiales del SAT. **No editar a mano.**
+>
+> Para actualizar a una nueva versión del catálogo SAT, ver [packages/cfdi/catalogos-codegen/README.md](../catalogos-codegen/README.md).
+
+---
+
 ## Soporte
 
 <p>

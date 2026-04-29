@@ -1,3 +1,4 @@
+// Generado por @cfdi/catalogos-codegen. NO EDITAR.
 export enum FormaPago {
   EFECTIVO = '01',
   CHEQUE_NOMINATIVO = '02',
@@ -18,6 +19,8 @@ export enum FormaPago {
   A_SATISFACCION_DEL_ACREEDOR = '27',
   TARJETA_DE_DEBITO = '28',
   TARJETA_DE_SERVICIOS = '29',
+  APLICACION_DE_ANTICIPOS = '30',
+  INTERMEDIARIO_PAGOS = '31',
   POR_DEFINIR = '99',
 }
 
@@ -46,45 +49,114 @@ export type FormaPagoType =
   | '99';
 
 export const FormaPagoList = [
-  { label: 'Efectivo', value: '01' },
-  { label: 'Cheque nominativo', value: '02' },
-  { label: 'Transferencia electrónica de fondos', value: '03' },
-  { label: 'Tarjeta de crédito', value: '04' },
-  { label: 'Monedero electrónico', value: '05' },
-  { label: 'Dinero electrónico', value: '06' },
-  { label: 'Vales de despensa', value: '08' },
-  { label: 'Dación en pago', value: '12' },
-  { label: 'Pago por subrogación', value: '13' },
-  { label: 'Pago por consignación', value: '14' },
-  { label: 'Condonación', value: '15' },
-  { label: 'Compensación', value: '17' },
-  { label: 'Novación', value: '23' },
-  { label: 'Confusión', value: '24' },
-  { label: 'Remisión de deuda', value: '25' },
-  { label: 'Prescripción o caducidad', value: '26' },
-  { label: 'A satisfacción del acreedor', value: '27' },
-  { label: 'Tarjeta de débito', value: '28' },
-  { label: 'Tarjeta de servicios', value: '29' },
-  { label: 'Por definir', value: '99' },
-];
-
-export enum ExportacionEnum {
-  NoAplica = '01',
-  Definitiva = '02',
-  Temporal = '03',
-}
-export type ExportacionType = '01' | '02' | '03';
-export const exportacion = [
   {
-    descripcion: 'No aplica',
     value: '01',
+    label: 'Efectivo',
+    deprecated: false,
   },
   {
-    descripcion: 'Definitiva',
     value: '02',
+    label: 'Cheque nominativo',
+    deprecated: false,
   },
   {
-    descripcion: 'Temporal',
     value: '03',
+    label: 'Transferencia electrónica de fondos',
+    deprecated: false,
+  },
+  {
+    value: '04',
+    label: 'Tarjeta de crédito',
+    deprecated: false,
+  },
+  {
+    value: '05',
+    label: 'Monedero electrónico',
+    deprecated: false,
+  },
+  {
+    value: '06',
+    label: 'Dinero electrónico',
+    deprecated: false,
+  },
+  {
+    value: '08',
+    label: 'Vales de despensa',
+    deprecated: false,
+  },
+  {
+    value: '12',
+    label: 'Dación en pago',
+    deprecated: false,
+  },
+  {
+    value: '13',
+    label: 'Pago por subrogación',
+    deprecated: false,
+  },
+  {
+    value: '14',
+    label: 'Pago por consignación',
+    deprecated: false,
+  },
+  {
+    value: '15',
+    label: 'Condonación',
+    deprecated: false,
+  },
+  {
+    value: '17',
+    label: 'Compensación',
+    deprecated: false,
+  },
+  {
+    value: '23',
+    label: 'Novación',
+    deprecated: false,
+  },
+  {
+    value: '24',
+    label: 'Confusión',
+    deprecated: false,
+  },
+  {
+    value: '25',
+    label: 'Remisión de deuda',
+    deprecated: false,
+  },
+  {
+    value: '26',
+    label: 'Prescripción o caducidad',
+    deprecated: false,
+  },
+  {
+    value: '27',
+    label: 'A satisfacción del acreedor',
+    deprecated: false,
+  },
+  {
+    value: '28',
+    label: 'Tarjeta de débito',
+    deprecated: false,
+  },
+  {
+    value: '29',
+    label: 'Tarjeta de servicios',
+    deprecated: false,
+  },
+  {
+    value: '30',
+    label: 'Aplicación de anticipos',
+    deprecated: false,
+  },
+  {
+    value: '31',
+    label: 'Intermediario pagos',
+    deprecated: false,
+  },
+  {
+    value: '99',
+    label: 'Por definir',
+    deprecated: false,
   },
 ];

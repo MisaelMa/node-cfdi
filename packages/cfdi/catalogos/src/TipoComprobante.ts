@@ -1,29 +1,43 @@
+// Generado por @cfdi/catalogos-codegen. NO EDITAR.
 export enum TipoComprobante {
   INGRESO = 'I',
   EGRESO = 'E',
   TRASLADO = 'T',
-  PAGO = 'P',
   NOMINA = 'N',
+  PAGO = 'P',
 }
 
-export type TypeComprobante = 'I' | 'E' | 'T' | 'P' | 'N';
+export type TypeComprobante =
+  | 'I'
+  | 'E'
+  | 'T'
+  | 'N'
+  | 'P';
 
 export const TipoComprobanteList = [
   {
-    label: 'Ingreso',
     value: 'I',
+    label: 'Ingreso',
+    deprecated: false,
   },
-  { label: 'Egreso', value: 'E' },
   {
-    label: 'Translado',
+    value: 'E',
+    label: 'Egreso',
+    deprecated: false,
+  },
+  {
     value: 'T',
+    label: 'Traslado',
+    deprecated: false,
   },
   {
-    label: 'Nómina',
     value: 'N',
+    label: 'Nómina',
+    deprecated: false,
   },
   {
-    label: 'Pago',
     value: 'P',
+    label: 'Pago',
+    deprecated: false,
   },
 ];
