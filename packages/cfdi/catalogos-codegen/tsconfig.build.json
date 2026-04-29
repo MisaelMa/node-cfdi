@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["dom", "esnext"],
+    "types": ["node"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@sat/recursos": ["../../sat/recursos/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*", "bin/**/*", "test/**/*"]
+}

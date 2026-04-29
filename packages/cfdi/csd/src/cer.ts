@@ -1,9 +1,40 @@
 /** @deprecated Use Certificate class instead */
 import console from 'console';
-import moment from 'moment';
 import pkg from 'node-forge';
 import { readFileSync } from 'fs';
 import { x509 } from '@clir/openssl';
+
+const formatDate = (date: Date, format: string): string => {
+  const pad = (n: number, size: number) => String(n).padStart(size, '0');
+  const Y = date.getFullYear();
+  const M = date.getMonth() + 1;
+  const D = date.getDate();
+  const H = date.getHours();
+  const mi = date.getMinutes();
+  const s = date.getSeconds();
+  const ms = date.getMilliseconds();
+  const tokens: Record<string, string> = {
+    YYYY: pad(Y, 4),
+    YY: pad(Y % 100, 2),
+    MM: pad(M, 2),
+    M: String(M),
+    DD: pad(D, 2),
+    D: String(D),
+    HH: pad(H, 2),
+    H: String(H),
+    mm: pad(mi, 2),
+    m: String(mi),
+    ss: pad(s, 2),
+    s: String(s),
+    SSS: pad(ms, 3),
+    SS: pad(Math.floor(ms / 10), 2),
+    S: String(Math.floor(ms / 100)),
+  };
+  return format.replace(
+    /YYYY|YY|SSS|SS|MM|DD|HH|mm|ss|M|D|H|m|s|S/g,
+    t => tokens[t]
+  );
+};
 
 const { pki } = pkg;
 // @ts-ignore
@@ -282,8 +313,8 @@ export const date = (
     let sDate = getData().validity.notBefore; // data[0].replace('notBefore=', '').replace('  ', '');
     let eDate = getData().validity.notAfter; // data[1].replace('notAfter=', '').replace('  ', '');
 
-    let startDate = moment(sDate).format(format);
-    let endDate = moment(eDate).format(format);
+    let startDate = formatDate(new Date(sDate), format);
+    let endDate = formatDate(new Date(eDate), format);
 
     return {
       startDate,

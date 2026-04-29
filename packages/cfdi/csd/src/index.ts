@@ -5,5 +5,6 @@ export { cer, key };
 export * from './Certificate';
 export * from './PrivateKey';
 export * from './Credential';
+export * from './Ocsp';
 export { setMode, getMode } from './config';
 export type { CsdMode } from './config';

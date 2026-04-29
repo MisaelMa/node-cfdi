@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <a href="https://cfdi.recreando.dev">
+  <a href="https://cfdi.recreando.dev/ecosistema/cfdi-2-json">
     <img src="https://raw.githubusercontent.com/MisaelMa/cards/main/cfdi-documentacion.png" alt="Documentacion" width="300" />
   </a>
 </p>
@@ -129,6 +129,40 @@
 ```bash
 npm install @cfdi/2json
 ```
+
+
+## Que es
+
+`@cfdi/2json` convierte un XML CFDI 4.0 (sellado o sin sellar) a un objeto JSON listo para consumir desde JavaScript/TypeScript. Acepta tanto una ruta a un archivo XML como una cadena XML directa.
+
+Casos de uso tipicos:
+- Leer un CFDI emitido por el SAT y extraer datos del comprobante, emisor, receptor, conceptos y complementos.
+- Pre-procesar XMLs antes de mostrarlos en una UI o exportarlos a otro formato.
+- Validar contra un schema TypeScript estricto del comprobante (`XmlCdfi` de `@cfdi/types`).
+
+## Uso rapido
+
+```ts
+import { XmlToJson } from '@cfdi/2json';
+
+// Desde un archivo
+const cfdi = XmlToJson('./facturas/CFDI_001.xml');
+
+// Desde una cadena XML
+const cfdi = XmlToJson('<?xml version="1.0"?>...</cfdi:Comprobante>');
+
+// Conservando namespaces (`cfdi:`, `tfd:`, etc.) en las llaves
+const conNs = XmlToJson('./facturas/CFDI_001.xml', { original: true });
+
+console.log(cfdi.Comprobante.Emisor);   // datos del emisor
+console.log(cfdi.Comprobante.Conceptos); // arreglo de conceptos
+```
+
+| Opcion | Default | Efecto |
+|---|---|---|
+| `original` | `false` | Si es `true`, conserva los prefijos de namespace (`cfdi:Comprobante`); si es `false`, los remueve. |
+| `compact` | `false` | Reservado para variantes futuras del formato compacto. |
+
 
 ---
 

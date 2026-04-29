@@ -115,6 +115,12 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@cfdi/catalogos-codegen",
+      "projectFolder": "packages/cfdi/catalogos-codegen",
+      "reviewCategory": "private",
+      "shouldPublish": false
+    },
+    {
       "packageName": "@cfdi/pdf",
       "projectFolder": "packages/cfdi/pdf",
       "reviewCategory": "libraries",

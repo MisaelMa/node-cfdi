@@ -79,6 +79,46 @@ importers:
         specifier: 2.1.3
         version: 2.1.3(@types/node@22.19.17)(@vitest/ui@2.1.3)(jsdom@19.0.0)(lightningcss@1.32.0)(sugarss@2.0.0)(terser@5.46.1)
 
+  ../../packages/cfdi/catalogos-codegen:
+    dependencies:
+      '@sat/recursos':
+        specifier: workspace:*
+        version: link:../../sat/recursos
+      xlsx:
+        specifier: ^0.18.5
+        version: 0.18.5
+    devDependencies:
+      '@recreando/eslint-settings':
+        specifier: workspace:*
+        version: link:../../../rigs/eslint
+      '@recreando/typescript-settings':
+        specifier: workspace:*
+        version: link:../../../rigs/typescript
+      '@types/node':
+        specifier: ^22
+        version: 22.19.17
+      '@vitest/coverage-v8':
+        specifier: 2.1.3
+        version: 2.1.3(vitest@2.1.3)
+      '@vitest/ui':
+        specifier: 2.1.3
+        version: 2.1.3(vitest@2.1.3)
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.1
+      tsx:
+        specifier: ^4.7.0
+        version: 4.21.0
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+      vite-tsconfig-paths:
+        specifier: ~4.2.1
+        version: 4.2.3(typescript@5.9.3)(vite@7.3.1(@types/node@22.19.17)(jiti@2.6.1)(lightningcss@1.32.0)(sugarss@2.0.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))
+      vitest:
+        specifier: 2.1.3
+        version: 2.1.3(@types/node@22.19.17)(@vitest/ui@2.1.3)(jsdom@19.0.0)(lightningcss@1.32.0)(sugarss@2.0.0)(terser@5.46.1)
+
   ../../packages/cfdi/cleaner:
     devDependencies:
       '@recreando/eslint-settings':
@@ -157,9 +197,6 @@ importers:
       '@clir/openssl':
         specifier: workspace:*
         version: link:../../clir/openssl
-      moment:
-        specifier: ^2.29.4
-        version: 2.30.1
       node-forge:
         specifier: ^1.3.1
         version: 1.4.0
@@ -1443,6 +1480,9 @@ importers:
       '@saxon-he/cli':
         specifier: workspace:*
         version: link:../clir/saxon-he
+      e.firma:
+        specifier: ~1.0.1
+        version: 1.0.1
       next:
         specifier: 15.2.3
         version: 15.2.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -3671,6 +3711,10 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  adler-32@1.3.1:
+    resolution: {integrity: sha512-ynZ4w/nUUv5rrsR8UUGoe1VC9hZj6V5hU9Qw1HlMDJGEJw5S7TfTErWTjMys6M7vr0YWcPqs3qAr4ss0nDfP+A==}
+    engines: {node: '>=0.8'}
+
   agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
     engines: {node: '>= 6.0.0'}
@@ -3952,6 +3996,10 @@ packages:
   caniuse-lite@1.0.30001785:
     resolution: {integrity: sha512-blhOL/WNR+Km1RI/LCVAvA73xplXA7ZbjzI4YkMK9pa6T/P3F2GxjNpEkyw5repTw9IvkyrjyHpwjnhZ5FOvYQ==}
 
+  cfb@1.2.2:
+    resolution: {integrity: sha512-KfdUZsSOw19/ObEWasvBP/Ac4reZvAGauZhs6S/gqNhXhI7cKwvlH7ulj+dOEYnca4bm4SGo8C1bTAQvnTjgQA==}
+    engines: {node: '>=0.8'}
+
   chai@5.3.3:
     resolution: {integrity: sha512-4zNhdJD/iOjSH0A05ea+Ke6MU5mmpQcbQsSOkgdaUMJ9zTlDTD/GYlwohmIE2u0gaxHYiVHEn1Fw9mZ/ktJWgw==}
     engines: {node: '>=18'}
@@ -4015,6 +4063,10 @@ packages:
     resolution: {integrity: sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==}
     engines: {iojs: '>= 1.0.0', node: '>= 0.12.0'}
 
+  codepage@1.15.0:
+    resolution: {integrity: sha512-3g6NUTPd/YtuuGrhMnOMRjFc+LJw/bnMp3+0r/Wcz3IXUuCosKRJvMphm5+Q+bvTVGcJJuRvVLuYba+WojaFaA==}
+    engines: {node: '>=0.8'}
+
   collect-v8-coverage@1.0.3:
     resolution: {integrity: sha512-1L5aqIkwPfiodaMgQunkF1zRhNqifHBmtbbbxcr6yVxxBnliw4TDOW6NxpO8DJLgJ16OT+Y4ztZqP6p/FtXnAw==}
 
@@ -4070,6 +4122,14 @@ packages:
   cosmiconfig@7.1.0:
     resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}
     engines: {node: '>=10'}
+
+  crc-32@1.2.2:
+    resolution: {integrity: sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==}
+    engines: {node: '>=0.8'}
+    hasBin: true
+
+  cross-fetch@4.1.0:
+    resolution: {integrity: sha512-uKm5PU+MHTootlWEY+mZ4vvXoCn4fLQxT9dSc1sXVMSFkINTJVN8cAQROpwcKm8bJ/c7rgZVIBWzH5T78sNZZw==}
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -4239,6 +4299,10 @@ packages:
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
+
+  e.firma@1.0.1:
+    resolution: {integrity: sha512-TaPdns7AOkm0i2w2uJDd+SU4Vq547jSZFgvO5IiTkV8UKIbktSwcZIxIytQ5CS8kpjFqB6l9BXY419d+lEDcDg==}
+    engines: {node: '>=22.14.0'}
 
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
@@ -4668,6 +4732,10 @@ packages:
   form-data@4.0.5:
     resolution: {integrity: sha512-8RipRLol37bNs2bhoV67fiTEvdTrbMUYcFTiy3+wuuOnUog2QBHCZWXDRijWQfAkhBj2Uf5UnVaiWwA5vdd82w==}
     engines: {node: '>= 6'}
+
+  frac@1.1.2:
+    resolution: {integrity: sha512-w/XBfkibaTl3YDqASwfDUqkna4Z2p9cFSr1aHDt0WoMTECnRfBOv2WArlZILlqgWlmdIlALXGpM2AOhEk5W3IA==}
+    engines: {node: '>=0.8'}
 
   fs-extra@11.3.4:
     resolution: {integrity: sha512-CTXd6rk/M3/ULNQj8FBqBWHYBVYybQ3VPBw0xGKFe3tuH7ytT6ACnvzpIQ3UZtB8yvUKC2cXn1a+x+5EVQLovA==}
@@ -5653,9 +5721,6 @@ packages:
   mlly@1.8.2:
     resolution: {integrity: sha512-d+ObxMQFmbt10sretNDytwt85VrbkhhUA/JBGm1MPaWJ65Cl4wOgLaB1NYvJSZ0Ef03MMEU/0xpPMXUIQ29UfA==}
 
-  moment@2.30.1:
-    resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
-
   mrmime@2.0.1:
     resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
     engines: {node: '>=10'}
@@ -5732,6 +5797,10 @@ packages:
     peerDependenciesMeta:
       encoding:
         optional: true
+
+  node-forge@1.3.1:
+    resolution: {integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==}
+    engines: {node: '>= 6.13.0'}
 
   node-forge@1.4.0:
     resolution: {integrity: sha512-LarFH0+6VfriEhqMMcLX2F7SwSXeWwnEAJEsYm5QKWchiVYVvJyV9v7UDvUv+w5HO23ZpQTXDv/GxdDdMyOuoQ==}
@@ -6363,6 +6432,10 @@ packages:
 
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
+
+  ssf@0.11.2:
+    resolution: {integrity: sha512-+idbmIXoYET47hH+d7dfm2epdOMUDjqcB4648sTZ+t2JwoyBFL/insLfB/racrDmsKB3diwsDA696pZMieAC5g==}
+    engines: {node: '>=0.8'}
 
   stable-hash@0.0.5:
     resolution: {integrity: sha512-+L3ccpzibovGXFK+Ap/f8LOS0ahMrHTf3xu7mMLSpEGU0EO9ucaysSylKo9eRDFNhWve/y275iPmIZ4z39a9iA==}
@@ -7057,9 +7130,17 @@ packages:
     engines: {node: '>=8'}
     hasBin: true
 
+  wmf@1.0.2:
+    resolution: {integrity: sha512-/p9K7bEh0Dj6WbXg4JG0xvLQmIadrner1bi45VMJTfnbVHsc7yIajZyoSoK60/dtVBs12Fm6WkUI5/3WAVsNMw==}
+    engines: {node: '>=0.8'}
+
   word-wrap@1.2.5:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
+
+  word@0.3.0:
+    resolution: {integrity: sha512-OELeY0Q61OXpdUfTp+oweA/vtLVg5VDOXh+3he3PNzLGG/y0oylSOC1xRVj0+l4vQ3tj/bB1HVHv1ocXkQceFA==}
+    engines: {node: '>=0.8'}
 
   wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
@@ -7090,6 +7171,11 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
+
+  xlsx@0.18.5:
+    resolution: {integrity: sha512-dmg3LCjBPHZnQp5/F/+nnTa+miPJxUXB6vtk42YjBBKayDNagxGEeIdWApkYPOf3Z3pm3k62Knjzp7lMeTEtFQ==}
+    engines: {node: '>=0.8'}
+    hasBin: true
 
   xml-js@1.6.11:
     resolution: {integrity: sha512-7rVi2KMfwfWFl+GpPg6m80IVMWXLRjO+PxTq7V2CDhoGak0wzYzFgUY2m4XJ47OGdXd8eLE8EmwfAmdjw7lC1g==}
@@ -9393,6 +9479,8 @@ snapshots:
 
   acorn@8.16.0: {}
 
+  adler-32@1.3.1: {}
+
   agent-base@6.0.2:
     dependencies:
       debug: 4.4.3(supports-color@9.4.0)
@@ -9733,6 +9821,11 @@ snapshots:
 
   caniuse-lite@1.0.30001785: {}
 
+  cfb@1.2.2:
+    dependencies:
+      adler-32: 1.3.1
+      crc-32: 1.2.2
+
   chai@5.3.3:
     dependencies:
       assertion-error: 2.0.1
@@ -9781,6 +9874,8 @@ snapshots:
   clone@2.1.2: {}
 
   co@4.6.0: {}
+
+  codepage@1.15.0: {}
 
   collect-v8-coverage@1.0.3: {}
 
@@ -9835,6 +9930,14 @@ snapshots:
       parse-json: 5.2.0
       path-type: 4.0.0
       yaml: 2.8.3
+
+  crc-32@1.2.2: {}
+
+  cross-fetch@4.1.0:
+    dependencies:
+      node-fetch: 2.7.0
+    transitivePeerDependencies:
+      - encoding
 
   cross-spawn@7.0.6:
     dependencies:
@@ -9995,6 +10098,13 @@ snapshots:
       call-bind-apply-helpers: 1.0.2
       es-errors: 1.3.0
       gopd: 1.2.0
+
+  e.firma@1.0.1:
+    dependencies:
+      cross-fetch: 4.1.0
+      node-forge: 1.3.1
+    transitivePeerDependencies:
+      - encoding
 
   eastasianwidth@0.2.0: {}
 
@@ -10704,6 +10814,8 @@ snapshots:
       es-set-tostringtag: 2.1.0
       hasown: 2.0.2
       mime-types: 2.1.35
+
+  frac@1.1.2: {}
 
   fs-extra@11.3.4:
     dependencies:
@@ -11901,8 +12013,6 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.6.3
 
-  moment@2.30.1: {}
-
   mrmime@2.0.1: {}
 
   ms@2.0.0: {}
@@ -11967,6 +12077,8 @@ snapshots:
   node-fetch@2.7.0:
     dependencies:
       whatwg-url: 5.0.0
+
+  node-forge@1.3.1: {}
 
   node-forge@1.4.0: {}
 
@@ -12689,6 +12801,10 @@ snapshots:
   specificity@0.4.1: {}
 
   sprintf-js@1.0.3: {}
+
+  ssf@0.11.2:
+    dependencies:
+      frac: 1.1.2
 
   stable-hash@0.0.5: {}
 
@@ -13498,7 +13614,11 @@ snapshots:
       siginfo: 2.0.0
       stackback: 0.0.2
 
+  wmf@1.0.2: {}
+
   word-wrap@1.2.5: {}
+
+  word@0.3.0: {}
 
   wrap-ansi@7.0.0:
     dependencies:
@@ -13527,6 +13647,16 @@ snapshots:
       signal-exit: 3.0.7
 
   ws@8.20.0: {}
+
+  xlsx@0.18.5:
+    dependencies:
+      adler-32: 1.3.1
+      cfb: 1.2.2
+      codepage: 1.15.0
+      crc-32: 1.2.2
+      ssf: 0.11.2
+      wmf: 1.0.2
+      word: 0.3.0
 
   xml-js@1.6.11:
     dependencies:

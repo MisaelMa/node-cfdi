@@ -24,7 +24,8 @@
     "@cfdi/transform": "workspace:*",
     "@cfdi/complementos": "workspace:*",
     "@saxon-he/cli": "workspace:*",
-    "@clir/openssl": "workspace:*"
+    "@clir/openssl": "workspace:*",
+    "e.firma": "~1.0.1"
   },
   "devDependencies": {
     "typescript": "^5",

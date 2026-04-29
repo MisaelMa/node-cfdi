@@ -1,24 +1,29 @@
+// Generado por @cfdi/catalogos-codegen. NO EDITAR.
 export enum Impuesto {
   ISR = '001',
   IVA = '002',
   IEPS = '003',
 }
 
-
+export type ImpuestoType =
+  | '001'
+  | '002'
+  | '003';
 
 export const ImpuestoList = [
   {
-    label: 'ISR',
     value: '001',
+    label: 'ISR',
+    deprecated: false,
   },
   {
-    label: 'IVA',
     value: '002',
+    label: 'IVA',
+    deprecated: false,
   },
   {
-    label: 'IEPS',
     value: '003',
+    label: 'IEPS',
+    deprecated: false,
   },
 ];
-
-export type ImpuestoType = '001' | '002' | '003';

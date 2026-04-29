@@ -6,6 +6,16 @@ export type SatVersion = '4.0' | '3.3';
 export interface SatResourcesOptions {
   version: SatVersion;
   outputDir: string;
+  /**
+   * URL al archivo Excel oficial del catalogo del SAT (Anexo 20).
+   * El SAT cambia el nombre del archivo con cada actualizacion (p.ej.
+   * `catCFDI_V_4_DDMMYYYY.xls`), por lo que esta URL no esta hardcoded.
+   * Tambien se puede pasar via env var `SAT_XLSX_URL`.
+   *
+   * Pagina del Anexo 20 con el enlace actual:
+   * http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20.htm
+   */
+  xlsxUrl?: string;
 }
 
 export interface DownloadResult {
@@ -36,6 +46,7 @@ const SAT_URLS: Record<SatVersion, VersionUrls> = {
   },
 };
 
+
 /**
  * Descarga los recursos del SAT necesarios para procesar CFDI.
  *
@@ -46,10 +57,12 @@ const SAT_URLS: Record<SatVersion, VersionUrls> = {
 export class SatResources {
   private readonly version: SatVersion;
   private readonly outputDir: string;
+  private readonly xlsxUrl: string | undefined;
 
   constructor(options: SatResourcesOptions) {
     this.version = options.version;
     this.outputDir = options.outputDir;
+    this.xlsxUrl = options.xlsxUrl ?? process.env.SAT_XLSX_URL;
   }
 
   /**
@@ -148,6 +161,36 @@ export class SatResources {
   }
 
   /**
+   * Descarga el catalogo oficial del SAT en formato Excel.
+   * El SAT publica un unico archivo con una hoja por catalogo.
+   * Lo descarga a `<outputDir>/catCFDI.xlsx` y devuelve la ruta.
+   *
+   * Idempotente: si el archivo existe, no redescarga (salvo `force: true`).
+   */
+  async downloadXlsx(opts: { force?: boolean } = {}): Promise<string> {
+    fs.mkdirSync(this.outputDir, { recursive: true });
+    const outPath = path.join(this.outputDir, 'catCFDI.xlsx');
+
+    if (!opts.force && fs.existsSync(outPath)) {
+      return outPath;
+    }
+
+    if (!this.xlsxUrl) {
+      throw new Error(
+        `No hay URL del catalogo XLSX configurada. ` +
+          `Pasa \`xlsxUrl\` al constructor de SatResources o setea la env var ` +
+          `SAT_XLSX_URL. La URL actual del Anexo 20 esta en: ` +
+          `http://omawww.sat.gob.mx/tramitesyservicios/Paginas/anexo_20.htm. ` +
+          `Alternativa: coloca el archivo manualmente en ${outPath}.`
+      );
+    }
+
+    const buffer = await this._fetchBinary(this.xlsxUrl);
+    fs.writeFileSync(outPath, buffer);
+    return outPath;
+  }
+
+  /**
    * Descarga texto desde una URL usando fetch nativo de Node 22.
    */
   private async _fetchText(url: string): Promise<string> {
@@ -158,6 +201,20 @@ export class SatResources {
       );
     }
     return response.text();
+  }
+
+  /**
+   * Descarga binario desde una URL usando fetch nativo de Node 22.
+   */
+  private async _fetchBinary(url: string): Promise<Buffer> {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(
+        `Error al descargar ${url}: ${response.status} ${response.statusText}`
+      );
+    }
+    const arrayBuffer = await response.arrayBuffer();
+    return Buffer.from(arrayBuffer);
   }
 
   /**

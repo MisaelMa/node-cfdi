@@ -20,6 +20,15 @@ export class Certificate {
   }
 
   /**
+   * Acceso al certificado de `node-forge` subyacente.
+   * Pensado para integraciones internas (p. ej. el módulo `Ocsp`).
+   * No depender de esta API en código de aplicación.
+   */
+  get forgeCertificate(): pkg.pki.Certificate {
+    return this._forgeCert;
+  }
+
+  /**
    * Crea un Certificate a partir de un buffer DER (binario .cer)
    */
   static fromDer(derBuffer: Buffer): Certificate {
@@ -121,7 +130,7 @@ export class Certificate {
     // OID 2.5.4.45 - x500UniqueIdentifier: contiene "RFC / CURP"
     const x500UniqueId = attrs.find(a => a.type === '2.5.4.45');
     if (x500UniqueId?.value) {
-      const raw = String(x500UniqueId.value).trim();
+      const raw = Certificate._decodeAttrValue(x500UniqueId).trim();
       // Formato "RFC / CURP" o solo "RFC"
       const rfcPart = raw.split('/')[0].trim();
       if (rfcPart && this._isValidRfc(rfcPart)) return rfcPart;
@@ -132,7 +141,7 @@ export class Certificate {
       a => a.type === '2.5.4.5' || a.shortName === 'serialNumber'
     );
     if (serialAttr?.value) {
-      const raw = String(serialAttr.value).trim();
+      const raw = Certificate._decodeAttrValue(serialAttr).trim();
       const rfcPart = raw.split('/')[0].trim();
       if (rfcPart && this._isValidRfc(rfcPart)) return rfcPart;
     }
@@ -140,14 +149,14 @@ export class Certificate {
     // OID 0.9.2342.19200300.100.1.1 - uid
     const uidAttr = attrs.find(a => a.type === '0.9.2342.19200300.100.1.1');
     if (uidAttr?.value) {
-      const val = String(uidAttr.value).trim();
+      const val = Certificate._decodeAttrValue(uidAttr).trim();
       if (this._isValidRfc(val)) return val;
     }
 
     // Busqueda en todos los atributos (fallback)
     for (const attr of attrs) {
       if (attr.value) {
-        const val = String(attr.value).trim();
+        const val = Certificate._decodeAttrValue(attr).trim();
         const part = val.split('/')[0].trim();
         if (this._isValidRfc(part)) return part;
       }
@@ -172,11 +181,11 @@ export class Certificate {
 
     // CN (commonName)
     const cn = attrs.find(a => a.shortName === 'CN' || a.type === '2.5.4.3');
-    if (cn?.value) return String(cn.value);
+    if (cn?.value) return Certificate._decodeAttrValue(cn);
 
     // givenName
     const gn = attrs.find(a => a.type === '2.5.4.42');
-    if (gn?.value) return String(gn.value);
+    if (gn?.value) return Certificate._decodeAttrValue(gn);
 
     return '';
   }
@@ -237,66 +246,174 @@ export class Certificate {
   }
 
   /**
-   * Detecta si es FIEL (eFirma).
-   * Los certificados FIEL del SAT tienen "FIEL" en el OU o en el CN,
-   * o el campo OU no contiene "CSD" ni "Prueba_CFDI".
-   * En la practica, los CSD tienen OU con "Prueba_CFDI" o similar,
-   * mientras que los FIEL tienen OU vacío o con "FIEL".
+   * Detecta el tipo de certificado por extensiones X.509 (estándar SAT).
+   *
+   * - **CSD** (Certificado de Sello Digital): keyUsage con `digitalSignature`
+   *   y `nonRepudiation` activos, sin `dataEncipherment` ni `keyAgreement`.
+   * - **FIEL** (e.firma / firma electrónica avanzada): extKeyUsage con
+   *   `emailProtection` y `clientAuth` activos.
+   *
+   * Si las extensiones no permiten clasificar, hace fallback a la heurística
+   * histórica del OU del subject (`Prueba_CFDI`, `FIEL`, etc.).
    */
-  isFiel(): boolean {
-    return !this.isCsd();
-  }
+  certificateType(): 'CSD' | 'FIEL' | 'UNKNOWN' {
+    const exts = this._forgeCert.extensions as Array<Record<string, any>>;
 
-  /**
-   * Detecta si es CSD (Certificado de Sello Digital).
-   * Los CSD del SAT incluyen en el subject OU un valor que indica
-   * su uso para sellos: "CSD", "Prueba_CFDI", etc.
-   * Tambien se puede verificar por el KeyUsage: digitalSignature sin
-   * nonRepudiation implica CSD; con nonRepudiation es FIEL.
-   */
-  isCsd(): boolean {
+    for (const ext of exts) {
+      if (
+        ext.name === 'extKeyUsage' &&
+        ext.emailProtection === true &&
+        ext.clientAuth === true
+      ) {
+        return 'FIEL';
+      }
+      if (
+        ext.name === 'keyUsage' &&
+        ext.digitalSignature === true &&
+        ext.nonRepudiation === true &&
+        ext.dataEncipherment === false &&
+        ext.keyAgreement === false
+      ) {
+        return 'CSD';
+      }
+    }
+
+    // Fallback: heurística OU
     const attrs = this._forgeCert.subject.attributes;
-
-    // Buscar OU (organizationalUnitName)
     const ou = attrs.find(a => a.shortName === 'OU' || a.type === '2.5.4.11');
     if (ou?.value) {
       const ouVal = String(ou.value).toUpperCase();
-      // CSD tiene OU con "CSD", "PRUEBA_CFDI", o similar
-      if (
-        ouVal.includes('CSD') ||
-        ouVal.includes('CFDI') ||
-        ouVal.includes('SELLO')
-      ) {
-        return true;
+      if (ouVal.includes('CSD') || ouVal.includes('CFDI') || ouVal.includes('SELLO')) {
+        return 'CSD';
       }
-      // FIEL tiene OU con "FIEL" o "FIRMA"
       if (ouVal.includes('FIEL') || ouVal.includes('FIRMA')) {
-        return false;
+        return 'FIEL';
       }
     }
+    return 'UNKNOWN';
+  }
 
-    // Verificar extensiones Key Usage
-    const keyUsageExt = this._forgeCert.extensions.find(
-      e => e.id === '2.5.29.15' || e.name === 'keyUsage'
-    ) as any;
+  /** `true` si es FIEL (e.firma). Equivalente a `certificateType() === 'FIEL'`. */
+  isFiel(): boolean {
+    return this.certificateType() === 'FIEL';
+  }
 
-    if (keyUsageExt) {
-      // CSD: digitalSignature = true, nonRepudiation = false
-      // FIEL: ambos true
-      if (keyUsageExt.digitalSignature && !keyUsageExt.nonRepudiation) {
-        return true;
-      }
+  /** `true` si es CSD. Equivalente a `certificateType() === 'CSD'`. */
+  isCsd(): boolean {
+    return this.certificateType() === 'CSD';
+  }
+
+  /**
+   * Versión de la Autoridad Certificadora del SAT (AC) que emitió el certificado.
+   *
+   * El SAT codifica el número de AC en el dígito 12 (índice 11) del
+   * `noCertificado` (20 dígitos decimales). En el serial hex es el carácter en
+   * índice 23 (segundo nibble del byte 11). Valores típicos:
+   *   - `4`: AC4 del SAT (deprecada)
+   *   - `5`: AC5 del SAT (vigente)
+   *
+   * Retorna `null` si no se puede determinar.
+   */
+  acVersion(): number | null {
+    const noCer = this.noCertificado();
+    if (noCer.length < 12) return null;
+    const digit = Number(noCer[11]);
+    return Number.isFinite(digit) ? digit : null;
+  }
+
+  /**
+   * Tipo de sujeto (titular) según el formato del RFC en el subject:
+   *
+   * - **MORAL** (persona moral / empresa): el OID 2.5.4.45 contiene `RFC / CURP`
+   *   (RFC empresa + CURP del representante legal, separados por `/`).
+   * - **FISICA** (persona física): RFC de 13 caracteres, sin `/`.
+   *
+   * Retorna `'UNKNOWN'` si no se puede determinar.
+   */
+  subjectType(): 'MORAL' | 'FISICA' | 'UNKNOWN' {
+    const attrs = this._forgeCert.subject.attributes;
+    const x500 = attrs.find(a => a.type === '2.5.4.45');
+    if (x500?.value) {
+      const raw = String(x500.value);
+      if (raw.indexOf(' / ') >= 0) return 'MORAL';
+      if (raw.length === 13) return 'FISICA';
     }
+    // Fallback al RFC ya extraído
+    const rfc = this.rfc();
+    if (rfc.length === 13) return 'FISICA';
+    if (rfc.length === 12) return 'MORAL';
+    return 'UNKNOWN';
+  }
 
-    // Por defecto, si tiene serialNumber con " / " (RFC / CURP) es probablemente CSD
-    const serialAttr = attrs.find(
-      a => a.type === '2.5.4.5' || a.shortName === 'serialNumber'
+  /**
+   * `true` si el certificado está vigente: `notBefore <= now <= notAfter`.
+   * A diferencia de `isExpired()`, también valida el inicio de vigencia.
+   */
+  isValid(): boolean {
+    const now = new Date();
+    return (
+      now >= this._forgeCert.validity.notBefore &&
+      now <= this._forgeCert.validity.notAfter
     );
-    if (serialAttr?.value && String(serialAttr.value).includes('/')) {
-      return true;
-    }
+  }
 
-    return false;
+  /**
+   * Verifica que este certificado fue firmado por el certificado emisor dado.
+   * Útil para validar la cadena de confianza contra el AC4/AC5 del SAT.
+   *
+   * Retorna `true` si la firma es válida, `false` si no fue emitido por
+   * ese emisor. Lanza si el binario del emisor es inválido.
+   *
+   * @example
+   *   const cert = await Certificate.fromFile('cert.cer');
+   *   const ac5 = await Certificate.fromFile('AC5_SAT.cer');
+   *   if (!cert.verifyIssuedBy(ac5)) throw new Error('cert no emitido por AC5');
+   */
+  verifyIssuedBy(issuer: Certificate): boolean {
+    try {
+      return issuer._forgeCert.verify(this._forgeCert);
+    } catch {
+      return false;
+    }
+  }
+
+  /** Alias de `verifyIssuedBy()` por compatibilidad con `e.firma`. */
+  verifyIntegrity(issuer: Certificate): boolean {
+    return this.verifyIssuedBy(issuer);
+  }
+
+  /**
+   * Verifica una firma contra `data` usando la llave pública del certificado.
+   * `signature` debe estar en Base64. Default SHA-256 (lo que exige el SAT).
+   */
+  verify(
+    data: string,
+    signature: string,
+    algorithm: 'SHA256' | 'SHA384' | 'SHA512' = 'SHA256'
+  ): boolean {
+    try {
+      const pubKeyPem = this.publicKey();
+      const pubKey = crypto.createPublicKey({ key: pubKeyPem, format: 'pem' });
+      const verifier = crypto.createVerify(`RSA-${algorithm}`);
+      verifier.update(data, 'utf8');
+      return verifier.verify(pubKey, signature, 'base64');
+    } catch {
+      return false;
+    }
+  }
+
+  /**
+   * Encripta un mensaje con la llave pública del certificado (RSA PKCS#1 v1.5).
+   * Solo el dueño de la llave privada correspondiente puede desencriptar.
+   * Retorna el ciphertext en Base64.
+   */
+  rsaEncrypt(message: string): string {
+    const pubKey = crypto.createPublicKey({ key: this.publicKey(), format: 'pem' });
+    const enc = crypto.publicEncrypt(
+      { key: pubKey, padding: crypto.constants.RSA_PKCS1_PADDING },
+      Buffer.from(message, 'utf8')
+    );
+    return enc.toString('base64');
   }
 
   private _attributesToRecord(
@@ -306,9 +423,28 @@ export class Certificate {
     for (const attr of attributes) {
       const key = attr.shortName || attr.name || String(attr.type);
       if (key) {
-        obj[key] = String(attr.value ?? '');
+        obj[key] = Certificate._decodeAttrValue(attr);
       }
     }
     return obj;
+  }
+
+  /**
+   * Decodifica el valor de un atributo del subject/issuer.
+   *
+   * node-forge devuelve los UTF8String como "binary string" (un byte JS por
+   * cada byte UTF-8 del DER), por lo que `String(attr.value)` en certs con
+   * acentos produce mojibake (ej. "AdministraciÃ³n" en vez de "Administración").
+   * Cuando el tag ASN.1 original era UTF8 (12), re-decodificamos de bytes a UTF-8.
+   */
+  private static _decodeAttrValue(attr: pkg.pki.CertificateField): string {
+    const raw = attr.value;
+    if (raw === undefined || raw === null) return '';
+    const str = String(raw);
+    const tag = (attr as { valueTagClass?: number }).valueTagClass;
+    if (tag === asn1.Type.UTF8) {
+      return Buffer.from(str, 'binary').toString('utf8');
+    }
+    return str;
   }
 }
