@@ -1,6 +1,11 @@
 # Change Log - @cfdi/catalogos
 
-This log was last generated on Fri, 08 Nov 2024 04:40:23 GMT and should not be manually modified.
+This log was last generated on Wed, 29 Apr 2026 04:40:50 GMT and should not be manually modified.
+
+## 4.0.17
+Wed, 29 Apr 2026 04:40:50 GMT
+
+_Version update only_
 
 ## 4.0.15
 Fri, 08 Nov 2024 04:40:23 GMT
