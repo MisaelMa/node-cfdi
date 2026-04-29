@@ -132,6 +132,172 @@ npm install @cfdi/csd
 
 ---
 
+## API
+
+`@cfdi/csd` lee y opera certificados X.509 (`.cer`) y llaves privadas RSA (`.key`)
+del SAT mexicano. Cubre CSD (Certificado de Sello Digital) y FIEL (e.firma).
+
+### Clases
+
+| Clase | Responsabilidad |
+|---|---|
+| `Certificate` | Wrapper del `.cer` X.509 (CSD o FIEL) |
+| `PrivateKey` | Wrapper del `.key` RSA (PKCS#8 cifrado, PKCS#8 plano o PKCS#1) |
+| `Credential` | Une `Certificate` + `PrivateKey` para firmar/verificar |
+| `Ocsp` | Validación de revocación contra el responder OCSP del SAT |
+
+### `Certificate`
+
+```ts
+import { Certificate } from '@cfdi/csd';
+
+const cert = await Certificate.fromFile('mi.cer');         // DER o PEM auto
+// también: Certificate.fromDer(buf), Certificate.fromPem(str), fromFileSync
+```
+
+#### Identidad / metadata
+
+| Método | Retorna | Descripción |
+|---|---|---|
+| `serialNumber()` | `string` (hex) | Serial del cert |
+| `noCertificado()` | `string` (20 dig) | Número de certificado SAT |
+| `rfc()` | `string` | RFC del titular (subject OID 2.5.4.45 / 2.5.4.5 / UID) |
+| `legalName()` | `string` | Razón social / nombre del CN |
+| `subject()` | `Record<string, string>` | Subject como mapa atributo→valor |
+| `issuer()` | `Record<string, string>` | Issuer como mapa atributo→valor |
+| `validFrom()` | `Date` | Inicio de vigencia |
+| `validTo()` | `Date` | Fin de vigencia |
+| `isExpired()` | `boolean` | `now > validTo` |
+| `isValid()` | `boolean` | `validFrom ≤ now ≤ validTo` (vigente) |
+| `acVersion()` | `number \| null` | Versión de AC del SAT (4 o 5) — desde dígito 12 del `noCertificado` |
+| `subjectType()` | `'MORAL' \| 'FISICA' \| 'UNKNOWN'` | Persona moral o física, derivado del OID 2.5.4.45 |
+
+#### Tipo de certificado
+
+| Método | Retorna |
+|---|---|
+| `certificateType()` | `'CSD' \| 'FIEL' \| 'UNKNOWN'` — por extensiones X.509 (extKeyUsage / keyUsage), fallback a OU |
+| `isCsd()` | `boolean` — equivalente a `certificateType() === 'CSD'` |
+| `isFiel()` | `boolean` — equivalente a `certificateType() === 'FIEL'` |
+
+> "FIEL" y "e.firma" son la misma cosa: nomenclatura legal vs marca comercial del SAT.
+
+#### Conversiones / hashing
+
+| Método | Retorna |
+|---|---|
+| `toPem()` | `string` PEM con cabeceras |
+| `toDer()` | `Buffer` DER |
+| `toBase64()` | `string` base64 sin cabeceras ni saltos |
+| `publicKey()` | `string` PEM `-----BEGIN PUBLIC KEY-----` |
+| `fingerprint()` | `string` SHA-1 con `:` (`AA:BB:...`) |
+| `fingerprintSha256()` | `string` SHA-256 hex |
+
+#### Verificación
+
+| Método | Retorna |
+|---|---|
+| `verify(data, signatureBase64, alg='SHA256')` | `boolean` — verifica firma contra `data` con la pública del cert |
+| `verifyIssuedBy(issuer)` | `boolean` — `true` si fue firmado por `issuer` (cadena AC) |
+| `verifyIntegrity(issuer)` | alias de `verifyIssuedBy` (compat con `e.firma`) |
+| `rsaEncrypt(message)` | `string` base64 — encripta con la pública del cert |
+
+### `PrivateKey`
+
+```ts
+import { PrivateKey } from '@cfdi/csd';
+
+// .key del SAT (PKCS#8 cifrado)
+const key = await PrivateKey.fromFile('mi.key', '12345678a');
+
+// strict: solo acepta PKCS#8 cifrado
+const sat = await PrivateKey.fromFile('mi.key', '12345678a', { strict: true });
+```
+
+| Método | Retorna |
+|---|---|
+| `fromDer(buf, password, opts?)` | acepta PKCS#8 cifrado, PKCS#8 plano o PKCS#1 |
+| `fromPem(pem)` | PEM sin cifrado |
+| `fromFile(path, password, opts?)` | DER o PEM auto |
+| `fromFileSync(path, password, opts?)` | versión síncrona |
+| `toPem()` | PEM PKCS#8 sin cifrar |
+| `sign(data, alg='SHA256')` | firma base64 |
+| `rsaDecrypt(encryptedBase64)` | desencripta lo que `Certificate.rsaEncrypt` produjo |
+| `belongsToCertificate(cert)` | `true` si la pública de la llave == pública del cert |
+
+### `Credential`
+
+```ts
+import { Credential } from '@cfdi/csd';
+
+const cred = await Credential.create('mi.cer', 'mi.key', '12345678a');
+const sello = cred.sign('||cadena|original||');
+cred.verify('||cadena|original||', sello); // true
+```
+
+| Método | Retorna |
+|---|---|
+| `create(cerPath, keyPath, password)` | desde rutas |
+| `fromPem(cerPem, keyPem)` | desde PEM strings |
+| `sign(data, alg='SHA256')` | firma base64 |
+| `verify(data, sig, alg='SHA256')` | bool |
+| `rfc()`, `legalName()`, `noCertificado()`, `serialNumber()` | proxy al cert |
+| `isCsd()`, `isFiel()`, `isValid()`, `belongsTo(rfc)` | predicados |
+| `keyMatchesCertificate()` | bool |
+
+### `Ocsp` — validación de revocación SAT
+
+El SAT expone `https://cfdi.sat.gob.mx/edofiel` para consultar el estado
+(`GOOD` / `REVOKED`) de un certificado en línea. Se necesitan **tres** certificados:
+
+```ts
+import { Ocsp, Certificate } from '@cfdi/csd';
+
+const subject = await Certificate.fromFile('contribuyente.cer');
+const issuer = await Certificate.fromFile('AC5_SAT.cer');
+const ocspCert = await Certificate.fromFile('ocsp.ac5_sat.cer');
+
+const ocsp = new Ocsp('https://cfdi.sat.gob.mx/edofiel', issuer, subject, ocspCert);
+const res = await ocsp.verify();
+
+if (res.status === 'REVOKED') {
+  console.log('Certificado revocado el', res.revocationTime);
+}
+```
+
+| Método | Retorna |
+|---|---|
+| `verify()` | `{ status, revocationTime?, ocspRequestBase64, ocspResponseBase64 }` |
+| `parseResponseStatus(asn1)` | `OcspResponseStatus` |
+| `parseCertificateStatus(asn1Basic)` | `{ status, revocationTime? }` |
+| `verifyResponseSignature(asn1Basic)` | `boolean` |
+
+---
+
+## Compatibilidad con el paquete `e.firma`
+
+Si vienes del paquete [`e.firma`](https://www.npmjs.com/package/e.firma):
+
+| `e.firma` | `@cfdi/csd` |
+|---|---|
+| `new x509Certificate(bin)` | `await Certificate.fromFile(path)` o `Certificate.fromDer(buf)` |
+| `cert.certificateType` (`'CSD' \| 'EFIRMA'`) | `cert.certificateType()` (`'CSD' \| 'FIEL'`) |
+| `cert.acVersion` | `cert.acVersion()` |
+| `cert.subjectType` | `cert.subjectType()` |
+| `cert.valid` | `cert.isValid()` |
+| `cert.serialNumber` | `cert.serialNumber()` |
+| `cert.getPEM()` | `cert.toPem()` |
+| `cert.getBinary()` | `cert.toDer()` |
+| `cert.verifyIntegrity(issuerBin)` | `cert.verifyIssuedBy(issuer)` (alias `verifyIntegrity` disponible) |
+| `cert.rsaEncrypt(msg)` | `cert.rsaEncrypt(msg)` |
+| `cert.rsaVerifySignature(msg, sig)` | `cert.verify(msg, sig)` |
+| `new PrivateKey(bin)` (cifrada solamente) | `await PrivateKey.fromFile(path, pwd, { strict: true })` |
+| `key.rsaDecrypt(text, pwd)` | `key.rsaDecrypt(text)` (la pwd va en el `from*`) |
+| `key.rsaSign(msg, pwd)` | `key.sign(msg)` |
+| `new Ocsp(url, issuer, subject, ocsp)` | `new Ocsp(url, issuer, subject, ocsp)` |
+
+---
+
 ## Soporte
 
 <p>
