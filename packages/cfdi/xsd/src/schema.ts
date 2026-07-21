@@ -1,6 +1,5 @@
 import Ajv, { ValidateFunction } from 'ajv';
 import { AnySchema, AnyValidateFunction } from 'ajv/dist/types';
-import { existsSync, readFileSync, writeFileSync } from 'fs';
 
 import { Comprobante } from './tags/comprobante';
 import { JSV } from './JSV';
@@ -8,11 +7,28 @@ import { JTDDataType } from 'ajv/dist/types/jtd-schema';
 import { Schemakey } from './types/key-schema';
 import { ValidateXSD } from './tags/validate';
 
+/**
+ * SchemaReader
+ *
+ * Puerto de lectura de schemas. `Schema` NO sabe de donde vienen los JSON:
+ * solo sabe pedirlos por ruta. El adaptador que lee de disco vive en
+ * `loader.node.ts` y lo registra el entrypoint de Node (`index.ts`).
+ *
+ * Debe devolver `null` cuando la ruta no existe.
+ */
+export type SchemaReader = (file: string) => Record<string, any> | null;
+
+/**
+ * Shape que espera `loadFiles` cuando no hay nada que cargar. Se devuelve una
+ * instancia nueva por llamada: `ajv.addSchema` se queda con la referencia.
+ */
+const emptySchema = () => ({ catalogos: [], comprobante: [], complementos: [] });
+
 export default class Schema {
   private static instance: Schema;
+  private static reader: SchemaReader | null = null;
   private debug: boolean = false;
   private ajv: JSV = JSV.of();
-  private isLoad = false;
   private pathSchema = '';
   private schemaKeys: string[] = [];
   constructor() {}
@@ -23,7 +39,33 @@ export default class Schema {
     }
     return Schema.instance;
   }
+
+  /**
+   *setReader
+   *
+   * Inyecta el adaptador de lectura. Lo llama el entrypoint de Node al
+   * importarse; el entrypoint browser no registra ninguno.
+   *
+   * @param reader
+   * SchemaReader
+   */
+  public static setReader(reader: SchemaReader): void {
+    Schema.reader = reader;
+  }
+
+  /** Indica si hay un adaptador de lectura disponible (false en el browser). */
+  public static hasReader(): boolean {
+    return Schema.reader !== null;
+  }
+
   setConfig(options: any) {
+    if (!Schema.reader) {
+      throw new Error(
+        '@cfdi/xsd: no hay un lector de schemas registrado. La carga de XSD ' +
+          'desde disco solo existe en Node. En el browser arma el CFDI con ' +
+          '@cfdi/xml/browser y deja la validacion al server.'
+      );
+    }
     const { path, debug } = options;
     this.pathSchema = path;
     this.debug = debug;
@@ -31,11 +73,8 @@ export default class Schema {
   }
 
   private getContentFile(file: string) {
-    if (!existsSync(file)) {
-      return { catalogos: [], comprobante: [], complementos: [] };
-    }
-    const data = JSON.parse(readFileSync(file, 'utf8'));
-    return data;
+    const data = (Schema.reader as SchemaReader)(file);
+    return data === null ? emptySchema() : data;
   }
   private loadFiles() {
     const cfdi = this.getContentFile(`${this.pathSchema}/cfdi.json`);
