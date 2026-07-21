@@ -11,6 +11,19 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "source": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./browser": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/browser.mjs",
+      "require": "./dist/browser.cjs"
+    },
+    "./package.json": "./package.json"
+  },
   "release": {
     "branches": [
       "main",
@@ -33,7 +46,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "vite build --config node_modules/@recreando/vite/vite.config.lib.mts",
+    "build": "vite build --config vite.config.lib.mts",
     "test": "vitest",
     "test:ci": "vitest run",
     "test:coverage": "vitest run --coverage",
