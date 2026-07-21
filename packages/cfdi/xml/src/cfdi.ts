@@ -6,7 +6,6 @@ import { FileSystem } from './utils/FileSystem';
 import { Config, SaxonHe, XsltSheet } from './types/types';
 import { Transform as CfdiTransform } from '@cfdi/transform';
 import { Transform as SaxonTransform } from '@saxon-he/cli';
-import { XmlCdfi } from './types/xmlCdfi.interface';
 import xmlJS from 'xml-js';
 import { CFDIError } from './common/error';
 /**
@@ -72,22 +71,8 @@ export class CFDI extends Comprobante {
     this.setSello(sello);
   }
 
-  /**
-   *getJsonCdfi
-   */
-  public getJsonCdfi(): XmlCdfi {
-    return this.xml;
-  }
-
-  /**
-   *getXmlCdfi
-   */
-  public getXmlCdfi(): string {
-    const options = { compact: true, ignoreComment: true, spaces: 4 };
-    const cfdi = xmlJS.js2xml({ ...this.xml }, options);
-    this.restartCfdi();
-    return cfdi;
-  }
+  // getJsonCdfi() y getXmlCdfi() viven ahora en la clase base `Comprobante`
+  // (son puros, sin `fs`/certificados) para poder reusarlos en el browser.
 
   /**
    *saveFile

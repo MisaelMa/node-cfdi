@@ -2,7 +2,7 @@
   "name": "@cfdi/designs",
   "version": "1.0.0",
   "description": "Un paquete para Node con Vite y TypeScript",
-  "main": "dist/index.cjs.js",
+  "main": "src/index.ts",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "scripts": {

@@ -19,6 +19,7 @@ import { Relacionado } from './Relacionado';
 import { Schema } from '@cfdi/xsd';
 import { schemaBuild } from '../utils/XmlHelp';
 import { sortObject } from '../utils/Map';
+import xmlJS from 'xml-js';
 
 export class Comprobante {
   protected xml: XmlCdfi = {
@@ -36,10 +37,15 @@ export class Comprobante {
   schema = Schema.of();
   constructor(options?: Config) {
     const { debug, schema } = options || { debug: false };
-    this.schema.setConfig({
-      debug: debug,
-      path: schema?.path,
-    });
+    // `setConfig` carga los XSD desde disco (fs) para validar. Sin `schema.path`
+    // no hay nada que cargar y, además, evitamos tocar `fs` — esto permite usar
+    // el builder en el browser (arma el JSON; la validación la hace el server).
+    if (schema?.path) {
+      this.schema.setConfig({
+        debug: debug,
+        path: schema.path,
+      });
+    }
     this.restartCfdi();
   }
 
@@ -313,5 +319,29 @@ export class Comprobante {
 
   get xmlObject(): XmlCdfi {
     return this.xml;
+  }
+
+  /**
+   * getJsonCdfi
+   *
+   * Devuelve el objeto JSON del CFDI ya armado (lo que se envía al server).
+   * Puro: no toca certificados ni `fs`, por eso vive en la base y funciona en
+   * el browser.
+   */
+  public getJsonCdfi(): XmlCdfi {
+    return this.xml;
+  }
+
+  /**
+   * getXmlCdfi
+   *
+   * Serializa el CFDI a string XML (sin sellar). Usa `xml-js`, que es
+   * browser-safe. Reinicia el comprobante interno tras serializar.
+   */
+  public getXmlCdfi(): string {
+    const options = { compact: true, ignoreComment: true, spaces: 4 };
+    const cfdi = xmlJS.js2xml({ ...this.xml }, options);
+    this.restartCfdi();
+    return cfdi;
   }
 }
