@@ -7,7 +7,7 @@ export class Row {
   private columnGap: number = 10;
 
   constructor(options?: any) {
-    if (options.children) {
+    if (options?.children) {
       this.columns = options.children;
     }
   }
@@ -16,8 +16,8 @@ export class Row {
     return this;
   }
 
- setGap(gap: number): this {
-     
+  setGap(gap: number): this {
+
     this.columnGap = gap
     return this;
   }
