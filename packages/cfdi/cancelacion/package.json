@@ -29,9 +29,9 @@
     "@types/node": "^22",
     "eslint": "^8.57.0",
     "typescript": "^5.6.3",
-    "vitest": "2.1.9",
+    "vitest": "4.1.10",
     "vite-tsconfig-paths": "~4.2.1",
-    "@vitest/coverage-v8": "2.1.9",
-    "@vitest/ui": "2.1.9"
+    "@vitest/coverage-v8": "4.1.10",
+    "@vitest/ui": "4.1.10"
   }
 }
