@@ -9,22 +9,29 @@ const xslt_path = `${files}/4.0/cadenaoriginal.xslt`;
 const transformRunMock = vi.fn().mockReturnValue('||CADENA_TRANSFORM||');
 const saxonRunMock = vi.fn().mockReturnValue('||CADENA_SAXON||');
 
+// `Transform` se instancia con `new`, asi que la implementacion del mock debe
+// ser construible: desde Vitest 4 el `new` se reenvia a la implementacion, y
+// una arrow function no es constructor (`X is not a constructor`).
 vi.mock('@cfdi/transform', () => ({
-  Transform: vi.fn().mockImplementation(() => ({
-    s: vi.fn().mockReturnThis(),
-    xsl: vi.fn().mockReturnThis(),
-    warnings: vi.fn().mockReturnThis(),
-    run: transformRunMock,
-  })),
+  Transform: vi.fn().mockImplementation(function () {
+    return {
+      s: vi.fn().mockReturnThis(),
+      xsl: vi.fn().mockReturnThis(),
+      warnings: vi.fn().mockReturnThis(),
+      run: transformRunMock,
+    };
+  }),
 }));
 
 vi.mock('@saxon-he/cli', () => ({
-  Transform: vi.fn().mockImplementation(() => ({
-    s: vi.fn().mockReturnThis(),
-    xsl: vi.fn().mockReturnThis(),
-    warnings: vi.fn().mockReturnThis(),
-    run: saxonRunMock,
-  })),
+  Transform: vi.fn().mockImplementation(function () {
+    return {
+      s: vi.fn().mockReturnThis(),
+      xsl: vi.fn().mockReturnThis(),
+      warnings: vi.fn().mockReturnThis(),
+      run: saxonRunMock,
+    };
+  }),
 }));
 
 vi.mock('../src/utils/FileSystem', () => ({
