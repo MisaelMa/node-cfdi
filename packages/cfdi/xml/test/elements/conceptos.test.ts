@@ -289,4 +289,110 @@ describe('Concepto', () => {
     concepto.retencion(retencionPayload);
     expect(concepto.getConcept()['cfdi:Impuestos']).toEqual(concepto.impuesto);
   });
+
+  // Los tests de arriba verifican campo por campo. Este congela la FORMA
+  // COMPLETA que devuelve `getConcept()` — la estructura `xml-js` que después
+  // se serializa a XML. Sirve de documentación viva: si el shape cambia, el
+  // snapshot falla y hay que decidir si el cambio es intencional.
+  describe('forma del objeto que devuelve getConcept()', () => {
+    const atributos: XmlConceptoAttributes = {
+      ClaveProdServ: '01010101',
+      NoIdentificacion: 'SKU-1',
+      Cantidad: '2',
+      ClaveUnidad: 'E48',
+      Unidad: 'Unidad de servicio',
+      Descripcion: 'Servicio de consultoría',
+      ValorUnitario: '1000.00',
+      Importe: '2000.00',
+      Descuento: '0.00',
+      ObjetoImp: ObjetoImpEnum.SíObjetoDeImpuesto,
+    };
+
+    it('concepto con traslado y retención', () => {
+      const concepto = new Concepto(atributos);
+      concepto.traslado({
+        Base: '2000.00',
+        Impuesto: '002',
+        TipoFactor: 'Tasa',
+        TasaOCuota: '0.160000',
+        Importe: '320.00',
+      });
+      concepto.retencion({
+        Base: '2000.00',
+        Impuesto: '001',
+        TipoFactor: 'Tasa',
+        TasaOCuota: '0.100000',
+        Importe: '200.00',
+      });
+
+      expect(concepto.getConcept()).toMatchInlineSnapshot(`
+        {
+          "_attributes": {
+            "Cantidad": "2",
+            "ClaveProdServ": "01010101",
+            "ClaveUnidad": "E48",
+            "Descripcion": "Servicio de consultoría",
+            "Descuento": "0.00",
+            "Importe": "2000.00",
+            "NoIdentificacion": "SKU-1",
+            "ObjetoImp": "02",
+            "Unidad": "Unidad de servicio",
+            "ValorUnitario": "1000.00",
+          },
+          "cfdi:Impuestos": {
+            "cfdi:Retenciones": {
+              "cfdi:Retencion": [
+                {
+                  "_attributes": {
+                    "Base": "2000.00",
+                    "Importe": "200.00",
+                    "Impuesto": "001",
+                    "TasaOCuota": "0.100000",
+                    "TipoFactor": "Tasa",
+                  },
+                },
+              ],
+            },
+            "cfdi:Traslados": {
+              "cfdi:Traslado": [
+                {
+                  "_attributes": {
+                    "Base": "2000.00",
+                    "Importe": "320.00",
+                    "Impuesto": "002",
+                    "TasaOCuota": "0.160000",
+                    "TipoFactor": "Tasa",
+                  },
+                },
+              ],
+            },
+          },
+        }
+      `);
+    });
+
+    it('concepto SIN impuestos', () => {
+      const concepto = new Concepto({
+        ...atributos,
+        ObjetoImp: ObjetoImpEnum.NoobjetoDeimpuesto,
+      });
+
+      expect(concepto.getConcept()).toMatchInlineSnapshot(`
+        {
+          "_attributes": {
+            "Cantidad": "2",
+            "ClaveProdServ": "01010101",
+            "ClaveUnidad": "E48",
+            "Descripcion": "Servicio de consultoría",
+            "Descuento": "0.00",
+            "Importe": "2000.00",
+            "NoIdentificacion": "SKU-1",
+            "ObjetoImp": "01",
+            "Unidad": "Unidad de servicio",
+            "ValorUnitario": "1000.00",
+          },
+        }
+      `);
+    });
+  });
 });

@@ -120,4 +120,45 @@ describe('BaseImpuestos', () => {
       _attributes: trasladoPayload,
     });
   });
+
+  // Los getters se consultaban SIEMPRE después de un setter, así que el estado
+  // inicial nunca se ejercitó: `cfdi:Traslados` / `cfdi:Retenciones` solo se
+  // crean dentro de `setTraslado` / `setRetencion`, y leerlos antes tiraba
+  // `TypeError: Cannot read properties of undefined`. Un concepto sin impuestos
+  // (exento, u ObjetoImp '01') es un caso válido del CFDI 4.0.
+  describe('sin impuestos declarados', () => {
+    it('getTraslados() devuelve [] en vez de reventar', () => {
+      expect(new BaseImpuestos().getTraslados()).toEqual([]);
+    });
+
+    it('getRetenciones() devuelve [] en vez de reventar', () => {
+      expect(new BaseImpuestos().getRetenciones()).toEqual([]);
+    });
+
+    it('getTotalImpuestos() devuelve {} en vez de undefined', () => {
+      // El tipo de retorno promete `XmlImpuestosTrasladados`; devolver
+      // `undefined` era una mentira que el consumidor pagaba en runtime.
+      expect(new BaseImpuestos().getTotalImpuestos()).toEqual({});
+    });
+
+    it('solo con traslados: las retenciones siguen vacías', () => {
+      const impuestos = new BaseImpuestos();
+      impuestos.setTraslado({
+        Base: '1000',
+        Impuesto: '002',
+        TipoFactor: 'Tasa',
+        TasaOCuota: '0.160000',
+        Importe: '160.00',
+      });
+      expect(impuestos.getTraslados()).toHaveLength(1);
+      expect(impuestos.getRetenciones()).toEqual([]);
+    });
+
+    it('solo con retenciones: los traslados siguen vacíos', () => {
+      const impuestos = new BaseImpuestos();
+      impuestos.setRetencion({ Impuesto: '001', Importe: '50.00' });
+      expect(impuestos.getRetenciones()).toHaveLength(1);
+      expect(impuestos.getTraslados()).toEqual([]);
+    });
+  });
 });
