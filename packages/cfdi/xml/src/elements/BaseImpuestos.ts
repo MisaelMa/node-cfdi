@@ -49,7 +49,7 @@ export class BaseImpuestos {
         'cfdi:Traslado': [],
       } as XmlTranslado;
     }
-    const sortTraslado = sortObject(traslado, ['Base', 'Impuesto', 'TipoFactor', 'TasaOCuota','Importe']);
+    const sortTraslado = sortObject(traslado, ['Base', 'Impuesto', 'TipoFactor', 'TasaOCuota', 'Importe']);
     const atrributos: XmlTransladoAttributes = {
       _attributes: sortTraslado,
     } as XmlTransladoAttributes;
@@ -86,15 +86,28 @@ export class BaseImpuestos {
     return this;
   }
 
+  /**
+   * Totales de impuestos. Vacío mientras no se hayan declarado: el constructor
+   * solo asigna `_attributes` si recibió totales.
+   */
   getTotalImpuestos(): XmlImpuestosTrasladados {
-    return this.impuesto._attributes;
+    return this.impuesto._attributes ?? ({} as XmlImpuestosTrasladados);
   }
 
+  /**
+   * Retenciones declaradas. Devuelve `[]` mientras no se haya llamado a
+   * `setRetencion`: el nodo `cfdi:Retenciones` se crea recién ahí, y un
+   * comprobante sin retenciones es un caso válido, no un error.
+   */
   getRetenciones(): XmlRetencionAttributes[] {
-    return this.impuesto['cfdi:Retenciones']['cfdi:Retencion'];
+    return this.impuesto['cfdi:Retenciones']?.['cfdi:Retencion'] ?? [];
   }
 
+  /**
+   * Traslados declarados. Devuelve `[]` mientras no se haya llamado a
+   * `setTraslado` — ver `getRetenciones`.
+   */
   getTraslados(): XmlTransladoAttributes[] {
-    return this.impuesto['cfdi:Traslados']['cfdi:Traslado'];
+    return this.impuesto['cfdi:Traslados']?.['cfdi:Traslado'] ?? [];
   }
 }
