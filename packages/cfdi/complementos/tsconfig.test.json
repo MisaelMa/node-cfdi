@@ -1,5 +1,5 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": { "noEmit": true, "rootDir": "." },
-  "include": ["src/**/*.ts", "test/ventavehiculos-niv.test.ts", "test/iedu-rfcpago.test.ts", "test/complement-type-names.test.ts"]
+  "include": ["src/**/*.ts", "test/**/*.ts"]
 }

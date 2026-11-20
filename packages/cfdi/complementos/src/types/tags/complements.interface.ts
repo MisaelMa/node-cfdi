@@ -185,7 +185,7 @@ export declare type ComlementType = ComplementType;
 export declare type ComlementTypeConcept = ComplementTypeConcept;
 
 export interface ComplementsReturn<T = any> extends ComplementProperties {
-  complement: ComplementTypeXml<T>;
+  complement: T;
 }
 
 export interface ComplementProperties {
