@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { parseXslt } from '../src';
 
@@ -53,5 +55,50 @@ describe('xslt parser', () => {
     expect(namespaces.get('pago20')).toBe('http://www.sat.gob.mx/Pagos20');
     expect(namespaces.get('nomina12')).toBe('http://www.sat.gob.mx/nomina12');
     expect(namespaces.get('vehiculousado')).toBe('http://www.sat.gob.mx/vehiculousado');
+  });
+});
+
+describe('xsl:include remoto', () => {
+  const writeXslt = (include: string) => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cfdi-transform-'));
+    const file = path.join(dir, 'main.xslt');
+    fs.writeFileSync(
+      file,
+      `<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:include href="${include}"/>
+</xsl:stylesheet>`
+    );
+    return file;
+  };
+
+  it.each([
+    'http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xslt',
+    'https://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xslt',
+  ])('lanza un error explicito para el include remoto %s', href => {
+    const file = writeXslt(href);
+
+    expect(() => parseXslt(file)).toThrow(
+      `include remoto no soportado: ${href}; usa el XSLT localizado`
+    );
+  });
+
+  it('sigue resolviendo includes relativos', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cfdi-transform-'));
+    fs.writeFileSync(
+      path.join(dir, 'hijo.xslt'),
+      `<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="a:B"/>
+</xsl:stylesheet>`
+    );
+    const main = path.join(dir, 'main.xslt');
+    fs.writeFileSync(
+      main,
+      `<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:include href="./hijo.xslt"/>
+</xsl:stylesheet>`
+    );
+
+    expect(parseXslt(main).templates.has('a:B')).toBe(true);
   });
 });

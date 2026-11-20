@@ -76,6 +76,11 @@ function collectFromFile(
     if (el.name === 'xsl:include') {
       const href = el.attributes?.href as string | undefined;
       if (href) {
+        if (/^https?:\/\//i.test(href)) {
+          throw new Error(
+            `include remoto no soportado: ${href}; usa el XSLT localizado`
+          );
+        }
         const includePath = path.resolve(path.dirname(resolved), href);
         collectFromFile(includePath, visited, templates, onStylesheet, false);
       }
