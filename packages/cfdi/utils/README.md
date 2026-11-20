@@ -159,3 +159,16 @@ npm install @cfdi/utils
 ## Licencia
 
 [MIT](../../LICENSE)
+
+## Validación de rutas (solo Node)
+
+`assertExactCasePath` valida que la ruta coincida exactamente en mayúsculas/minúsculas con el disco
+(Windows y macOS no distinguen; Linux sí). No autocorrige: lanza `PathCaseMismatchError` o
+`FileNotFoundError`. Vive en un subpath para mantener el índice principal compatible con el navegador.
+
+```ts
+import { assertExactCasePath } from '@cfdi/utils/node';
+
+const key = assertExactCasePath('C:/certs/maca3923jss.key');
+// PathCaseMismatchError: El archivo 'maca3923jss.key' existe como 'MACA3923JSS.key'. ...
+```
