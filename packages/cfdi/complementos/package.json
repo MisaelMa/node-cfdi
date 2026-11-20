@@ -18,6 +18,7 @@
       "beta"
     ]
   },
+  "sideEffects": false,
   "files": [
     "dist"
   ],
