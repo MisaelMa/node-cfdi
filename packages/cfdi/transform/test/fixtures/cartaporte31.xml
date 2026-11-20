@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cartaporte31:CartaPorte xmlns:cartaporte31="http://www.sat.gob.mx/CartaPorte31" Version="3.1" IdCCP="CCC12345-6789-0123-4567-890123456789" TranspInternac="No" RegistroISTMO="No" TotalDistRec="10">
+  <cartaporte31:Ubicaciones>
+    <cartaporte31:Ubicacion TipoUbicacion="Origen" IDUbicacion="OR000001" RFCRemitenteDestinatario="XAXX010101000" FechaHoraSalidaLlegada="2024-01-01T10:00:00"/>
+    <cartaporte31:Ubicacion TipoUbicacion="Destino" IDUbicacion="DE000001" RFCRemitenteDestinatario="XAXX010101000" FechaHoraSalidaLlegada="2024-01-02T10:00:00" DistanciaRecorrida="10"/>
+  </cartaporte31:Ubicaciones>
+  <cartaporte31:FiguraTransporte>
+    <cartaporte31:TiposFigura TipoFigura="01" RFCFigura="XAXX010101000" NombreFigura="Operador Uno">
+      <cartaporte31:Domicilio Estado="NLE" Pais="MEX" CodigoPostal="64000"/>
+    </cartaporte31:TiposFigura>
+  </cartaporte31:FiguraTransporte>
+</cartaporte31:CartaPorte>
