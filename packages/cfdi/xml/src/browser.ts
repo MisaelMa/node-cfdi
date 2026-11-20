@@ -23,3 +23,11 @@ export * from './elements/Concepto';
 export { Concepto as Concepts } from './elements/Concepto';
 export * from './elements/Impuestos';
 export * from './types';
+
+// Complementos fiscales (Iedu, VentaVehiculos, Pago20, Nomina12, ...): se re-exportan
+// para que el front no necesite declarar @cfdi/complementos como dependencia directa.
+// El grafo de @cfdi/complementos es browser-safe (solo depende de xml-js).
+export * from '@cfdi/complementos';
+// `AnyKey` existe en ./types y en @cfdi/complementos (TS2308: ambiguo con `export *`).
+// La re-exportacion explicita gana; se conserva la de @cfdi/xml.
+export type { AnyKey } from './types';
