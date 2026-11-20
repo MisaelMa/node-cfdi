@@ -112,7 +112,7 @@ export interface XmlComplementsConcepts extends AnyKey {
   'ventavehiculos:VentaVehiculos'?: XmlVentaVehiculos;
 }
 
-export declare type ComlementType =
+export declare type ComplementType =
   | Cce11
   | ComercioExterior20
   | ConsumoDeCombustibles11
@@ -176,7 +176,13 @@ export declare type ComplementTypeXml<T> =
   | XmlVentaVehiculos
   | T;
 
-export declare type ComlementTypeConcept = Iedu | HidrocarburosPetroliferos | VentaVehiculos;
+export declare type ComplementTypeConcept = Iedu | HidrocarburosPetroliferos | VentaVehiculos;
+
+/** @deprecated Usa `ComplementType` (corregido el typo). */
+export declare type ComlementType = ComplementType;
+
+/** @deprecated Usa `ComplementTypeConcept` (corregido el typo). */
+export declare type ComlementTypeConcept = ComplementTypeConcept;
 
 export interface ComplementsReturn<T = any> extends ComplementProperties {
   complement: ComplementTypeXml<T>;
