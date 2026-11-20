@@ -18,7 +18,7 @@
       "require": "./dist/index.cjs"
     },
     "./browser": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/browser.d.ts",
       "import": "./dist/browser.mjs",
       "require": "./dist/browser.cjs"
     },
