@@ -166,3 +166,31 @@ describe('xsl:if anidados', () => {
     expect(buildCadena(body, `v="1" Z="9" ${attrs}`)).toBe(expected);
   });
 });
+describe('selects con espacios', () => {
+  it('recorta el select de xsl:for-each y xsl:apply-templates', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cfdi-transform-'));
+    const file = path.join(dir, 'x.xslt');
+    fs.writeFileSync(
+      file,
+      `<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:x="http://x">
+  <xsl:template match="x:A"><xsl:for-each select="./x:B "><xsl:apply-templates select="."/></xsl:for-each></xsl:template>
+  <xsl:template match="x:B">${req('k')}</xsl:template>
+</xsl:stylesheet>`
+    );
+    const xml = `<x:A xmlns:x="http://x"><x:B k="1"/></x:A>`;
+    expect(generateCadenaOriginal(xml, parseXslt(file))).toBe('||1||');
+  });
+});
+
+describe('CartaPorte 3.1 con selects con espacio final', () => {
+  const fixtures = path.join(__dirname, 'fixtures');
+  const xslt = path.join(__dirname, '../../../files/4.0/complementos/CartaPorte31.xslt');
+
+  it('incluye FiguraTransporte y coincide con la cadena de xsltproc', () => {
+    const xml = fs.readFileSync(path.join(fixtures, 'cartaporte31.xml'), 'utf-8');
+    // Generada una vez con: xsltproc <wrapper que incluye CartaPorte31.xslt oficial> cartaporte31.xml
+    const esperada = fs.readFileSync(path.join(fixtures, 'cartaporte31.cadena.txt'), 'utf-8').trim();
+
+    expect(generateCadenaOriginal(xml, parseXslt(xslt))).toBe(esperada);
+  });
+});

@@ -110,7 +110,7 @@ function extractRulesFromElements(elements: XmlElement[], rules: Rule[]): void {
       const attrRule = parseCallTemplate(el);
       if (attrRule) rules.push(attrRule);
     } else if (el.name === 'xsl:apply-templates') {
-      const select = el.attributes?.select as string | undefined;
+      const select = trimmedAttr(el, 'select');
       if (select && select !== '.') {
         rules.push({
           type: 'child',
@@ -124,7 +124,7 @@ function extractRulesFromElements(elements: XmlElement[], rules: Rule[]): void {
       const forEachRule = parseForEach(el);
       if (forEachRule) rules.push(forEachRule);
     } else if (el.name === 'xsl:if') {
-      const test = el.attributes?.test as string | undefined;
+      const test = trimmedAttr(el, 'test');
       if (test && el.elements) {
         const innerRules: Rule[] = [];
         extractRulesFromElements(el.elements, innerRules);
@@ -144,7 +144,7 @@ function parseCallTemplate(el: XmlElement): AttrRule | TextRule | null {
   const withParam = el.elements?.find(e => e.name === 'xsl:with-param');
   if (!withParam) return null;
 
-  const select = withParam.attributes?.select as string | undefined;
+  const select = trimmedAttr(withParam, 'select');
   if (!select) return null;
 
   const attrName = extractAttrName(select);
@@ -165,7 +165,7 @@ function parseCallTemplate(el: XmlElement): AttrRule | TextRule | null {
 }
 
 function parseForEach(el: XmlElement): ChildRule | null {
-  const select = el.attributes?.select as string | undefined;
+  const select = trimmedAttr(el, 'select');
   if (!select) return null;
 
   const isWildcard = select === './*' || select === '*';
@@ -251,6 +251,12 @@ function extractAttrName(select: string): string | null {
   return match ? match[1] : null;
 }
 
+/** Lee un atributo XPath (select/test); XPath ignora el whitespace en los extremos. */
+function trimmedAttr(el: XmlElement, name: string): string | undefined {
+  const value = el.attributes?.[name] as string | undefined;
+  return value?.trim();
+}
+
 function normalizeSelect(select: string): string {
-  return select.replace(/^\.\//, '');
+  return select.trim().replace(/^\.\//, '');
 }
