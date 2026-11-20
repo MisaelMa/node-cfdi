@@ -140,3 +140,29 @@ describe('xsl:if con call-template de atributos', () => {
     expect(cadena('1.1')).toBe('||1.1|CV|NIV123|F||');
   });
 });
+
+const buildCadena = (body: string, xmlAttrs: string, children = '') => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cfdi-transform-'));
+  const file = path.join(dir, 'x.xslt');
+  fs.writeFileSync(
+    file,
+    `<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:x="http://x">
+  <xsl:template match="x:A">${body}</xsl:template>
+</xsl:stylesheet>`
+  );
+  const xml = `<x:A xmlns:x="http://x" ${xmlAttrs}>${children}</x:A>`;
+  return generateCadenaOriginal(xml, parseXslt(file));
+};
+const req = (a: string) =>
+  `<xsl:call-template name="Requerido"><xsl:with-param name="valor" select="./@${a}"/></xsl:call-template>`;
+
+describe('xsl:if anidados', () => {
+  const body = `${req('v')}<xsl:if test="./@a='1'"><xsl:if test="./@b='2'">${req('Z')}</xsl:if></xsl:if>`;
+  it.each([
+    ['a="1" b="2"', '||1|9||'],
+    ['a="1" b="0"', '||1||'],
+    ['a="0" b="2"', '||1||'],
+  ])('combina condiciones con AND (%s)', (attrs, expected) => {
+    expect(buildCadena(body, `v="1" Z="9" ${attrs}`)).toBe(expected);
+  });
+});

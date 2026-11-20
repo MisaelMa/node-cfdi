@@ -108,14 +108,18 @@ function evaluateCondition(node: XmlElement, condition: string): boolean {
   return resolveSelect(node, condition).length > 0;
 }
 
+function conditionsHold(node: XmlElement, conditions?: string[]): boolean {
+  return (conditions ?? []).every(c => evaluateCondition(node, c));
+}
+
 function processAttrRule(node: XmlElement, rule: AttrRule): string {
-  if (rule.condition && !evaluateCondition(node, rule.condition)) return '';
+  if (!conditionsHold(node, rule.condition)) return '';
   const value = node.attributes?.[rule.name] as string | undefined;
   return rule.required ? requerido(value) : opcional(value);
 }
 
 function processTextRule(node: XmlElement, rule: TextRule): string {
-  if (rule.condition && !evaluateCondition(node, rule.condition)) return '';
+  if (!conditionsHold(node, rule.condition)) return '';
   let value: string | undefined;
 
   if (rule.select === '.') {
@@ -146,7 +150,7 @@ function processChildRule(
   rule: ChildRule,
   registry: TemplateRegistry
 ): string {
-  if (rule.condition && !evaluateCondition(node, rule.condition)) return '';
+  if (!conditionsHold(node, rule.condition)) return '';
 
   if (rule.wildcard) {
     return processWildcard(node, registry);

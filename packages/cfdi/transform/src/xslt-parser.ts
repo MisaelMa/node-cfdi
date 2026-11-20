@@ -129,7 +129,7 @@ function extractRulesFromElements(elements: XmlElement[], rules: Rule[]): void {
         const innerRules: Rule[] = [];
         extractRulesFromElements(el.elements, innerRules);
         for (const r of innerRules) {
-          r.condition = normalizeSelect(test);
+          r.condition = [normalizeSelect(test), ...(r.condition ?? [])];
           rules.push(r);
         }
       }
