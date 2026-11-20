@@ -58,6 +58,11 @@ export default defineConfig({
   plugins: [
     dts({
       insertTypesEntry: true,
+      // tsconfig-base mapea @cfdi/* -> ../node_modules/@cfdi/*/src (para desarrollar
+      // desde src). Sin esto, vite-plugin-dts reescribe los imports a rutas relativas
+      // inexistentes en el paquete publicado (#113). Los workspaces son dependencias,
+      // asi que deben quedar como import por nombre.
+      aliasesExclude: [/^@cfdi\//, /^@clir\//, /^@saxon-he\//, /^@sat\//, /^@renapo\//],
       exclude: ['node_modules/**'],
     }),
   ],
