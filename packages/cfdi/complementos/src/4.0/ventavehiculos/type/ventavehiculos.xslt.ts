@@ -6,7 +6,7 @@ export interface XmlVentaVehiculos {
 export interface XmlVentaVehiculosAttributes {
   version: string;
   ClaveVehicular: string;
-  Niv?: string;
+  Niv: string;
 }
 
 export interface XmlVentaVehiculosInfoAduanera {
