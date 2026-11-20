@@ -8,5 +8,5 @@ export interface XmlIeduAttribute {
   CURP: string;
   nivelEducativo: string;
   autRVOE: string;
-  rfcPago: string;
+  rfcPago?: string;
 }

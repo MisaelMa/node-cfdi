@@ -17,8 +17,11 @@ export class Iedu extends Complemento<XmlIedu> {
    */
   constructor(attributes: XmlIeduAttribute) {
     super({ key: 'iedu:instEducativas', xmlns, xsd });
-    this.complemento = {
-      _attributes: attributes,
-    } as XmlIedu;
+    // rfcPago es opcional en iedu.xsd: un valor vacio no cumple tRFC (12-13 chars),
+    // por lo que se omite en lugar de emitir rfcPago="".
+    const { rfcPago, ...rest } = attributes;
+    const _attributes: XmlIeduAttribute =
+      typeof rfcPago === 'string' && rfcPago.trim() !== '' ? { ...rest, rfcPago } : rest;
+    this.complemento = { _attributes } as XmlIedu;
   }
 }
