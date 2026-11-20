@@ -194,3 +194,41 @@ describe('CartaPorte 3.1 con selects con espacio final', () => {
     expect(generateCadenaOriginal(xml, parseXslt(xslt))).toBe(esperada);
   });
 });
+
+describe('xsl:if con operadores', () => {
+  const t = (test: string, attrs: string, children = '') =>
+    buildCadena(`<xsl:if test="${test}">${req('Z')}</xsl:if>`, `Z="9" ${attrs}`, children);
+  it.each([
+    ["./@a='1' and ./@b='2'", 'a="1" b="2"', '||9||'],
+    ["./@a='1' and ./@b='2'", 'a="1" b="3"', '||||'],
+    ["./@a='1' or ./@b='2'", 'a="0" b="2"', '||9||'],
+    ["./@a='1' or ./@b='2'", 'a="0" b="0"', '||||'],
+    ["./@a!='1'", 'a="0"', '||9||'],
+    ["./@a!='1'", 'a="1"', '||||'],
+    ["not(./@a)", 'b="1"', '||9||'],
+    ["not(./@a)", 'a="1"', '||||'],
+    ["not(./@a='1')", 'a="2"', '||9||'],
+    ["./@a='1' or ./@b='2' and ./@c='3'", 'a="1" b="0" c="0"', '||9||'],
+    ["(./@a='1' or ./@b='2') and ./@c='3'", 'a="1" b="0" c="0"', '||||'],
+    ["./x:C and not(./@a)", 'b="1"', '||9||'],
+  ])('evalua %s con %s', (test, attrs, expected) => {
+    expect(t(test, attrs, '<x:C/>')).toBe(expected);
+  });
+
+  it('lanza un error claro ante un test no soportado', () => {
+    expect(() => t("contains(./@a,'1')", 'a="1"')).toThrow(
+      "test de xsl:if no soportado: contains(./@a,'1')"
+    );
+  });
+});
+
+describe('xsl:if no soportado', () => {
+  it.each(["string-length(./@a) > 1", "./@a = ./@b", "./x:C/@a='1'", "./@a='1' and"])(
+    'lanza error al parsear %s',
+    test => {
+      expect(() => buildCadena(`<xsl:if test="${test.replace(/>/g, '&gt;')}">${req('Z')}</xsl:if>`, 'Z="9"')).toThrow(
+        'test de xsl:if no soportado:'
+      );
+    }
+  );
+});

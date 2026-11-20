@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import xmlJs from 'xml-js';
+import { parseCondition } from './xpath-condition';
 import type {
   AttrRule,
   TextRule,
@@ -126,6 +127,7 @@ function extractRulesFromElements(elements: XmlElement[], rules: Rule[]): void {
     } else if (el.name === 'xsl:if') {
       const test = trimmedAttr(el, 'test');
       if (test && el.elements) {
+        parseCondition(test);
         const innerRules: Rule[] = [];
         extractRulesFromElements(el.elements, innerRules);
         for (const r of innerRules) {

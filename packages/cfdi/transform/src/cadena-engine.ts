@@ -1,4 +1,5 @@
 import xmlJs from 'xml-js';
+import { evaluate, parseCondition, type Condition } from './xpath-condition';
 import type { AttrRule, TextRule, ChildRule, TemplateRegistry, XmlElement } from './types';
 
 export function normalizeSpace(s: string): string {
@@ -91,21 +92,16 @@ export function processNode(
   return result;
 }
 
-/**
- * Evalua el `test` de un xsl:if ya normalizado (sin `./` inicial).
- * Soporta `@Attr='valor'`, `@Attr` (existe) y una ruta de nodos hijos (existe).
- */
+const conditionCache = new Map<string, Condition>();
+
+/** Evalua el `test` de un xsl:if ya normalizado (ver xpath-condition.ts). */
 function evaluateCondition(node: XmlElement, condition: string): boolean {
-  const attrEquals = condition.match(/^@([\w:.-]+)\s*=\s*(?:'([^']*)'|"([^"]*)")$/);
-  if (attrEquals) {
-    const expected = attrEquals[2] ?? attrEquals[3];
-    return node.attributes?.[attrEquals[1]] === expected;
+  let parsed = conditionCache.get(condition);
+  if (!parsed) {
+    parsed = parseCondition(condition);
+    conditionCache.set(condition, parsed);
   }
-  const attrExists = condition.match(/^@([\w:.-]+)$/);
-  if (attrExists) {
-    return node.attributes?.[attrExists[1]] !== undefined;
-  }
-  return resolveSelect(node, condition).length > 0;
+  return evaluate(parsed, node, resolveSelect);
 }
 
 function conditionsHold(node: XmlElement, conditions?: string[]): boolean {
