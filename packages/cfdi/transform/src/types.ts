@@ -2,6 +2,7 @@ export interface AttrRule {
   type: 'attr';
   name: string;
   required: boolean;
+  condition?: string;
 }
 
 export interface ChildRule {
@@ -19,6 +20,7 @@ export interface TextRule {
   type: 'text';
   select: string;
   required: boolean;
+  condition?: string;
 }
 
 export type Rule = AttrRule | TextRule | ChildRule;

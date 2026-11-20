@@ -91,12 +91,31 @@ export function processNode(
   return result;
 }
 
+/**
+ * Evalua el `test` de un xsl:if ya normalizado (sin `./` inicial).
+ * Soporta `@Attr='valor'`, `@Attr` (existe) y una ruta de nodos hijos (existe).
+ */
+function evaluateCondition(node: XmlElement, condition: string): boolean {
+  const attrEquals = condition.match(/^@([\w:.-]+)\s*=\s*(?:'([^']*)'|"([^"]*)")$/);
+  if (attrEquals) {
+    const expected = attrEquals[2] ?? attrEquals[3];
+    return node.attributes?.[attrEquals[1]] === expected;
+  }
+  const attrExists = condition.match(/^@([\w:.-]+)$/);
+  if (attrExists) {
+    return node.attributes?.[attrExists[1]] !== undefined;
+  }
+  return resolveSelect(node, condition).length > 0;
+}
+
 function processAttrRule(node: XmlElement, rule: AttrRule): string {
+  if (rule.condition && !evaluateCondition(node, rule.condition)) return '';
   const value = node.attributes?.[rule.name] as string | undefined;
   return rule.required ? requerido(value) : opcional(value);
 }
 
 function processTextRule(node: XmlElement, rule: TextRule): string {
+  if (rule.condition && !evaluateCondition(node, rule.condition)) return '';
   let value: string | undefined;
 
   if (rule.select === '.') {
@@ -127,10 +146,7 @@ function processChildRule(
   rule: ChildRule,
   registry: TemplateRegistry
 ): string {
-  if (rule.condition) {
-    const conditionElements = resolveSelect(node, rule.condition);
-    if (conditionElements.length === 0) return '';
-  }
+  if (rule.condition && !evaluateCondition(node, rule.condition)) return '';
 
   if (rule.wildcard) {
     return processWildcard(node, registry);

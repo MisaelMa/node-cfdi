@@ -129,9 +129,7 @@ function extractRulesFromElements(elements: XmlElement[], rules: Rule[]): void {
         const innerRules: Rule[] = [];
         extractRulesFromElements(el.elements, innerRules);
         for (const r of innerRules) {
-          if (r.type === 'child') {
-            r.condition = normalizeSelect(test);
-          }
+          r.condition = normalizeSelect(test);
           rules.push(r);
         }
       }

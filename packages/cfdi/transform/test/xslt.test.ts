@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { parseXslt } from '../src';
+import { generateCadenaOriginal, parseXslt } from '../src';
 
 const files = path.resolve(__dirname, '..', '..', '..', 'files');
 const xslt_path = `${files}/4.0/cadenaoriginal.xslt`;
@@ -100,5 +100,43 @@ describe('xsl:include remoto', () => {
     );
 
     expect(parseXslt(main).templates.has('a:B')).toBe(true);
+  });
+});
+
+describe('xsl:if con call-template de atributos', () => {
+  const xslt = `<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ventavehiculos="http://www.sat.gob.mx/ventavehiculos">
+  <xsl:template match="ventavehiculos:VentaVehiculos">
+    <xsl:call-template name="Requerido">
+      <xsl:with-param name="valor" select="./@version"/>
+    </xsl:call-template>
+    <xsl:call-template name="Requerido">
+      <xsl:with-param name="valor" select="./@ClaveVehicular"/>
+    </xsl:call-template>
+    <xsl:if test="./@version='1.1'">
+      <xsl:call-template name="Requerido">
+        <xsl:with-param name="valor" select="./@Niv"/>
+      </xsl:call-template>
+    </xsl:if>
+    <xsl:call-template name="Opcional">
+      <xsl:with-param name="valor" select="./@Final"/>
+    </xsl:call-template>
+  </xsl:template>
+</xsl:stylesheet>`;
+
+  const cadena = (version: string) => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cfdi-transform-'));
+    const file = path.join(dir, 'ventavehiculos.xslt');
+    fs.writeFileSync(file, xslt);
+    const xml = `<ventavehiculos:VentaVehiculos xmlns:ventavehiculos="http://www.sat.gob.mx/ventavehiculos" version="${version}" ClaveVehicular="CV" Niv="NIV123" Final="F"/>`;
+    return generateCadenaOriginal(xml, parseXslt(file));
+  };
+
+  it('no emite el atributo condicionado cuando el test del if es falso', () => {
+    expect(cadena('1.0')).toBe('||1.0|CV|F||');
+  });
+
+  it('emite el atributo condicionado cuando el test del if es verdadero', () => {
+    expect(cadena('1.1')).toBe('||1.1|CV|NIV123|F||');
   });
 });
