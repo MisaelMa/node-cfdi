@@ -1,4 +1,5 @@
 import xmlJs from 'xml-js';
+import { evaluate, parseCondition, type Condition } from './xpath-condition';
 import type { AttrRule, TextRule, ChildRule, TemplateRegistry, XmlElement } from './types';
 
 export function normalizeSpace(s: string): string {
@@ -91,12 +92,30 @@ export function processNode(
   return result;
 }
 
+const conditionCache = new Map<string, Condition>();
+
+/** Evalua el `test` de un xsl:if ya normalizado (ver xpath-condition.ts). */
+function evaluateCondition(node: XmlElement, condition: string): boolean {
+  let parsed = conditionCache.get(condition);
+  if (!parsed) {
+    parsed = parseCondition(condition);
+    conditionCache.set(condition, parsed);
+  }
+  return evaluate(parsed, node, resolveSelect);
+}
+
+function conditionsHold(node: XmlElement, conditions?: string[]): boolean {
+  return (conditions ?? []).every(c => evaluateCondition(node, c));
+}
+
 function processAttrRule(node: XmlElement, rule: AttrRule): string {
+  if (!conditionsHold(node, rule.condition)) return '';
   const value = node.attributes?.[rule.name] as string | undefined;
   return rule.required ? requerido(value) : opcional(value);
 }
 
 function processTextRule(node: XmlElement, rule: TextRule): string {
+  if (!conditionsHold(node, rule.condition)) return '';
   let value: string | undefined;
 
   if (rule.select === '.') {
@@ -127,10 +146,7 @@ function processChildRule(
   rule: ChildRule,
   registry: TemplateRegistry
 ): string {
-  if (rule.condition) {
-    const conditionElements = resolveSelect(node, rule.condition);
-    if (conditionElements.length === 0) return '';
-  }
+  if (!conditionsHold(node, rule.condition)) return '';
 
   if (rule.wildcard) {
     return processWildcard(node, registry);

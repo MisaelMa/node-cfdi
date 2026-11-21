@@ -132,6 +132,51 @@ npm install @cfdi/transform
 
 ---
 
+## XSLT localizado: includes relativos y remotos
+
+`@cfdi/transform` solo resuelve `xsl:include` con un `href` **relativo** al archivo que lo contiene
+(por ejemplo `./complementos/nomina12.xslt`). No descarga nada de internet.
+
+El `cadenaoriginal_4_0.xslt` que publica el SAT trae includes **remotos**
+(`http://www.sat.gob.mx/sitio_internet/cfd/...`). Si le pasas ese archivo tal cual a `parseXslt` o a
+`Transform#xsl`, lanza un error explicito:
+
+```
+include remoto no soportado: http://www.sat.gob.mx/sitio_internet/cfd/donat/donat11.xslt; usa el XSLT localizado
+```
+
+Hay que **localizar** el XSLT antes de usarlo:
+
+1. Descarga `cadenaoriginal_4_0.xslt` y cada XSLT que referencia (utilerias y complementos) a una
+   carpeta local, por ejemplo `xslt/` y `xslt/complementos/`.
+2. Reescribe cada `href` remoto a una ruta relativa a ese archivo:
+
+   ```xml
+   <!-- antes -->
+   <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xslt"/>
+   <!-- despues -->
+   <xsl:include href="./complementos/nomina12.xslt"/>
+   ```
+
+   Los complementos pueden incluir a su vez otros XSLT (como `utilerias.xslt`): reescribe tambien esos `href`.
+3. Verifica contra el procesador XSLT del SAT. La cadena de `@cfdi/transform` y la de `xsltproc`
+   deben ser **identicas**:
+
+   ```bash
+   xsltproc xslt/cadenaoriginal_4_0.xslt factura.xml
+   ```
+
+   ```ts
+   import { Transform } from '@cfdi/transform';
+
+   const cadena = new Transform().s('factura.xml').xsl('xslt/cadenaoriginal_4_0.xslt').run();
+   ```
+
+Un complemento cuyo XSLT no esta localizado no puede entrar a la cadena original, y el sello
+resultaria invalido; por eso el include remoto se rechaza en lugar de ignorarse.
+
+---
+
 ## Soporte
 
 <p>

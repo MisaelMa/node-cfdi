@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" Version="4.0" Serie="" Folio="  " Fecha="2024-01-01T00:00:00" FormaPago="01" NoCertificado="30001000000500003416" SubTotal="100" Moneda="MXN" Total="116" TipoDeComprobante="I" Exportacion="01" MetodoPago="PUE" LugarExpedicion="01000" CondicionesDePago="">
+  <cfdi:Emisor Rfc="EKU9003173C9" Nombre="ESCUELA KEMPER URGATE" RegimenFiscal="601"/>
+  <cfdi:Receptor Rfc="XAXX010101000" Nombre="PUBLICO EN GENERAL" DomicilioFiscalReceptor="01000" RegimenFiscalReceptor="616" UsoCFDI="S01"/>
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="01010101" NoIdentificacion="" Cantidad="1" ClaveUnidad="H87" Unidad="  a   b " Descripcion="Prueba" ValorUnitario="100" Importe="100" ObjetoImp="01"/>
+  </cfdi:Conceptos>
+</cfdi:Comprobante>
